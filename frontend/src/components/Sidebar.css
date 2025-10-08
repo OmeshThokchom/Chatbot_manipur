@@ -1,17 +1,17 @@
 .chat-sidebar {
   width: 260px;
-  background-color: #202123;
+  background-color: var(--surface-color);
   display: flex;
   flex-direction: column;
   padding: 10px;
-  border-right: 1px solid #333;
+  border-right: 1px solid var(--background-color);
 }
 
 .chat-sidebar__new-chat-button {
   width: 100%;
   padding: 10px;
-  background-color: #333;
-  color: #e0e0e0;
+  background-color: var(--accent-color);
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -33,14 +33,14 @@
 
 .chat-sidebar__footer {
   padding-top: 10px;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--background-color);
 }
 
 .chat-sidebar__footer-button {
   width: 100%;
   padding: 10px;
   background-color: transparent;
-  color: #e0e0e0;
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;

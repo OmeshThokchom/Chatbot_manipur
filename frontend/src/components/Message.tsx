@@ -25,9 +25,11 @@ const Message: React.FC<MessageProps> = ({ text, isUser }) => {
 
   return (
     <div className={`message ${isUser ? 'message--user' : 'message--assistant'}`}>
-      <div className={`message__avatar ${isUser ? 'message__avatar--user' : 'message__avatar--assistant'}`}>
-        {isUser ? <i className="fas fa-user"></i> : <i className="fas fa-robot"></i>}
-      </div>
+      {!isUser && (
+        <div className="message__avatar message__avatar--assistant">
+          <i className="fas fa-robot"></i>
+        </div>
+      )}
       <div className="message__content">
         {isUser ? (
           <p>{text}</p>
