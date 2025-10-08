@@ -11,3 +11,4 @@
 .env
 N7Speech/
 models/
+__pycache__/*
