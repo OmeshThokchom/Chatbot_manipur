@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify, Response
+import os
+from flask import Flask, render_template, request, jsonify, Response, send_from_directory
 from flask_cors import CORS
 from meitei_chat_system import MeiteiChatSystem
 import threading
@@ -6,7 +7,7 @@ import json
 from queue import Queue
 import time
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend/dist', static_url_path='/')
 CORS(app)
 
 # Initialize chat system with streaming disabled for web interface
@@ -31,7 +32,15 @@ def web_speech_callback(transcript):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static_assets(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
+
 
 @app.route('/chat', methods=['POST'])
 def chat():
