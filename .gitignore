@@ -1,7 +1,6 @@
 ./N7Speech/*
 ./.vscode/*
 ./.idea/*
-./__pycache__/*
 ./venv/*
 ./env/*
 ./*.pyc
@@ -11,5 +10,5 @@
 .env
 N7Speech/
 models/
-__pycache__/
-translation_logs.txt
+**/__pycache__/
+translation_log.txt
