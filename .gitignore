@@ -12,3 +12,4 @@ N7Speech/
 models/
 **/__pycache__/
 translation_log.txt
+__pycache__/*
