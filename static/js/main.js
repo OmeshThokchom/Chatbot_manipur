@@ -189,6 +189,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     voiceButton.addEventListener('click', toggleVoiceInput);
 
-    // Initial welcome message
-    addMessage("Hi! How can I help you today?", false);
+
 });
