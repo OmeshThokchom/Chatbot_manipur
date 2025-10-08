@@ -5,17 +5,20 @@
   margin-bottom: 20px;
   padding: 0.9375rem;
   border-radius: 0.5rem;
-  animation: fadeIn 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
+@keyframes bubblePop {
+  0% {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px) scale(0.7); /* Start a bit smaller */
   }
-  to {
+  80% { /* Adjust percentage for overshoot */
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-5px) scale(1.08); /* More overshoot */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -37,6 +40,7 @@
 .message--user {
   justify-content: flex-end;
   align-self: flex-end;
+  animation: bubblePop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .message--assistant {
@@ -49,7 +53,7 @@
   color: var(--text-color);
   padding: 10px 15px;
   border-radius: 18px;
-  max-width: 70%;
+  max-width: 85%;
 }
 
 .message--assistant .message__content {
