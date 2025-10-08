@@ -3,8 +3,8 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 8px;
+  padding: 0.9375rem;
+  border-radius: 0.5rem;
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -71,9 +71,9 @@
 }
 
 .markdown pre {
-  background-color: #2d2d2d;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: var(--surface-color);
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
   overflow-x: auto;
 }
 
@@ -85,5 +85,5 @@
 .markdown pre code {
   display: block;
   padding: 0;
-  color: #ccc;
+  color: var(--text-color);
 }

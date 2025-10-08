@@ -1,7 +1,7 @@
 .chat-main__messages {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   max-width: 768px;

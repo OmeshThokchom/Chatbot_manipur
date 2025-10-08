@@ -1,94 +1,94 @@
 .chat-main__input-area {
-  padding: 20px;
-  background-color: var(--background-color);
-  border-top: 1px solid var(--surface-color);
+  padding: 1rem;
+  background-color: #1e1f26;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.chat-main__disclaimer {
-  font-size: 0.8em;
-  color: rgba(224, 224, 224, 0.5);
-  margin-top: 10px;
 }
 
 .chat-input {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
   max-width: 768px;
-  background-color: var(--surface-color);
-  border-radius: 8px;
-  padding: 8px;
-  position: relative; /* Added for positioning waves */
-  transition: box-shadow 0.3s ease-in-out;
+  background-color: #343541;
+  border-radius: 2rem;
+  padding: 0.4rem 0.6rem;
+  transition: box-shadow 0.25s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .chat-input:focus-within {
-  box-shadow: 0 0 0 2px var(--accent-color);
+  box-shadow: 0 0 0 1.5px #10a37f, 0 0 10px rgba(16, 163, 127, 0.3);
 }
 
 .chat-input__field {
-  flex-grow: 1;
-  border: none;
+  flex: 1;
   background: transparent;
-  color: var(--text-color);
-  padding: 10px;
+  border: none;
+  color: #e4e4e4;
   resize: none;
+  font-size: 1rem;
   outline: none;
-  font-size: 1em;
-  max-height: 200px; /* Limit textarea height */
-  overflow-y: auto;
-  transition: all 0.3s ease; /* Added for smooth transition */
-}
-
-.chat-input__field--voice-active {
-  background-color: #1c1e22; /* Darker background when voice active */
-  color: transparent; /* Hide text */
-  text-align: center;
+  padding: 0.75rem 1rem;
+  line-height: 1.5;
+  height: 2.4rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.5em; /* Larger icon */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1; /* Ensure it's above other elements if needed */
+  overflow: hidden;
 }
 
-.chat-input__field--voice-active::placeholder {
-  color: transparent; /* Hide placeholder text */
-}
-
-.chat-input__field--voice-active::before {
-  content: '\f130'; /* Microphone icon from Font Awesome */
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  color: var(--accent-color);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+.chat-input__field::placeholder {
+  color: #888;
 }
 
 .chat-input__send-button {
-  background-color: transparent;
+  background-color: #10a37f;
   border: none;
-  color: var(--text-color);
+  color: white;
   cursor: pointer;
-  padding: 10px;
-  font-size: 1.2em;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3; /* Ensure buttons are clickable */
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin-left: 0.5rem;
+  transition: all 0.25s ease;
+  font-size: 1rem;
 }
 
 .chat-input__send-button:hover {
-  color: var(--accent-color);
+  background-color: #0d906e;
+  transform: scale(1.08);
+}
+
+.chat-input__send-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.chat-input__send-button i {
+  font-size: 0.9rem;
+}
+
+.voice-button {
+  margin-left: 0.4rem;
+}
+
+@media (max-width: 600px) {
+  .chat-input {
+    max-width: 95%;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .chat-input__field {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  .chat-input__send-button {
+    width: 2rem;
+    height: 2rem;
+  }
 }

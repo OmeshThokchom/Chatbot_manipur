@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
-import Sidebar from '../components/Sidebar';
 
 interface Message {
   id: number;
@@ -121,7 +120,7 @@ const ChatPage: React.FC = () => {
 
   return (
     <div className="chat-wrapper">
-      <Sidebar />
+      {/* Removed Sidebar component */}
       <div className="chat-main">
         <header className="chat-main__header">
           <h1 className="chat-main__title">N7chat</h1>

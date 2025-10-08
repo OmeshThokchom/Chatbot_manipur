@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import VoiceInputButton from './VoiceInputButton';
-import './ChatInput.css';
+import React, { useState, useRef, useEffect } from "react";
+import VoiceInputButton from "./VoiceInputButton";
+import "./ChatInput.css";
 
 interface ChatInputProps {
   sendMessage: (message: string) => void;
@@ -15,23 +15,24 @@ const ChatInput: React.FC<ChatInputProps> = ({
   isVoiceActive,
   isLoading,
 }) => {
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     }
   }, [inputValue]);
 
   const handleSendMessage = () => {
-    sendMessage(inputValue);
-    setInputValue('');
+    if (!inputValue.trim()) return;
+    sendMessage(inputValue.trim());
+    setInputValue("");
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       handleSendMessage();
     }
@@ -42,17 +43,15 @@ const ChatInput: React.FC<ChatInputProps> = ({
       <div className="chat-input">
         <textarea
           ref={textareaRef}
-          id="user-input"
           className="chat-input__field"
-          placeholder="Enter a prompt here"
+          placeholder="Enter a prompt here..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={isVoiceActive || isLoading}
           rows={1}
-        ></textarea>
+        />
         <button
-          id="send-button"
           className="chat-input__send-button"
           onClick={handleSendMessage}
           disabled={!inputValue.trim() || isLoading || isVoiceActive}
@@ -70,3 +69,4 @@ const ChatInput: React.FC<ChatInputProps> = ({
 };
 
 export default ChatInput;
+  
