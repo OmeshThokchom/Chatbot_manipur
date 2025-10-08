@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .messages-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .messages-container::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+        .messages-container::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.2);
+            border-radius: 2px;
+        }
+        .messages-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.4);
+        }
+
+        .message {
+            animation: slideIn 0.2s ease-out;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bubble {
+            position: relative;
+            padding: 0.75rem 1rem;
+            border-radius: 1.2rem;
+            max-width: 70%;
+            margin: 0.25rem 0;
+            line-height: 1.4;
+            font-size: 0.95rem;
+        }
+
+        .bubble::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            bottom: -0.4rem;
+            border: 0.4rem solid transparent;
+        }
+
+        .user-bubble {
+            margin-left: auto;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.9375rem;
+        }
+
+        .user-bubble::before {
+            right: 1rem;
+            border-top-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .assistant-bubble {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+
+        .assistant-bubble::before {
+            left: 1rem;
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .markdown p {
+            margin: 0.25rem 0;
+        }
+
+        .markdown code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-size: 0.9em;
+            color: #93c5fd;
+        }
+
+        .markdown pre code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            display: block;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 0.3rem;
+        }
+
+        .typing-dots span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.2;
+            animation: typing 1s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(1); }
+        }
+
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+            background: linear-gradient(45deg, #1e293b, #0f172a);
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1rem;
+            padding: 1px;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.5), rgba(147, 197, 253, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 197, 253, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.4), transparent);
+            opacity: 0.5;
+        }
+
+        .logo-container i {
+            position: relative;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+        }
+
+        /* Siri animation styles */
+        .voice-button-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-waves {
+            position: absolute;
+            inset: -4px;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .voice-waves::before,
+        .voice-waves::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            animation: none;
+        }
+
+        .voice-waves.active {
+            opacity: 1;
+        }
+
+        .voice-waves.active::before {
+            animation: siriWave1 2s linear infinite;
+        }
+
+        .voice-waves.active::after {
+            animation: siriWave2 2s linear infinite 0.5s;
+        }
+
+        @keyframes siriWave1 {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes siriWave2 {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        #voice-button {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        #voice-button.active {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        #voice-button.active i {
+            color: #60a5fa;
+        }
+
+        /* Sound wave visualization styles */
+        .input-container {
+            position: relative;
+            flex: 1;
+        }
+
+        .wave-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .wave-container.active {
+            opacity: 1;
+        }
+
+        .wave-bars {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 20px;
+            width: 100%;
+        }
+
+        .wave-bar {
+            flex: 1;
+            height: 100%;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 2px;
+            transform-origin: 50% 50%;
+            animation: none;
+        }
+
+        .wave-container.active .wave-bar {
+            animation: soundWave 1s ease-in-out infinite;
+        }
+
+        .wave-container.active .wave-bar:nth-child(2n) {
+            animation-delay: 0.2s;
+        }
+
+        .wave-container.active .wave-bar:nth-child(3n) {
+            animation-delay: 0.3s;
+        }
+
+        .wave-container.active .wave-bar:nth-child(4n) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes soundWave {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+
+        /* Adjust input styles for wave visualization */
+        #input-field {
+            transition: all 0.3s ease;
+        }
+
+        #input-field.voice-active {
+            color: transparent;
+        }
+
+        #input-field.voice-active::placeholder {
+            color: transparent;
+        }
