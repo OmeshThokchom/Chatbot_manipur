@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import VoiceInputButton from './VoiceInputButton';
+import './ChatInput.css';
 
 interface ChatInputProps {
   sendMessage: (message: string) => void;
@@ -41,8 +43,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <textarea
           ref={textareaRef}
           id="user-input"
-          className={`chat-input__field ${isVoiceActive ? 'chat__input-field--voice-active' : ''}`}
-          placeholder={isVoiceActive ? 'Voice input active...' : 'Message ChatGPT...'}
+          className="chat-input__field"
+          placeholder="Enter a prompt here"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -53,24 +55,16 @@ const ChatInput: React.FC<ChatInputProps> = ({
           id="send-button"
           className="chat-input__send-button"
           onClick={handleSendMessage}
-          disabled={!inputValue.trim() || isLoading}
+          disabled={!inputValue.trim() || isLoading || isVoiceActive}
         >
-          <i className="fas fa-paper-plane"></i>
+          <i className="fas fa-arrow-up"></i>
         </button>
-        <div className={`voice-button-container ${isVoiceActive ? 'wave-container--active' : ''}`}>
-          <div className={`voice-button-container__waves ${isVoiceActive ? 'voice-button-container__waves--active' : ''}`}></div>
-          <button
-            id="voice-button"
-            className="chat-input__voice-button"
-            onClick={toggleVoiceInput}
-            title={isVoiceActive ? 'Stop voice input' : 'Start voice input'}
-            disabled={isLoading}
-          >
-            <i className="fas fa-microphone"></i>
-          </button>
-        </div>
+        <VoiceInputButton
+          isVoiceActive={isVoiceActive}
+          toggleVoiceInput={toggleVoiceInput}
+          isLoading={isLoading}
+        />
       </div>
-      <p className="chat-main__disclaimer">ChatGPT can make mistakes. Consider checking important information.</p>
     </div>
   );
 };

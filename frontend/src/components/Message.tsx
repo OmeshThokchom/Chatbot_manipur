@@ -3,6 +3,8 @@ import { marked } from 'marked';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css'; // Or any other theme you prefer
 
+import './Message.css';
+
 interface MessageProps {
   text: string;
   isUser: boolean;

@@ -70,13 +70,16 @@ const ChatPage: React.FC = () => {
       if (newIsVoiceActive) {
         setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input activated. Speak to interact.', isUser: false }]);
 
+        // Ensure any previous EventSource is closed before opening a new one
         if (eventSourceRef.current) {
           eventSourceRef.current.close();
+          eventSourceRef.current = null;
         }
 
-        eventSourceRef.current = new EventSource('/get-transcription');
+        const es = new EventSource('/get-transcription');
+        eventSourceRef.current = es;
 
-        eventSourceRef.current.onmessage = function (e) {
+        es.onmessage = function (e) {
           const transcriptionData = JSON.parse(e.data);
           setMessages((prevMessages) => [
             ...prevMessages,
@@ -85,10 +88,13 @@ const ChatPage: React.FC = () => {
           ]);
         };
 
-        eventSourceRef.current.onerror = function () {
+        es.onerror = function () {
           console.log('SSE error, closing connection');
-          eventSourceRef.current?.close();
-          eventSourceRef.current = null;
+          es.close();
+          if (eventSourceRef.current === es) { // Only nullify if it's the current one
+            eventSourceRef.current = null;
+          }
+          setIsVoiceActive(false); // Also deactivate voice input on error
         };
       } else {
         setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input deactivated.', isUser: false }]);
@@ -100,6 +106,7 @@ const ChatPage: React.FC = () => {
     } catch (error) {
       setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Error: Could not toggle voice input.', isUser: false }]);
       console.error('Voice input error:', error);
+      setIsVoiceActive(false); // Deactivate voice input on general error
     }
   }, []);
 

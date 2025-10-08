@@ -111,6 +111,7 @@
   background-color: #40414f;
   border-radius: 8px;
   padding: 8px;
+  position: relative; /* Added for positioning waves */
 }
 
 .chat-input__field {
@@ -124,6 +125,39 @@
   font-size: 1em;
   max-height: 200px; /* Limit textarea height */
   overflow-y: auto;
+  transition: all 0.3s ease; /* Added for smooth transition */
+}
+
+.chat-input__field--voice-active {
+  background-color: #555666; /* Darker background when voice active */
+  color: transparent; /* Hide text */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em; /* Larger icon */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1; /* Ensure it's above other elements if needed */
+}
+
+.chat-input__field--voice-active::placeholder {
+  color: transparent; /* Hide placeholder text */
+}
+
+.chat-input__field--voice-active::before {
+  content: '\f130'; /* Microphone icon from Font Awesome */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #007bff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .chat-input__send-button,
@@ -137,6 +171,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3; /* Ensure buttons are clickable */
 }
 
 .chat-input__send-button:hover,
@@ -160,6 +195,7 @@
   opacity: 0;
   transform: scale(0);
   transition: all 0.5s ease-out;
+  z-index: 0; /* Ensure waves are behind the icon */
 }
 
 .voice-button-container__waves--active {

@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import Message from './Message';
 import TypingIndicator from './TypingIndicator';
 
+import './ChatWindow.css';
+
 interface MessageProps {
   id: number;
   text: string;
