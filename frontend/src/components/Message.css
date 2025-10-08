@@ -5,6 +5,18 @@
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 8px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .message__avatar {
@@ -19,9 +31,24 @@
   flex-shrink: 0;
 }
 
+.message--user {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.message--user .message__avatar {
+  margin-right: 0;
+  margin-left: 15px;
+}
+
 .message__avatar--user {
   background-color: #007bff;
   color: white;
+}
+
+.message--assistant {
+  flex-direction: row;
 }
 
 .message__avatar--assistant {
