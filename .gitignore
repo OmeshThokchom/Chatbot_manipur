@@ -11,5 +11,5 @@
 .env
 N7Speech/
 models/
-__pycache__/*
-__pycache__
+__pycache__/
+translation_logs.txt

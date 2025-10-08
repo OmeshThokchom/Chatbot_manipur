@@ -1239,3 +1239,55 @@ Detected as Meitei: True
 Translated to English: What do you call?
 AI Response: The Meitei phrase “ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ” translates to “Hello” or “Hi” in English....
 Translated response: ꯃꯦꯏꯇꯦ ꯍꯥꯌꯕꯥ ꯋꯥꯍꯩ ꯑꯁꯤ ꯏꯪꯔꯦꯖꯤ ꯂꯣꯟꯗꯥ “ꯍꯦꯂꯣ” ꯅꯠꯔꯒꯥ “ꯍꯥꯌ” ꯍꯥꯌꯅꯥ ꯍꯟꯗꯣꯀꯏ꯫...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! I’m n7‑ai, your local tech mentor—feel free to ask anything about development, Meitei script,...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today—whether it’s tech advice, Meitei script help, or anything else?...
+
+
+--- NEW QUERY ---
+Original input: ꯊꯅꯔꯤ
+Detected as Meitei: True
+Translated to English: Disal dyjayamga bum dal.
+AI Response: Hello! How can I assist you today?...
+Translated response: ꯍꯦꯜꯂꯣ! ꯉꯁꯤ ꯑꯩꯍꯥꯛꯅꯥ ꯑꯗꯣꯃꯗꯥ ꯃꯇꯧ ꯀꯔꯝꯅꯥ ꯃꯇꯦꯡ ꯄꯥꯡꯒꯅꯤ?...
+
+
+--- NEW QUERY ---
+Original input: ꯁꯗ
+Detected as Meitei: False
+AI Response: Hi! How can I help you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯩ
+Detected as Meitei: False
+AI Response: Hello! How can I help you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯑ
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯁꯤ
+Detected as Meitei: False
+AI Response: I understand your message—just let me know what you’d like translated or how I can help, and I’ll re...
+
+
+--- NEW QUERY ---
+Original input: ꯊ ꯂꯩꯗꯤ
+Detected as Meitei: True
+Translated to English: In a arst equaly.
+AI Response: Could you clarify what you’d like to know or discuss about that phrase?...
+Translated response: ꯑꯗꯣꯝꯅꯥ ꯋꯥꯍꯩ ꯑꯗꯨꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯈꯉꯅꯤꯡꯕꯥ ꯅꯠꯔꯒꯥ ꯈꯟꯅꯅꯤꯡꯕꯥ ꯑꯗꯨ ꯃꯌꯦꯛ ꯁꯦꯡꯅꯥ ꯇꯥꯀꯄꯥ ꯉꯃꯒꯗ꯭ꯔꯥ?...
