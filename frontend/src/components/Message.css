@@ -41,6 +41,7 @@
 
 .message--assistant {
   justify-content: flex-start;
+  align-self: flex-start; /* Add this line */
 }
 
 .message--user .message__content {

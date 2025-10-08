@@ -5,7 +5,7 @@
   justify-content: center;
   padding: 2rem;
   height: 100%;
-  max-width: 800px;
+  max-width: 950px;
   margin: 0 auto;
 }
 
@@ -19,6 +19,7 @@
   color: #1f1f1f;
   background: -webkit-linear-gradient(45deg, #4285f4, #9b72cb, #d96570, #f2a60c, #57bb8a);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
