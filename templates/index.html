@@ -3,51 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N7-AI</title>
+    <title>ChatGPT Clone</title>
     <link rel="stylesheet" href="/static/css/professional.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
 </head>
 <body>
-    <div class="chat-container">
-        <header class="chat-header">
-            <h1>N7-AI</h1>
-        </header>
-        <main class="chat-messages" id="chat-messages">
-            <!-- Messages will be dynamically inserted here -->
-        </main>
-        <footer class="chat-input-area">
-            <div class="input-container">
-                <div class="wave-container">
-                    <div class="wave-bars">
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                    </div>
-                </div>
-                <input type="text" id="user-input" placeholder="Type your message...">
+    <div class="chat-wrapper">
+        <div class="chat-sidebar">
+            <button class="chat-sidebar__new-chat-button">
+                <i class="fas fa-plus"></i> New Chat
+            </button>
+            <div class="chat-sidebar__history">
+                <!-- Chat history items will go here -->
             </div>
-            <button id="send-button">Send</button>
-            <div class="voice-button-container">
-                <div class="voice-waves"></div>
-                <button id="voice-button">
-                    <i class="fas fa-microphone"></i>
+            <div class="chat-sidebar__footer">
+                <button class="chat-sidebar__footer-button">
+                    <i class="fas fa-user-circle"></i> User Name
+                </button>
+                <button class="chat-sidebar__footer-button">
+                    <i class="fas fa-cog"></i> Settings
                 </button>
             </div>
-        </footer>
+        </div>
+        <div class="chat-main">
+            <header class="chat-main__header">
+                <h1 class="chat-main__title">ChatGPT Clone</h1>
+            </header>
+            <div class="chat-main__messages" id="chat-messages">
+                <!-- Messages will be dynamically inserted here -->
+            </div>
+            <div class="chat-main__input-area">
+                <div class="chat-input">
+                    <textarea id="user-input" class="chat-input__field" placeholder="Message ChatGPT..."></textarea>
+                    <button id="send-button" class="chat-input__send-button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <div class="voice-button-container">
+                        <div class="voice-button-container__waves"></div>
+                        <button id="voice-button" class="chat-input__voice-button">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+                <p class="chat-main__disclaimer">ChatGPT can make mistakes. Consider checking important information.</p>
+            </div>
+        </div>
     </div>
     <script src="/static/js/main.js"></script>
 </body>

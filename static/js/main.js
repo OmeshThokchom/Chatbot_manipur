@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
     const voiceButton = document.getElementById('voice-button');
-    const waveContainer = document.querySelector('.wave-container');
-    const voiceWaves = document.querySelector('.voice-waves');
+    const voiceWaves = document.querySelector('.voice-button-container__waves');
+    // The waveContainer is now part of the input field, so we need to adjust its selection
+    const inputContainer = document.querySelector('.chat-input'); // Select the parent of the input field
 
     // Configure marked options
     marked.setOptions({
@@ -20,10 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addMessage = (text, isUser = false, metadata = null) => {
         const messageElement = document.createElement('div');
-        messageElement.classList.add('message', `${isUser ? 'user' : 'assistant'}-message`);
+        messageElement.classList.add('message');
 
-        const bubble = document.createElement('div');
-        bubble.classList.add('message-bubble');
+        const avatar = document.createElement('div');
+        avatar.classList.add('message__avatar');
+        if (isUser) {
+            avatar.classList.add('message__avatar--user');
+            avatar.innerHTML = '<i class="fas fa-user"></i>'; // User icon
+        } else {
+            avatar.classList.add('message__avatar--assistant');
+            avatar.innerHTML = '<i class="fas fa-robot"></i>'; // Assistant icon
+        }
+        messageElement.appendChild(avatar);
+
+        const content = document.createElement('div');
+        content.classList.add('message__content');
         
         // If not user, assume it might be markdown
         if (!isUser) {
@@ -32,28 +44,33 @@ document.addEventListener('DOMContentLoaded', () => {
             contentDiv.innerHTML = marked.parse(text);
             // Highlight code blocks if hljs is available
             contentDiv.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightBlock(block);
+                hljs.highlightElement(block); // Use highlightElement for pre-existing blocks
             });
-            bubble.appendChild(contentDiv);
+            content.appendChild(contentDiv);
         } else {
-            bubble.textContent = text;
+            content.textContent = text;
         }
 
-        messageElement.appendChild(bubble);
+        messageElement.appendChild(content);
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
     const showTypingIndicator = () => {
         const typingIndicator = document.createElement('div');
-        typingIndicator.classList.add('message', 'assistant-message');
+        typingIndicator.classList.add('message', 'typing-indicator');
         typingIndicator.id = 'typing-indicator';
 
-        const bubble = document.createElement('div');
-        bubble.classList.add('message-bubble');
-        bubble.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+        const avatar = document.createElement('div');
+        avatar.classList.add('message__avatar', 'message__avatar--assistant');
+        avatar.innerHTML = '<i class="fas fa-robot"></i>';
+        typingIndicator.appendChild(avatar);
 
-        typingIndicator.appendChild(bubble);
+        const content = document.createElement('div');
+        content.classList.add('message__content');
+        content.innerHTML = '<span class="typing-indicator__dot"></span><span class="typing-indicator__dot"></span><span class="typing-indicator__dot"></span>';
+        typingIndicator.appendChild(content);
+
         chatMessages.appendChild(typingIndicator);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     };
@@ -69,8 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = userInput.value.trim();
         if (message === '') return;
 
-        addMessage(message, 'user');
+        addMessage(message, true);
         userInput.value = '';
+        userInput.style.height = 'auto'; // Reset textarea height
 
         showTypingIndicator();
 
@@ -94,9 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sendButton.addEventListener('click', sendMessage);
     userInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault(); // Prevent new line on Enter
             sendMessage();
         }
+    });
+
+    // Auto-resize textarea
+    userInput.addEventListener('input', () => {
+        userInput.style.height = 'auto';
+        userInput.style.height = userInput.scrollHeight + 'px';
     });
 
     let isVoiceActive = false;
@@ -136,9 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             isVoiceActive = data.status === 'started';
             voiceButton.classList.toggle('active', isVoiceActive);
-            voiceWaves.classList.toggle('active', isVoiceActive);
-            waveContainer.classList.toggle('active', isVoiceActive);
-            userInput.classList.toggle('voice-active', isVoiceActive);
+            voiceWaves.classList.toggle('voice-button-container__waves--active', isVoiceActive);
+            // The waveContainer is now the inputContainer itself for visual effect
+            inputContainer.classList.toggle('wave-container--active', isVoiceActive); // Apply wave effect to input container
+            userInput.classList.toggle('chat__input-field--voice-active', isVoiceActive);
             voiceButton.title = isVoiceActive ? 'Stop voice input' : 'Start voice input';
             
             if (isVoiceActive) {
@@ -149,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 addMessage('Voice input deactivated.', false);
                 userInput.disabled = false;
-                userInput.placeholder = 'Type your message...';
+                userInput.placeholder = 'Message ChatGPT...'; // Reset placeholder
                 if (eventSource) {
                     eventSource.close();
                     eventSource = null;
