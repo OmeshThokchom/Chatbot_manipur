@@ -1,0 +1,59 @@
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem;
+  height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.welcome-header {
+  margin-bottom: 3rem;
+}
+
+.welcome-title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #1f1f1f;
+  background: -webkit-linear-gradient(45deg, #4285f4, #9b72cb, #d96570, #f2a60c, #57bb8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  color: #5f6368;
+}
+
+.welcome-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.welcome-card {
+  background-color: #f0f4f9;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.welcome-card:hover {
+  background-color: #e8eaed;
+}
+
+.welcome-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #3c4043;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-card-subtitle {
+  font-size: 0.9rem;
+  color: #5f6368;
+}

@@ -1,0 +1,64 @@
+body {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+
+.chat-main {
+  background-color: #1f1f1f;
+}
+
+.chat-main__messages {
+  color: #e0e0e0;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 2rem;
+}
+
+.welcome-header {
+  margin-bottom: 3rem;
+}
+
+.welcome-title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  color: #9e9e9e;
+}
+
+.chat-main__input-area {
+  background-color: #1f1f1f;
+}
+
+.chat-input {
+  background-color: #343541;
+  box-shadow: none;
+}
+
+.chat-input__field {
+  color: #e0e0e0;
+}
+
+.chat-input__field::placeholder {
+  color: #9e9e9e;
+}
+
+.chat-input__send-button,
+.voice-input-button {
+  color: #9e9e9e;
+}
+
+.chat-input__send-button:hover,
+.voice-input-button:hover {
+  background-color: #40414f;
+}
