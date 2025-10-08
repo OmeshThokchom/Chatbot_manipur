@@ -75,7 +75,22 @@
 }
 
 .chat-input__send-button i {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  position: absolute; /* Position icons absolutely within the button */
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.icon-visible {
+  opacity: 1;
+  transform: scale(1); /* Only scale, rely on button's flex for centering */
+  z-index: 2; /* Ensure visible icon is on top */
+}
+
+.icon-hidden {
+  opacity: 0;
+  transform: scale(0.8); /* Only scale, rely on button's flex for centering */
+  z-index: 1; /* Keep hidden icon behind */
+  pointer-events: none; /* Prevent interaction when hidden */
 }
 
 .voice-button {

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import VoiceInputButton from "./VoiceInputButton";
 import "./ChatInput.css";
 
 interface ChatInputProps {
@@ -29,6 +28,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
     if (!inputValue.trim()) return;
     sendMessage(inputValue.trim());
     setInputValue("");
+    if (textareaRef.current) {
+      setTimeout(() => {
+        textareaRef.current?.focus();
+      }, 0);
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -53,16 +57,12 @@ const ChatInput: React.FC<ChatInputProps> = ({
         />
         <button
           className="chat-input__send-button"
-          onClick={handleSendMessage}
-          disabled={!inputValue.trim() || isLoading || isVoiceActive}
+          onClick={inputValue.trim() ? handleSendMessage : toggleVoiceInput}
+          disabled={isLoading}
         >
-          <i className="fas fa-arrow-up"></i>
+          <i className={`fas fa-arrow-up ${inputValue.trim() ? 'icon-visible' : 'icon-hidden'}`}></i>
+          <i className={`fas fa-microphone ${inputValue.trim() ? 'icon-hidden' : 'icon-visible'}`}></i>
         </button>
-        <VoiceInputButton
-          isVoiceActive={isVoiceActive}
-          toggleVoiceInput={toggleVoiceInput}
-          isLoading={isLoading}
-        />
       </div>
     </div>
   );
