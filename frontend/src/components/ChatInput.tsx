@@ -44,7 +44,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <textarea
           ref={textareaRef}
           className="chat-input__field"
-          placeholder="Enter a prompt here..."
+          placeholder="Ask anything..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}

@@ -1,9 +1,15 @@
 .chat-main__input-area {
   padding: 1rem;
-  background-color: #1e1f26;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  bottom: 1px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;;
 }
 
 .chat-input {
@@ -11,11 +17,12 @@
   align-items: center;
   width: 100%;
   max-width: 768px;
+  max-height: 200px;
   background-color: #343541;
   border-radius: 2rem;
   padding: 0.4rem 0.6rem;
   transition: box-shadow 0.25s ease;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(5, 78, 5, 0.76);
 }
 
 .chat-input:focus-within {
@@ -28,14 +35,13 @@
   border: none;
   color: #e4e4e4;
   resize: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
   outline: none;
-  padding: 0.75rem 1rem;
-  line-height: 1.5;
-  height: 2.4rem;
-  display: flex;
-  align-items: center;
+  padding: 0.6rem 1rem;
+  line-height: normal;
+  min-height: 2rem;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .chat-input__field::placeholder {
