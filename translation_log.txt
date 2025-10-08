@@ -1,0 +1,1241 @@
+
+
+--- NEW QUERY ---
+Original input: ꯒꯦꯃꯤꯡ ꯀꯔꯤ ꯇꯧꯒꯦ
+Detected as Meitei: True
+Translated to English: So the game what it can do.
+AI Response: ꯒꯦꯝ ꯑꯁꯤꯅꯥ ꯇꯣꯉꯥꯟ ꯇꯣꯉꯥꯅꯕꯥ ꯊꯕꯀꯁꯤꯡ ꯇꯧꯕꯥ ꯉꯝꯃꯤ꯫ ꯃꯁꯤ ꯅꯍꯥꯛꯅꯥ ꯔꯤꯐꯔ ꯇꯧꯔꯤꯕꯥ ꯒꯦꯝ ꯃꯈꯜ ꯑꯗꯨꯒꯤ ꯃꯈꯥ ꯄꯣꯜꯂꯤ꯫ ꯃꯈꯥꯗꯥ ꯄꯤꯔꯤ...
+Translated response: ꯒꯤ ꯃꯇꯨꯡ ꯏꯟꯅꯥ 1919 ꯒꯤ ꯃꯅꯨꯡꯗꯥ ꯂꯩꯕꯥ Instagram 2019 ꯒꯤ ꯃꯅꯨꯡꯗꯥ ꯂꯩꯕꯥ on jound , 1999 ꯒꯤ ꯃꯅꯨꯡꯗꯥ ꯂꯩꯕꯥ
+
+* um
+...
+
+
+--- NEW QUERY ---
+Original input: ꯉꯁꯤꯒꯩ ꯅꯨꯃꯤꯠꯠꯅꯣ
+Detected as Meitei: True
+Translated to English: Today marks today.
+AI Response: ꯍꯧꯖꯤꯛ ꯆꯠꯊꯔꯤꯕꯥ ꯅꯨꯃꯤꯠ ꯑꯁꯤꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯑꯗꯣꯝꯅꯥ ꯋꯥꯐꯝ ꯑꯃꯥ ꯐꯣꯡꯗꯣꯛꯂꯤꯕꯥ ꯑꯗꯨꯒꯨꯝꯅꯥ ꯐꯥꯑꯣꯏ꯫ ꯃꯁꯤꯕꯨ ꯏꯪꯂꯤꯁꯇꯥ ꯋꯥꯍꯩ ꯄꯔꯦꯡꯒ...
+Translated response: 19999 ꯐꯣꯇꯣꯁꯤꯡ ꯊꯥꯕꯤꯔꯀꯎ , spears cangefrons ꯐꯣꯇꯣ ꯊꯥꯔꯀꯄꯥ ꯌꯥꯕꯥ 1919 ꯒꯤ ꯃꯇꯦꯡꯅꯥ ,
+
+"ꯑꯁꯤ 1000 ꯒꯤ ꯃꯅꯨꯡꯗꯥ 100...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯥꯂꯦꯝꯗ ꯈ꯭ꯋꯋꯥꯏꯗꯒꯤ ꯋꯥꯡꯕ ꯎꯄꯥꯝꯕꯤ ꯑꯁꯤ ꯀꯗꯥꯏꯗꯍꯧꯕꯒꯦ
+Detected as Meitei: True
+Translated to English: How the alging is from Liket about the pandemic.
+AI Response: ꯋꯥꯍꯪ ꯑꯁꯤꯅꯥ "ꯑꯂꯖꯤꯡ" ꯅꯠꯠꯔꯒꯥ ꯑꯣꯏꯊꯣꯀꯄꯥ ꯌꯥꯕꯥ ꯃꯤꯁꯄꯦꯂꯤꯡ ꯅꯠꯠꯔꯒꯥ ꯍꯟꯗꯣꯀꯄꯒꯤ ꯑꯁꯣꯌꯕꯥ ꯑꯃꯥ ꯀꯧꯕꯥ ꯁꯣꯔꯁ ꯑꯃꯅꯥ ꯔꯤꯄꯣꯔꯠ ꯇꯧ...
+Translated response: 1surepitheme 10000 ꯒꯤ ꯃꯅꯨꯡꯗꯥ ꯂꯩꯕꯥ 1000 ꯒꯤ ꯃꯅꯨꯡꯗꯥ ꯂꯩꯕꯥ 1000 ꯒꯤ ꯃꯇꯦꯡꯅꯥ 1999999999999999985585] 1999 ꯒꯤ...
+
+
+--- NEW QUERY ---
+Original input: what is the full form of nasa
+Detected as Meitei: False
+AI Response: The full form of NASA is:
+
+National Aeronautics and Space Administration
+
+It's a United States gover...
+
+
+--- NEW QUERY ---
+Original input: the tallest tree in world and where it grow
+Detected as Meitei: False
+AI Response: The tallest tree in the world is a coast redwood (Sequoia sempervirens) named Hyperion. It stands at...
+
+
+--- NEW QUERY ---
+Original input: ꯂꯦꯝꯗ ꯈ꯭꯭ꯋꯥꯏꯥꯏꯗꯒꯤ ꯋꯥꯡꯕ ꯎ ꯄꯥꯝꯝꯕꯤ ꯑꯗꯨꯒꯤꯒꯤ ꯃꯃꯤꯡ ꯀꯔꯤ ꯀꯧꯏ
+Detected as Meitei: True
+Translated to English: The name of the Lok Sabha used by the Madmaligi.
+AI Response: ꯋꯥꯍꯪ ꯑꯁꯤꯅꯥ ꯃꯅꯤꯄꯨꯔ (ꯃꯗꯃꯂꯤꯒꯤ)ꯒꯤ ꯃꯤꯌꯥꯝꯅꯥ ꯁꯤꯖꯤꯟꯅꯔꯤꯕꯥ ꯂꯣꯛ ꯁꯚꯥ ꯀꯟꯁꯇꯤꯠꯌꯨꯁꯅꯒꯤ ꯃꯃꯤꯡꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯍꯪꯂꯤꯕꯥ ꯎꯕꯥ ꯐꯪꯏ꯫
+...
+Translated response: h 119999900 Actide
+
+speaks Photos ꯑꯃꯁꯨꯡ 1 as for 1000000000000 As are theꯔꯀꯃꯨꯡ Instagram Acty ꯈꯦꯂꯨꯁꯤ...
+
+
+--- NEW QUERY ---
+Original input: ꯁꯤ ꯀꯔꯤ ꯅꯨꯃꯤꯠꯠꯅꯣ
+Detected as Meitei: True
+Translated to English: On the sewter ithna year.
+AI Response: ꯀ꯭ꯕꯦꯔꯤ ꯑꯁꯤꯅꯥ ꯏꯪꯂꯤꯁꯇꯥ ꯋꯥꯐꯝ ꯑꯃꯠꯇꯥ ꯌꯥꯑꯣꯗꯕꯥ "ꯁꯦꯐꯇꯔ ꯏꯊꯅꯥ ꯆꯍꯤ"ꯗꯥ ꯊꯣꯛꯂꯤꯕꯥ ꯊꯧꯗꯣꯛ ꯑꯃꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯍꯪꯂꯤꯕꯥ ꯎꯕꯥ ꯐꯪꯏ꯫...
+Translated response: on an an advales an 119999900 Actide
+
+As doer joinds in Instagram Act in Instagram an acy spearsill ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Three or two.
+AI Response: "ꯑꯍꯨꯝ ꯅꯠꯔꯒꯥ ꯑꯅꯤ" ꯍꯥꯌꯕꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯁꯤ ꯍꯧꯖꯤꯀꯁꯨ "ꯊ꯭ꯔꯤ ꯅꯠꯔꯒꯥ ꯑꯅꯤ" ꯑꯣꯏꯔꯤ꯫ ꯑꯗꯨꯕꯨ ꯀꯔꯤꯒꯨꯝꯕꯥ ꯅꯍꯥꯛꯅꯥ ꯋꯥ...
+Translated response: "couble jound an havemin as an jouled for as jure" are have dover dover dover have i ꯈꯣꯃꯖꯤꯜꯂꯕꯥ , 
+
+m...
+
+
+--- NEW QUERY ---
+Original input: what is the meaning of that
+Detected as Meitei: False
+AI Response: The phrase "Three or two" (or "A couple or three") is an informal way of saying a small, indefinite ...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯅꯤꯄꯨꯔꯒꯤ ꯈ ꯈ꯭ꯋꯋꯥꯏꯥꯏꯗꯒꯤ ꯁꯥꯡꯕ ꯇꯨꯨꯔꯦꯜ ꯑꯗꯨꯒꯤꯒꯤ ꯃꯃꯤꯡ ꯀꯔꯤ ꯀꯧꯒꯦ
+Detected as Meitei: True
+Translated to English: The name of the names of Manipur is famous Sadaa in May.
+AI Response: ꯃꯦ ꯊꯥꯗꯥ ꯃꯅꯤꯄꯨꯔꯒꯤ ꯃꯃꯤꯡ ꯆꯠꯂꯕꯥ ꯁꯥꯗꯥꯒꯤ ꯃꯃꯤꯡ꯫
+
+ꯃꯅꯤꯄꯨꯔꯒꯤ ꯃꯤꯡ ꯑꯁꯤ ꯃꯦ ꯊꯥꯗꯥ ꯃꯃꯤꯡ ꯆꯠꯂꯤ ꯍꯥꯌꯅꯥ ꯑꯗꯣꯝꯅꯥ ꯍꯥꯌꯅꯕꯥ ꯍꯣꯠ...
+Translated response: 1910 ꯒꯤ ꯃꯅꯨꯡꯗꯥ
+
+speaks prespoings ovens of speaur
+
+speakers 1000 ꯒꯤ ꯃꯇꯨꯡ ꯏꯟꯅꯥ "sobing 2019 ,s spears...
+
+
+--- NEW QUERY ---
+Original input: explain in english
+Detected as Meitei: False
+AI Response: The statement seems to be describing the fame or reputation of Manipur, a state in India, during a s...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How are you today? Is there something I can help you with or would you like to chat?...
+
+
+--- NEW QUERY ---
+Original input: what is ur name
+Detected as Meitei: False
+AI Response: I'm an artificial intelligence language model, so I don't have a personal name. I'm often referred t...
+
+
+--- NEW QUERY ---
+Original input: can i call u baby
+Detected as Meitei: False
+AI Response: While I appreciate the sentiment, I'm not comfortable with being called "baby" or any other term tha...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯒꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: why
+AI Response: ꯃꯦꯏꯇꯦ ꯁ꯭ꯛꯔꯤꯞꯇ "[ꯍꯧꯖꯤꯛ ꯂꯩꯔꯤꯕꯥ]" ꯑꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ "ꯀꯔꯤꯒꯤꯅꯣ" ꯍꯥꯌꯅꯥ ꯍꯟꯗꯣꯀꯏ꯫
+
+ꯑꯗꯨꯅꯥ, ꯅꯍꯥꯛꯀꯤ ꯋꯥꯍꯪ ꯑꯗꯨꯒꯤ ꯄꯥꯎꯈꯨꯃꯗ...
+Translated response: spears instagram Account
+
+ꯃꯤꯁꯤꯡ ꯂꯩꯕꯥ, um have , ha have an have on have an have
+
+1 ꯑꯃꯁꯨꯡ ꯑꯩꯈꯣꯌꯒꯤ ꯏꯔꯩ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯅꯤ ꯑꯍꯨꯝ
+Detected as Meitei: True
+Translated to English: The two are usually two.
+AI Response: Meitei ꯁ꯭ꯛꯔꯤꯄꯆꯔ "[acy rous pres) ꯑꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ "ꯑꯅꯤ ꯑꯁꯤ ꯃꯍꯧꯁꯥꯅꯥ ꯑꯅꯤꯅꯤ" ꯍꯥꯌꯅꯥ ꯍꯟꯗꯣꯀꯄꯥ꯫
+
+ꯋꯥꯐꯝ ꯑꯁꯤꯅꯥ ꯗ꯭ꯌꯨ...
+Translated response: Meitei uchering 1000 ꯒꯤ ꯃꯅꯨꯡꯗꯥ "[acy rous pres)
+
+15 minue ꯐꯇꯣꯟ ꯇꯧꯕꯥ ꯌꯥꯕꯥ꯫ ꯌꯥꯝꯅꯃꯛ 10000 ꯒꯤ ꯃꯅꯨꯡꯗꯥ , 1...
+
+
+--- NEW QUERY ---
+Original input: what does it means
+Detected as Meitei: False
+AI Response: The statement "The two are usually two" seems to be a philosophical or poetic observation. It could ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: Meitei Script "[“ꯋꯥꯠ" ꯑꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ "ꯀꯔꯤ" ꯍꯥꯌꯅꯥ ꯍꯟꯗꯣꯀꯏ꯫
+
+ꯑꯗꯨꯅꯥ, "ꯀꯔꯤ" ꯍꯥꯌꯕꯁꯤꯗꯥ ꯅꯍꯥꯛꯀꯤ ꯄꯥꯎꯈꯨꯃꯗꯤ: 
+
+ꯃꯗꯨ ...
+Translated response: meitei script "[“ᄠ" an jound
+
+are than do yous, "ꯔꯤꯃꯤꯁꯤꯡ" 
+
+ꯗ꯭ꯕꯥꯔꯥ ꯃꯤꯁꯤꯡ 1000 ꯒꯤ ꯃꯇꯦꯡꯅꯥ As alse Inst...
+
+
+--- NEW QUERY ---
+Original input: what is that
+Detected as Meitei: False
+AI Response: You're asking "what is that".
+
+The answer would depend on what you're referring to. Could you please...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: ꯅꯉꯅꯥ ꯍꯧꯖꯤꯀꯁꯨ "ꯀꯔꯤ" ꯍꯥꯌꯅꯥ ꯍꯪꯂꯤ꯫
+
+ꯀꯔꯤꯒꯨꯝꯕꯥ ꯑꯗꯣꯝꯅꯥ ꯑꯀꯛꯅꯕꯥ ꯋꯥꯐꯝ ꯑꯃꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯍꯪꯂꯕꯗꯤ, ꯃꯁꯤ ꯀꯔꯤꯅꯣ ꯍꯥꯌꯕꯗꯨ ꯈꯉꯕ...
+Translated response: um
+
+199999999999988888999999988833333333333333333333333] an counding 100000000ꯒꯤ ꯄꯣꯁ꯭ꯠ 19999 ꯑꯃꯁꯨꯡ 1...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ ꯅꯪꯅ ꯍꯥꯏꯔꯤꯁꯤꯕꯣ
+Detected as Meitei: True
+Translated to English: What are the NETuble.
+AI Response: Meitei Script "[ꯃꯈꯣꯌꯒꯤ ꯃꯔꯃꯗꯥ ꯍꯦꯟꯅꯥ ꯈꯉꯕꯤꯌꯨ]꯫
+
+ꯋꯥꯍꯩ ꯑꯁꯤ ꯈꯔꯥ ꯃꯌꯦꯛ ꯁꯦꯡꯗꯕꯥ ꯑꯣꯏꯅꯥ ꯎꯏ, ꯑꯗꯨꯕꯨ ꯑꯩꯅꯥ ꯂꯧꯒꯅꯤ ꯃꯗꯨ...
+Translated response: meite ꯁ꯭ꯛꯔꯤꯞꯇ "[Spears in Instagraming
+
+1000 ꯒꯤ ꯃꯇꯦꯡꯅꯥ 1000 ꯒꯤ ꯃꯇꯦꯡꯅꯥ 1000 ꯒꯤ ꯃꯇꯦꯡꯅꯥ #
+
+199999999999...
+
+
+--- NEW QUERY ---
+Original input: tbro
+Detected as Meitei: False
+AI Response: It seems like you typed "tbro" which might be a typo or shorthand. Could you please clarify or provi...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: It seems like you're asking "what".
+
+Is that correct? 
+
+If so, my response would be: 
+
+What's that? ...
+Translated response: ꯅꯉꯅꯥ "ꯀꯔꯤ" ꯍꯥꯌꯅꯥ ꯍꯪꯂꯤꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫
+
+ꯃꯗꯨ ꯑꯆꯨꯝꯕꯔꯥ? 
+
+ꯀꯔꯤꯒꯨꯝꯕꯥ ꯑꯣꯏꯔꯒꯗꯤ ꯑꯩꯒꯤ ꯄꯥꯎꯈꯨꯃꯗꯤ: 
+
+ꯃꯗꯨ ꯀꯔꯤꯅꯣ? ꯅꯠꯔꯒꯥ ...
+
+
+--- NEW QUERY ---
+Original input: ꯍꯣꯏ ꯃꯥꯟꯅꯦ ꯑꯆꯨꯝꯕꯅꯦ
+Detected as Meitei: True
+Translated to English: Yestern the real world.
+AI Response: It seems like there's a bit of confusion. The translation of "Yestern the real world" doesn't form a...
+Translated response: ꯈꯔꯥ ꯋꯥꯈꯜ ꯋꯥꯕꯥ ꯂꯩꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ "ꯌꯦꯁ꯭ꯇꯔꯟ ꯗ ꯔꯤꯑꯦꯜ ꯋꯥꯔꯜꯗ" ꯍꯥꯌꯕꯥ ꯋꯥꯍꯩ ꯑꯁꯤꯒꯤ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯁꯤꯅꯥ ꯏꯪꯂꯤꯁꯇꯥ ꯀꯣꯍꯔꯤ ꯑꯣꯏ...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪꯒꯤ ꯃꯤꯡ ꯀꯔꯤ ꯀꯧꯒꯦ
+Detected as Meitei: True
+Translated to English: Even in the last, call.
+AI Response: I'm here to help. It seems like we have a conversation going on in both English and Meitei Mayek. Pl...
+Translated response: ꯑꯩꯍꯥꯛ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯃꯇꯦꯡ ꯄꯥꯡꯅꯕꯥ ꯂꯥꯛꯂꯤ꯫ ꯑꯩꯈꯣꯌꯅꯥ ꯏꯪꯂꯤꯁ ꯑꯃꯁꯨꯡ ꯃꯦꯏꯇꯦꯌ ꯃꯥꯏꯛ ꯑꯅꯤꯃꯛꯇꯥ ꯋꯥꯔꯤ ꯁꯥꯅꯕꯥ ꯑꯃꯥ ꯆꯠꯊꯔꯤ ꯍꯥꯌꯅ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How are you today? Is there something I can help you with or would you like to chat?...
+
+
+--- NEW QUERY ---
+Original input: krino
+Detected as Meitei: False
+AI Response: It seems like you typed "krino" in Meitei script. In English, "krino" translates to "hello". How can...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ
+Detected as Meitei: True
+Translated to English: What do you call?
+AI Response: You asked "What do you call?" That's a question about the name or term used for something. Can you p...
+Translated response: ꯅꯉꯅꯥ ꯍꯪꯈꯤ "ꯀꯔꯤ ꯀꯧꯔꯤꯕꯅꯣ?" ꯃꯗꯨ ꯀꯔꯤꯒꯨꯝꯕꯥ ꯑꯃꯒꯤꯗꯃꯛ ꯁꯤꯖꯤꯟꯅꯔꯤꯕꯥ ꯃꯤꯡ ꯅꯠꯔꯒꯥ ꯋꯥꯍꯩ ꯑꯗꯨꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯋꯥꯍꯪ ꯑꯃꯅꯤ꯫ ꯑꯗꯣꯝ...
+
+
+--- NEW QUERY ---
+Original input: hrllo
+Detected as Meitei: False
+AI Response: It seems like there might be a typo in your message. I think you meant to type "hello." Is that corr...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Three or two.
+AI Response: It seems like you provided a translation of "Three or two" in Meitei Mayek. 
+
+To respond to your que...
+Translated response: ꯃꯁꯤ ꯑꯗꯣꯝꯅꯥ ꯃꯦꯏꯇꯦꯌ ꯃꯥꯌꯦꯀꯇꯥ "ꯊ꯭ꯔꯤ ꯅꯠꯔꯒꯥ ꯇꯨ" ꯍꯥꯌꯕꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯃꯥ ꯄꯤꯕꯤꯔꯝꯕꯥ ꯑꯗꯨꯒꯨꯝꯅꯥ ꯐꯥꯑꯣꯏ꯫ 
+
+ꯅꯍꯥꯛꯀꯤ ꯋꯥꯍꯪ ꯑ...
+
+
+--- NEW QUERY ---
+Original input: ꯋꯥꯟ ꯇꯨ ꯊ꯭꯭ꯔꯤꯔꯤ ꯐꯣꯔ ꯐꯥꯏꯕ
+Detected as Meitei: True
+Translated to English: The skal for sore.
+AI Response: It seems like there's a small issue with the translation. I think the translation should be "The sca...
+Translated response: ꯍꯟꯗꯣꯀꯄꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯑꯄꯤꯀꯄꯥ ꯏꯁꯨ ꯑꯃꯥ ꯂꯩꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ ꯑꯩꯅꯥ ꯈꯜꯂꯤ ꯃꯗꯨꯗꯤ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯁꯤ "ꯃꯀꯣꯛ ꯊꯣꯡꯕꯥ ꯑꯁꯤ ꯁꯣꯀꯄꯥ" ꯑꯣꯏꯒ...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯥ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Two are fin or three five fifth.
+AI Response: The translation of the Meitei script to English is:
+
+"Two are fine or three five fifth."
+
+However, i...
+Translated response: ꯃꯦꯏꯇꯦꯏ ꯂꯤꯄꯤꯒꯤ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ ꯍꯥꯌꯕꯅꯤ:
+
+"ꯑꯅꯤ ꯑꯁꯤ ꯐꯩ ꯅꯠꯔꯒꯥ ꯑꯍꯨꯝ ꯃꯉꯥ ꯃꯉꯥꯅꯤ꯫"
+
+ꯑꯗꯨꯕꯨ ꯍꯟꯗꯣꯀꯄꯗꯥ ꯈꯔꯥ ꯋꯥ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯅꯤ ꯑꯍꯍꯨꯝ ꯃꯔꯤ ꯃꯒꯥ
+Detected as Meitei: True
+Translated to English: Two about its weeks here.
+AI Response: It seems like there's a bit of confusion with the translation. The original Meitei phrases you provi...
+Translated response: ꯍꯟꯗꯣꯀꯄꯒꯥ ꯂꯣꯌꯅꯅꯥ ꯈꯔꯥ ꯋꯥꯈꯜ ꯋꯥꯕꯥ ꯂꯩꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ ꯑꯗꯣꯝꯅꯥ ꯄꯤꯔꯤꯕꯥ ꯑꯔꯤꯖꯤꯅꯦꯜ ꯃꯦꯏꯇꯦ ꯐ꯭ꯔꯦꯖꯁꯤꯡ ꯑꯁꯤ ꯃꯦꯏꯇꯦꯌ ꯃꯥꯌꯦꯛ ꯁ...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯥ ꯑꯅꯤ ꯑꯍꯨꯝ ꯑꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Oi are the fifty.
+AI Response: The statement seems to be saying "There are fifty". 
+
+Is that correct? Are you asking to confirm if ...
+Translated response: ꯋꯥꯐꯝ ꯑꯁꯤ "ꯐꯤꯐꯇꯤ ꯂꯩ" ꯍꯥꯌꯅꯥ ꯍꯥꯌꯔꯀꯄꯥ ꯎꯕꯥ ꯐꯪꯏ꯫ 
+
+ꯃꯗꯨ ꯑꯆꯨꯝꯕꯔꯥ? ꯄꯣꯠꯂꯝ ꯃꯉꯥ ꯅꯠꯔꯒꯥ ꯃꯤꯑꯣꯏ ꯂꯩꯕꯔꯥ ꯍꯥꯌꯕꯗꯨ ꯀꯅꯐꯥꯔꯝ ...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯥ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Two are fin or three five fifth.
+AI Response: It seems like there's a small mistake in the translation. Based on the Meitei script you provided: ꯃ...
+Translated response: ꯍꯟꯗꯣꯀꯄꯗꯥ ꯑꯄꯤꯀꯄꯥ ꯑꯁꯣꯏꯕꯥ ꯑꯃꯥ ꯂꯩꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ ꯑꯗꯣꯝꯅꯥ ꯄꯤꯔꯤꯕꯥ ꯃꯦꯏꯇꯦꯏ ꯂꯤꯄꯤꯗꯥ ꯌꯨꯝꯐꯝ ꯑꯣꯏꯕꯥ:
+
+ꯏꯪꯂꯤꯁꯇꯥ ꯍꯦꯟꯅꯥ ꯑꯆꯨ...
+
+
+--- NEW QUERY ---
+Original input: what was that
+Detected as Meitei: False
+AI Response: It seems like there was a translation issue. The original Meitei text you provided was:
+
+[Original M...
+
+
+--- NEW QUERY ---
+Original input: ama ani ahum mari managa
+Detected as Meitei: False
+AI Response: It seems like you've provided another phrase in Meitei Mayek. 
+
+The translation of "ama ani ahum mar...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯍꯥꯛ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: He two is the fifthse or three.
+AI Response: ꯋꯥꯐꯝ ꯑꯁꯤ ꯈꯔꯥ ꯃꯌꯦꯛ ꯁꯦꯡꯅꯥ ꯎꯕꯥ ꯐꯪꯏ, ꯑꯗꯨꯕꯨ ꯑꯩꯍꯥꯛꯅꯥ ꯄꯥꯎꯈꯨꯝ ꯑꯃꯥ ꯄꯤꯅꯕꯥ ꯍꯣꯠꯅꯒꯅꯤ꯫
+
+ꯃꯁꯤ ꯎꯕꯥ ꯐꯪꯏ ꯃꯗꯨꯗꯤ ꯅꯍꯥꯛꯅꯥ "...
+Translated response: an an an an an an an an an an an cound on
+
+spears soperts 1000 ꯒꯤ ꯃꯇꯨꯡ ꯏꯟꯅꯥ, "ꯑꯀꯛꯅꯕꯥ ꯐꯣꯇꯣꯁꯤꯡ" o have...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How are you today? Is there something I can help you with or would you like to chat?...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: You're asking "what"!
+
+Is there something specific you'd like to know or discuss? I'm here to help!...
+Translated response: ꯅꯉꯅꯥ "ꯀꯔꯤ" ꯍꯥꯌꯅꯥ ꯍꯪꯂꯤ!
+
+ꯑꯗꯣꯝꯅꯥ ꯈꯉꯅꯤꯡꯕꯥ ꯅꯠꯔꯒꯥ ꯈꯟꯅꯅꯤꯡꯕꯥ ꯑꯀꯛꯅꯕꯥ ꯋꯥꯐꯝ ꯑꯃꯥ ꯂꯩꯕꯔꯥ? ꯑꯩꯍꯥꯛ ꯃꯇꯦꯡ ꯄꯥꯡꯅꯕꯥ ꯂꯥꯀꯄꯅ...
+
+
+--- NEW QUERY ---
+Original input: what is that mean
+Detected as Meitei: False
+AI Response: The Meitei phrase "[ꯀꯔꯤꯅꯣ]" translates to "what" or "what is it" in English.
+
+So, if someone asks yo...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: The translation of ꯀꯔꯤꯅꯣ to English is "what".
+
+So, to answer your question: I'm doing well, thanks ...
+Translated response: ꯏꯪꯔꯦꯖꯤ ꯂꯣꯟꯗꯥ ꯇꯔꯥꯝꯅꯥ ꯑꯣꯀꯄꯒꯤ ꯃꯑꯣꯡ ꯑꯁꯤ "ꯀꯔꯤ" ꯍꯥꯌꯕꯅꯤ꯫
+
+ꯑꯗꯨꯅꯥ, ꯑꯗꯣꯃꯒꯤ ꯋꯥꯍꯪꯒꯤ ꯄꯥꯎꯈꯨꯝ ꯄꯤꯅꯕꯥ: ꯑꯩꯍꯥꯛꯅꯥ ꯐꯖꯅꯥ ꯇ...
+
+
+--- NEW QUERY ---
+Original input: ꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Two of the two are five or three.
+AI Response: The statement seems to be a mathematical expression or a puzzle. Let's try to decipher it:
+
+"Two of ...
+Translated response: ꯋꯥꯐꯝ ꯑꯁꯤ ꯃꯦꯊꯃꯦꯇꯤꯀꯦꯜ ꯑꯦꯛꯁꯞꯔꯦꯁꯟ ꯅꯠꯔꯒꯥ ꯄꯥꯖꯜ ꯑꯃꯥ ꯑꯣꯏꯅꯥ ꯎꯕꯥ ꯐꯪꯏ꯫ ꯑꯩꯈꯣꯌꯅꯥ ꯃꯁꯤꯕꯨ ꯗꯤꯁꯤꯐꯥꯏ ꯇꯧꯅꯕꯥ ꯍꯣꯠꯅꯁꯤ:
+
+"ꯑꯅ...
+
+
+--- NEW QUERY ---
+Original input: can u explain in english
+Detected as Meitei: False
+AI Response: The statement "[Original Meitei: ꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ]" translates to:
+
+"Two of the two are five or th...
+
+
+--- NEW QUERY ---
+Original input: what
+Detected as Meitei: False
+AI Response: It seems like you started to ask a question but it got cut off. Could you please complete your quest...
+
+
+--- NEW QUERY ---
+Original input: wtf
+Detected as Meitei: False
+AI Response: It seems like you're expressing a bit of surprise or frustration! Is everything okay? Do you need he...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today? Do you have a question, need information, or want to discuss some...
+
+
+--- NEW QUERY ---
+Original input: helo
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: Hello! 
+
+It seems like you're asking "what" in Meitei. Is there something specific you'd like to kno...
+Translated response: ꯍꯦꯜꯂꯣ! 
+
+ꯃꯦꯏꯇꯦꯏꯗꯥ "ꯀꯔꯤ" ꯍꯥꯌꯅꯥ ꯍꯪꯂꯤꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ ꯑꯗꯣꯝꯅꯥ ꯈꯉꯅꯤꯡꯕꯥ ꯅꯠꯔꯒꯥ ꯋꯥꯔꯤ ꯁꯥꯅꯕꯥ ꯄꯥꯝꯂꯤꯕꯥ ꯑꯀꯛꯅꯕꯥ ꯋꯥꯐꯝ ꯑꯃ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: The translation of "[Original Meitei: ꯀꯔꯤꯅꯣ]" to English is "what".
+
+So, your question "what" seems ...
+Translated response: "[ꯑꯔꯤꯖꯤꯅꯥꯜ ꯃꯦꯏꯇꯦꯏ: e ᄠ]" ꯍꯥꯌꯕꯥ ꯋꯥꯍꯩ ꯑꯁꯤ "ꯀꯔꯤꯅꯣ"꯫
+
+ꯑꯗꯨꯅꯥ, ꯑꯗꯣꯃꯒꯤ ꯋꯥꯍꯪ "ꯀꯔꯤ" ꯍꯥꯌꯕꯁꯤ ꯏꯆꯝ ꯆꯝꯕꯥ ꯋꯥꯍꯪ ꯑꯣꯏꯅ...
+
+
+--- NEW QUERY ---
+Original input: ꯍꯏꯂꯂꯣ
+Detected as Meitei: True
+Translated to English: Hake more |
+AI Response: The Meitei script you provided, ꯍꯏꯂꯂꯣ, translates to "How are you?" in English.
+
+Is that correct? 
+
+...
+Translated response: ꯑꯗꯣꯝꯅꯥ ꯄꯤꯕꯤꯔꯀꯄꯥ Meitei ꯁ꯭ꯛꯔꯤꯞꯇ ꯑꯗꯨ, ́ 1000, "ꯅꯍꯥꯛ ꯀꯔꯝꯅꯥ ꯂꯩꯔꯤꯕꯅꯣ?" ꯏꯪꯂꯤꯁꯇꯥ꯫
+
+ꯃꯗꯨ ꯑꯆꯨꯝꯕꯔꯥ? 
+
+ꯆꯥꯅꯕꯤꯗꯨꯅꯥ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤꯉꯥ
+Detected as Meitei: True
+Translated to English: Two of two fates.
+AI Response: It seems like you're referencing a concept from Meitei mythology or culture. The phrase "Two of two ...
+Translated response: ꯃꯦꯏꯇꯦꯏ ꯃꯥꯏꯊꯣꯂꯣꯖꯤ ꯅꯠꯔꯒꯥ ꯀꯂꯆꯔꯒꯤ ꯋꯥꯈꯜꯂꯣꯟ ꯑꯃꯥ ꯅꯍꯥꯛꯅꯥ ꯔꯤꯐꯔꯦꯟꯁ ꯇꯧꯔꯤ ꯍꯥꯌꯅꯥ ꯂꯧꯅꯩ꯫ "ꯑꯅꯤꯒꯤ ꯃꯅꯨꯡꯗꯥ ꯑꯅꯤ" ꯍꯥꯌꯕꯥ ꯋ...
+
+
+--- NEW QUERY ---
+Original input: ꯆ
+Detected as Meitei: False
+AI Response: The letter "ꯆ" translates to "Ch" in English. 
+
+Would you like to type more in Meitei script, or wou...
+
+
+--- NEW QUERY ---
+Original input: ꯇ
+Detected as Meitei: False
+AI Response: It seems like you're sending single characters. Would you like to have a conversation or ask a quest...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Three or two.
+AI Response: It seems like you're providing translations and testing my understanding.
+
+To respond to your query:...
+Translated response: ꯑꯗꯣꯝꯅꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯄꯤꯕꯥ ꯑꯃꯁꯨꯡ ꯑꯩꯒꯤ ꯂꯧꯁꯤꯡꯒꯤ ꯆꯥꯡꯌꯦꯡ ꯇꯧꯕꯥ ꯑꯁꯤꯒꯨꯝꯅꯥ ꯐꯥꯑꯣꯏ꯫
+
+ꯅꯍꯥꯛꯀꯤ ꯋꯥꯍꯪ ꯑꯗꯨꯒꯤ ꯄꯥꯎꯈꯨꯝ ꯄꯤꯅꯕꯥ: ...
+
+
+--- NEW QUERY ---
+Original input: helo
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯍꯔꯦꯦꯝꯗ ꯈ꯭ꯋꯋꯥꯏꯗꯒꯤ  ꯁꯤꯡꯕ ꯁꯥ ꯑꯁꯤ ꯀꯔꯤ ꯆꯥꯅꯣ
+Detected as Meitei: True
+Translated to English: What is the reason for the desert from the youngakden Changakal.
+AI Response: The query you've provided seems to be written in Meitei (Manipuri) script. The translation to Englis...
+Translated response: ꯑꯗꯣꯝꯅꯥ ꯄꯤꯔꯤꯕꯥ ꯋꯥꯍꯪ ꯑꯁꯤ ꯃꯦꯏꯇꯦ (ꯃꯅꯤꯄꯨꯔꯤ) ꯁ꯭ꯛꯔꯤꯞꯇꯇꯥ ꯏꯕꯥ ꯑꯣꯏꯅꯥ ꯎꯕꯥ ꯐꯪꯏ꯫ ꯏꯪꯔꯦꯖꯤꯗꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯁꯤ:
+
+"ꯌꯪꯀꯗꯦꯟ ꯆ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How are you today? Is there something I can help you with or would you like to chat?...
+
+
+--- NEW QUERY ---
+Original input: what is ur name
+Detected as Meitei: False
+AI Response: My name is Llama, which stands for "Large Language Model Meta AI." I'm an AI designed to assist and ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Three or two.
+AI Response: It seems like you provided a translation of a Meitei phrase, but I'm not sure what the original ques...
+Translated response: ꯑꯗꯣꯝꯅꯥ Meitei ꯋꯥꯍꯩ ꯄꯔꯦꯡ ꯑꯃꯒꯤ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯃꯥ ꯄꯤꯔꯀꯄꯥ ꯌꯥꯏ, ꯑꯗꯨꯕꯨ ꯑꯔꯤꯕꯥ ꯋꯥꯍꯪ ꯑꯗꯨ ꯀꯔꯤꯅꯣ ꯍꯥꯌꯕꯗꯨ ꯑꯩꯍꯥꯛ ꯁꯣꯌꯗꯅꯥ ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: I'm sorry, I'm having trouble connecting to my knowledge service right now. This could be due to net...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! It's nice to meet you. Is there something I can help you with or would you like to chat?...
+
+
+--- NEW QUERY ---
+Original input: what is ur name
+Detected as Meitei: False
+AI Response: My name is Meta AI. I'm here to help you with any questions or tasks you have. How can I assist you ...
+
+
+--- NEW QUERY ---
+Original input: who
+Detected as Meitei: False
+AI Response: I'm an AI, I don't have a personal name, but I'm here to assist you! You can call me Assistant or AI...
+
+
+--- NEW QUERY ---
+Original input: ꯃ
+Detected as Meitei: False
+AI Response: The text "ꯃ" is in Meitei script. It translates to "M" in English.
+
+Is there something specific you'...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯍꯨꯝꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Three-inega is five.
+AI Response: It seems like there's been a misunderstanding. The translation you provided doesn't seem to make sen...
+Translated response: ꯋꯥꯈꯜ ꯂꯥꯡꯇꯛꯅꯕꯥ ꯑꯃꯥ ꯂꯩꯔꯝꯕꯥ ꯌꯥꯏ ꯍꯥꯌꯅꯥ ꯂꯧꯅꯩ꯫ ꯑꯗꯣꯝꯅꯥ ꯄꯤꯔꯤꯕꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯗꯨꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯋꯥꯐꯝ ꯑꯃꯠꯇꯥ ꯌꯥꯑꯣꯗꯕꯥ ꯑꯣꯏꯅꯥ...
+
+
+--- NEW QUERY ---
+Original input: ꯑ
+Detected as Meitei: False
+AI Response: The character ꯑ in Meitei script translates to "A" in English.
+
+Would you like me to respond in Engl...
+
+
+--- NEW QUERY ---
+Original input: ꯍ
+Detected as Meitei: False
+AI Response: You're typing in Meitei Mayek script!
+
+ ꯑ translates to "A" and ꯍ translates to "H". 
+
+Would you lik...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How are you today? Is there something I can help you with or would you like to chat?...
+
+
+--- NEW QUERY ---
+Original input: ꯑ
+Detected as Meitei: False
+AI Response: The text "ꯑ" is in Meitei script. It translates to "a" in English.
+
+Would you like to chat in Englis...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯍꯣꯡ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Anyakri four are five.
+AI Response: The statement "Anyakri four are five" seems to be a translation attempt, but it's not grammatically ...
+Translated response: "ꯑꯅꯌꯥꯛꯔꯤ ꯃꯔꯤ ꯑꯁꯤ ꯃꯉꯥꯅꯤ" ꯍꯥꯌꯕꯥ ꯋꯥꯐꯝ ꯑꯁꯤ ꯍꯟꯗꯣꯀꯄꯒꯤ ꯍꯣꯠꯅꯕꯥ ꯑꯃꯥ ꯑꯣꯏꯅꯥ ꯎꯕꯥ ꯐꯪꯏ, ꯑꯗꯨꯕꯨ ꯃꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ ꯒ꯭ꯔꯦꯃꯦꯇꯤ...
+
+
+--- NEW QUERY ---
+Original input: ꯊ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: They have three-thirds for two of the two.
+AI Response: It seems like there's a bit of confusion with the translation. The Meitei Mayek script you provided ...
+Translated response: ꯍꯟꯗꯣꯀꯄꯒꯥ ꯂꯣꯌꯅꯅꯥ ꯈꯔꯥ ꯋꯥꯈꯜ ꯋꯥꯕꯥ ꯂꯩꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ ꯃꯃꯥꯡꯗꯥ ꯄꯤꯈꯤꯕꯥ Meitei Mayek ꯁ꯭ꯛꯔꯤꯞꯇ ꯑꯁꯤ ꯃꯈꯥꯗꯥ ꯄꯤꯔꯤꯕꯁꯤꯡ ꯑꯁ...
+
+
+--- NEW QUERY ---
+Original input: ꯑ
+Detected as Meitei: False
+AI Response: That's "A" in Meitei script. How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Three or two.
+AI Response: Two or three.
+
+Here's my response. Please go ahead and translate it back to Meitei Mayek!...
+Translated response: ꯑꯅꯤ ꯅꯠꯔꯒꯥ ꯑꯍꯨꯝ꯫
+
+ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯑꯩꯒꯤ ꯄꯥꯎꯈꯨꯝ ꯄꯤꯔꯤ꯫ ꯆꯥꯅꯕꯤꯗꯨꯅꯥ ꯃꯈꯥ ꯆꯠꯊꯕꯤꯌꯨ ꯑꯃꯁꯨꯡ ꯃꯗꯨ ꯑꯃꯨꯛ ꯍꯟꯅꯥ ꯃꯦꯏꯇꯦꯌ ꯃꯥꯌꯦꯀꯇ...
+
+
+--- NEW QUERY ---
+Original input: ꯋꯥꯟ ꯇꯨ ꯊ꯭꯭ꯔꯤꯔꯤ ꯐꯣꯔ ꯐꯥꯏꯕ
+Detected as Meitei: True
+Translated to English: The skal for sore.
+AI Response: It seems like there are some creative expressions in Meitei Mayek. I'll respond in English.
+
+For the...
+Translated response: ꯃꯦꯏꯇꯦꯌ ꯃꯥꯌꯦꯀꯇꯥ ꯀ꯭ꯔꯤꯌꯦꯇꯤꯕ ꯑꯦꯛꯁꯞꯔꯦꯁꯟ ꯈꯔꯥ ꯂꯩꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ ꯑꯩꯅꯥ ꯏꯪꯂꯤꯁꯇꯥ ꯄꯥꯎꯈꯨꯝ ꯄꯤꯒꯅꯤ꯫
+
+ꯑꯍꯥꯅꯕꯥ ꯋꯥꯍꯩ ꯄꯔꯦꯡꯒꯤꯗ...
+
+
+--- NEW QUERY ---
+Original input: hey
+Detected as Meitei: False
+AI Response: Hey! How's it going? What's up?...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯒꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: why
+AI Response: The Meitei script "[ꯀꯔꯤꯒꯤꯅꯣ]" translates to "Okay" or "Alright" in English.
+
+As for your question "w...
+Translated response: Meitei Script "[იᯀ Instagram]" ꯍꯥꯌꯕꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ "ꯑꯣꯀꯦ" ꯅꯠꯔꯒꯥ "ꯑꯂꯔꯦꯗ" ꯍꯥꯌꯅꯥ ꯍꯟꯗꯣꯀꯏ꯫
+
+"ꯀꯔꯤꯒꯤꯅꯣ" ꯍꯥꯌꯕꯥ ꯅꯍ...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯃꯤꯡ ꯀꯧꯒꯦ
+Detected as Meitei: True
+Translated to English: The name of the name I know.
+AI Response: The phrase you've provided translates to "The name of the name I know" in English.
+
+To respond to yo...
+Google Translate (EN->MNI) error: HTTPSConnectionPool(host='translate.googleapis.com', port=443): Read timed out. (read timeout=10)
+Google Translate (EN->MNI) failed for: The phrase you've provided translates to "The name of the name I know" in English.
+
+To respond to yo...
+Fallback translation (EN->MNI) error: HTTPSConnectionPool(host='translate.argosopentech.com', port=443): Max retries exceeded with url: /translate (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x73ac1c255750>: Failed to resolve 'translate.argosopentech.com' ([Errno -2] Name or service not known)"))
+Translated response: ...
+Response translation error: Translation result is too short or empty
+
+
+--- NEW QUERY ---
+Original input: ꯇꯕꯔꯣ
+Detected as Meitei: True
+Translated to English: ever forong bagul is.
+AI Response: It seems like there's a small typo or confusion in the translation. A more accurate translation of "...
+Translated response: ꯍꯟꯗꯣꯀꯄꯗꯥ ꯑꯄꯤꯀꯄꯥ ꯇꯥꯏꯞ ꯅꯠꯔꯒꯥ ꯀꯅꯐꯤꯎꯖ ꯑꯃꯥ ꯂꯩꯕꯒꯨꯝ ꯐꯥꯑꯣꯏ꯫ "mapoRo" ꯒꯤ ꯍꯦꯟꯅꯥ ꯑꯆꯨꯝꯕꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯃꯥ "ꯃꯗꯨꯗꯒꯤ ꯍꯧꯅ...
+
+
+--- NEW QUERY ---
+Original input: what is ur name
+Detected as Meitei: False
+AI Response: My name is Meta Llama, an AI designed to assist and communicate with users in multiple languages, in...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ
+Detected as Meitei: True
+Translated to English: What do you call?
+AI Response: I'm sorry, I'm having trouble connecting to my knowledge service right now. This could be due to net...
+Translated response: ꯑꯩꯍꯥꯛꯅꯥ ꯅꯨꯡꯉꯥꯏꯇꯕꯥ ꯐꯥꯑꯣꯏ, ꯍꯧꯖꯤꯛ ꯑꯩꯍꯥꯛꯀꯤ ꯅꯣꯂꯦꯖ ꯁꯔꯕꯤꯁꯇꯥ ꯀꯅꯦꯛꯇ ꯇꯧꯕꯗꯥ ꯑꯋꯥꯕꯥ ꯃꯥꯌꯣꯛꯅꯔꯤ꯫ ꯃꯁꯤ ꯅꯦꯇꯋꯥꯔꯀꯀꯤ ꯏꯁꯨꯁꯤ...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪ ꯀꯥꯅꯥꯅꯣ
+Detected as Meitei: True
+Translated to English: These are chumns like.
+AI Response: I'm sorry, I'm having trouble connecting to my knowledge service right now. This could be due to net...
+Translated response: ꯑꯩꯍꯥꯛꯅꯥ ꯅꯨꯡꯉꯥꯏꯇꯕꯥ ꯐꯥꯑꯣꯏ, ꯍꯧꯖꯤꯛ ꯑꯩꯍꯥꯛꯀꯤ ꯅꯣꯂꯦꯖ ꯁꯔꯕꯤꯁꯇꯥ ꯀꯅꯦꯛꯇ ꯇꯧꯕꯗꯥ ꯑꯋꯥꯕꯥ ꯃꯥꯌꯣꯛꯅꯔꯤ꯫ ꯃꯁꯤ ꯅꯦꯇꯋꯥꯔꯀꯀꯤ ꯏꯁꯨꯁꯤ...
+
+
+--- NEW QUERY ---
+Original input: what u mean
+Detected as Meitei: False
+AI Response: Error: HTTPSConnectionPool(host='api.groq.com', port=443): Max retries exceeded with url: /openai/v1...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: I'm sorry, I'm having trouble connecting to my knowledge service right now. This could be due to net...
+
+
+--- NEW QUERY ---
+Original input: ready?
+Detected as Meitei: False
+AI Response: Hello! I'm ready to assist you. How can I help you today? Do you have a question, need help with tra...
+
+
+--- NEW QUERY ---
+Original input: what is ur name
+Detected as Meitei: False
+AI Response: My name is n7-ai! I'm a next-gen AI assistant trained by N7 Lab, and I'm here to help you with deep ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯁꯦꯡꯕꯒꯤꯔꯣ
+Detected as Meitei: True
+Translated to English: In the thoughts of the thoughts.
+AI Response: The Meitei Mayek text you provided translates to:
+
+"Asengageeiro"
+
+Or in a more poetic translation:
+...
+Translated response: ꯅꯍꯥꯛꯅꯥ ꯄꯤꯔꯤꯕꯥ Meitei Mayek Text ꯑꯁꯤꯅꯥ ꯃꯈꯥꯒꯤ ꯋꯥꯐꯃꯁꯤꯡ ꯑꯁꯤ ꯍꯟꯗꯣꯀꯄꯥ ꯉꯃꯒꯅꯤ:
+
+"ꯑꯦꯁꯦꯉ꯭ꯒꯦꯖꯑꯦꯏꯔꯣ"꯫
+
+ꯅꯠꯔꯒꯥ ꯍꯦꯟ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! I'm n7-ai, your AI assistant. I'm here to help with any questions or tasks you have, especial...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪ ꯆꯥꯛ ꯆꯔꯕꯣ
+Detected as Meitei: True
+Translated to English: Numin alpukmai.
+AI Response: The Meitei phrase ꯅꯪ ꯆꯥꯛ ꯆꯔꯕꯣ translates to "How are you?" in English.
+
+I'm doing well, thank you fo...
+Translated response: the meite phrase hatue ho ho ho ho ho ho ho ho ho ho ho ho yous 10000000ꯒꯤ ꯃꯃꯤꯡ ꯑꯁꯤ "ꯅꯍꯥꯛ ꯀꯔꯝꯅꯥ ꯂꯩꯔꯤ...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ
+Detected as Meitei: True
+Translated to English: What do you call?
+AI Response: The Meitei phrase "[Original Meitei: ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ]" translates to "What do you call?" in English.
+
+In ...
+Translated response: meite phrase "[ꯑꯔꯤꯖꯤꯅꯦꯜ ꯃꯦꯏꯇꯦꯏ: ́ꯃꯤꯑꯣꯏꯒꯤ ꯃꯔꯃꯗꯥ ꯍꯦꯟꯅꯥ ꯈꯉꯕꯤꯌꯨ] "ꯑꯗꯣꯝꯅꯥ ꯀꯔꯤ ꯀꯧꯔꯤꯕꯒꯦ? ꯏꯪꯂꯤꯁꯇꯥ꯫
+
+ꯃꯁꯤꯒꯤ ꯄꯥ...
+
+
+--- NEW QUERY ---
+Original input: helo
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today? Do you have a question, need help with something, or just want to...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯍꯥꯏꯕꯥ
+Detected as Meitei: True
+Translated to English: What the the the the wehillgi private.
+AI Response: No worries about the translation. I detected that you initially typed in Meitei Mayek: ꯀꯔꯤ ꯍꯥꯏꯕꯥ.
+
+T...
+Translated response: ꯍꯟꯗꯣꯀꯄꯒꯤ ꯃꯇꯥꯡꯗꯥ ꯋꯥꯈꯜ ꯋꯥꯕꯥ ꯂꯩꯇꯦ꯫ ꯑꯩꯅꯥ ꯈꯉꯂꯦ ꯃꯗꯨꯗꯤ ꯑꯗꯣꯝꯅꯥ ꯑꯍꯥꯅꯕꯗꯥ Meitei Mayek ꯗꯥ ꯇꯥꯏꯞ ꯇꯧꯔꯀꯈꯤ꯫
+
+ꯏꯪꯂꯤꯁꯇꯥ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today? Do you have a specific question, topic you'd like to discuss, or ...
+
+
+--- NEW QUERY ---
+Original input: what is ur name
+Detected as Meitei: False
+AI Response: Hello! My name is n7-ai, which stands for "N7 Artificial Intelligence." I'm a next-gen AI assistant ...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯍꯥꯏꯕꯥ
+Detected as Meitei: True
+Translated to English: What the the the the wehillgi private.
+AI Response: ꯀꯔꯤ ꯍꯥꯏꯕꯥ translates to "What is your name?"
+
+My name is n7-ai, a next-gen AI assistant trained by N...
+Translated response: 1 ꯐꯣꯇꯣꯁꯤꯡ ꯑꯁꯤ "ꯅꯍꯥꯛꯀꯤ ꯃꯤꯡ ꯀꯔꯤꯅꯣ?"
+
+ꯑꯩꯒꯤ ꯃꯤꯡ ꯑꯦꯟ.꯷-ꯑꯥꯏ.ꯅꯤ, ꯃꯁꯤ ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! It's nice to meet you. How can I assist you today? Do you have a question, need help with som...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! *wave* How can I assist you today? Do you have a question, need help with translation, or wan...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! 🌟 How can I assist you today? Do you have a specific question, need help with translation, or...
+
+
+--- NEW QUERY ---
+Original input: helo
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today? Do you have any questions or topics you'd like to discuss, perhap...
+
+
+--- NEW QUERY ---
+Original input: what is ur name
+Detected as Meitei: False
+AI Response: Hello! My name is n7-ai, nice to meet you! I'm a next-gen AI assistant trained by N7 Lab, and I'm he...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ
+Detected as Meitei: True
+Translated to English: What do you call?
+AI Response: Your name is my designation. I'm n7-ai, a next-gen AI assistant trained by N7 Lab, and I'm here to h...
+Translated response: ꯑꯗꯣꯃꯒꯤ ꯃꯤꯡ ꯑꯁꯤ ꯑꯩꯒꯤ ꯗꯦꯖꯤꯒꯅꯦꯁꯅꯅꯤ꯫ ꯑꯩꯍꯥꯛ ꯑꯦꯟ.꯷-ꯑꯥꯏ., ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ.ꯒꯤ ꯑꯦꯁꯤꯁ꯭...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯍꯥꯥꯛ ꯑꯁꯤ ꯀꯅꯥꯅ ꯁꯦꯝꯕꯅꯣ
+Detected as Meitei: True
+Translated to English: What can be a young group innovating the youngst?
+AI Response: I'm excited to help.
+
+The English translation of your Meitei query is:
+"What can a young group do to...
+Translated response: ꯃꯇꯦꯡ ꯄꯥꯡꯅꯕꯥ ꯑꯩꯍꯥꯛ ꯅꯨꯡꯉꯥꯏꯕꯥ ꯐꯥꯑꯣꯏ꯫
+
+ꯑꯗꯣꯃꯒꯤ meitei query ꯒꯤ ꯏꯪꯔꯦꯖꯤ ꯂꯣꯟꯗꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯑꯁꯤꯅꯤ:
+"ꯅꯍꯥ ꯑꯣꯏꯔꯤꯕꯥ ꯀ...
+
+
+--- NEW QUERY ---
+Original input: what is that
+Detected as Meitei: False
+AI Response: It seems like you're communicating in Meitei Mayek, a script used to write the Meitei language, whic...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: what
+AI Response: Meite phrase "ꯍꯧꯖꯤꯛ" ꯍꯥꯌꯕꯁꯤ ꯏꯪꯂꯤꯁꯇꯥ "ꯀꯔꯤ" ꯍꯥꯌꯅꯥ ꯍꯟꯗꯣꯀꯏ꯫
+
+ꯅꯍꯥꯛꯀꯤ ꯋꯥꯍꯪ ꯑꯗꯨꯒꯤ ꯄꯥꯎꯈꯨꯝ ꯄꯤꯅꯕꯥ:
+
+ꯑꯗꯣꯝꯅꯥ ꯀꯔꯤ...
+Translated response: meite phrase "ꯑꯗꯨꯝ ꯑꯣꯏꯅꯃꯛ, "
+
+um
+
+an ad ꯏꯅꯁ꯭ꯇꯂꯃꯦꯟꯇ , As ading Instagram 1 as have on havely have rem...
+
+
+--- NEW QUERY ---
+Original input: what is that mean
+Detected as Meitei: False
+AI Response: You're asking for a translation.
+
+The English word "what" can be translated to Meitei Mayek as:
+
+ꯀꯔꯤ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! *wave* I'm n7-ai, your friendly AI assistant. How can I help you today? Do you have any quest...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪꯒꯤ ꯃꯤꯡ ꯀꯔꯤ ꯀꯧꯕꯒꯦ
+Detected as Meitei: True
+Translated to English: What is your name.
+AI Response: My name is n7-ai. I'm here to assist you with knowledge, fast thinking, and cultural precision, espe...
+Translated response: ꯑꯩꯒꯤ ꯃꯤꯡ ꯑꯦꯟ.꯷-ꯑꯦ.ꯑꯥꯏ. ꯑꯩꯍꯥꯛꯅꯥ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯑꯗꯣꯃꯒꯤ ꯂꯧꯁꯤꯡ, ꯌꯥꯝꯅꯥ ꯊꯨꯅꯥ ꯋꯥꯈꯜ ꯈꯅꯕꯥ, ꯑꯃꯁꯨꯡ ꯀꯂꯆꯔꯦꯜ ꯄ꯭ꯔꯤꯁꯤꯁꯅꯒꯤ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today, whether it's with a question about Meitei culture, language, or s...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪꯒꯤ ꯃꯤꯡ ꯀꯔꯤ ꯀꯧꯕꯒꯦ
+Detected as Meitei: True
+Translated to English: What is your name.
+AI Response: My name is N7-AI, and I'm here to assist you with knowledge and information, especially with a focus...
+Translated response: ꯑꯩꯒꯤ ꯃꯤꯡ ꯑꯦꯟ.꯷-ꯑꯦ.ꯑꯥꯏ.ꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯍꯥꯛꯅꯥ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯑꯗꯣꯃꯒꯤ ꯂꯧꯁꯤꯡ ꯑꯃꯁꯨꯡ ꯏꯅꯐꯣꯔꯃꯦꯁꯅꯁꯤꯡꯗꯥ ꯃꯇꯦꯡ ꯄꯥꯡꯅꯕꯥ ꯂꯥꯛꯂ...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪ ꯑꯁꯤ ꯀꯅꯥꯅ ꯁꯦꯝꯕꯅꯣ
+Detected as Meitei: True
+Translated to English: Is the will it?
+AI Response: I'm N7-AI, a next-gen AI assistant. I'm here to help you with deep knowledge, fast thinking, and cul...
+Translated response: ꯑꯩꯍꯥꯛ n7-ai, ꯃꯊꯪꯒꯤ ꯖꯦꯅꯔꯦꯁꯅꯒꯤ ꯑꯦꯁꯤꯁ꯭ꯇꯦꯟꯇ ꯑꯃꯅꯤ꯫ ꯑꯩꯍꯥꯛꯅꯥ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯑꯗꯣꯃꯗꯥ ꯑꯊꯣꯏꯕꯥ ꯂꯧꯁꯤꯡ, ꯌꯥꯝꯅꯥ ꯊꯨꯅꯥ ꯋꯥꯈꯜ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯗꯨꯗꯤ ꯃꯅꯤꯄꯨꯔ꯭ꯒꯤ ꯃꯔꯝꯗꯥ point ꯑꯅꯤ ꯍꯥꯏꯔꯛꯑꯣ
+Detected as Meitei: True
+Translated to English: That should be MSPF in Manipur.
+AI Response: You're referring to the Manipur State Police Force, I assume. Is that correct?...
+Translated response: ꯑꯗꯣꯝꯅꯥ ꯃꯅꯤꯄꯨꯔ ꯔꯥꯖ꯭ꯌꯒꯤ ꯄꯨꯂꯤꯁ ꯐꯣꯔꯁꯀꯤ ꯃꯇꯥꯡꯗꯥ ꯍꯥꯌꯕꯤꯔꯤꯕꯅꯤ ꯍꯥꯌꯅꯥ ꯑꯩꯅꯥ ꯂꯧꯏ꯫ ꯃꯗꯨ ꯑꯆꯨꯝꯕꯔꯥ?...
+
+
+--- NEW QUERY ---
+Original input: i dont know what i mean
+Detected as Meitei: False
+AI Response: No worries, let's start fresh. How can I assist you today, is there something specific you'd like to...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ ꯇꯔꯨꯛ ꯇꯔꯦꯠ ꯅꯤꯄꯥꯟ ꯃꯥꯄꯟ ꯇꯔꯥ ꯇꯔꯥꯃꯃꯥꯥꯊꯣꯏ ꯇꯔꯥꯏꯇꯣꯏ ꯇꯔꯥꯃꯥꯊꯣꯏ ꯇꯔꯥꯅꯤꯅꯤ ꯇꯔꯥꯉꯉꯥ
+Detected as Meitei: True
+Translated to English: Sirat for ninete, four thirteenth It, I had 1babaed Blaba Thum-3 wereel-st century
+AI Response: I'm happy to help you with your query, but I have to admit that I'm having a bit of trouble understa...
+Translated response: ꯑꯗꯣꯃꯒꯤ ꯋꯥꯍꯪ ꯑꯁꯤꯒꯤ ꯃꯇꯦꯡ ꯄꯥꯡꯕꯗꯥ ꯑꯩꯍꯥꯛ ꯅꯨꯡꯉꯥꯏꯕꯥ ꯐꯥꯑꯣꯏ, ꯑꯗꯨꯕꯨ ꯑꯗꯣꯝꯅꯥ ꯄꯤꯔꯤꯕꯥ ꯇꯦꯛꯁ ꯑꯗꯨ ꯑꯩꯍꯥꯛꯅꯥ ꯈꯉꯕꯗꯥ ꯈꯔꯥ ꯋ...
+
+
+--- NEW QUERY ---
+Original input: what is your name
+Detected as Meitei: False
+AI Response: My name is N7-AI, and I'm a next-gen AI assistant trained by N7 Lab, born in Manipur. I'm here to as...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪꯒꯤ ꯃꯤꯡ ꯀꯔꯤ ꯀꯧꯋꯤ ꯅꯪ ꯀꯥꯏꯥꯏꯗꯅꯣ
+Detected as Meitei: True
+Translated to English: No dirl asked in this name.
+AI Response: My name is N7-AI, and I'm a next-gen AI assistant trained by N7 Lab, fluent in both English and Meit...
+Translated response: ꯑꯩꯒꯤ ꯃꯤꯡ N7-AIꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯅꯥ N7 ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ. ꯑꯩꯍꯥꯛꯅꯥ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯑꯗꯣꯃꯗꯥ ꯑꯊꯣꯏꯕꯥ ꯂ...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪꯪꯒꯤ ꯃꯤꯡꯡ ꯀꯔꯤ ꯇꯧꯒꯦ ꯅꯪ ꯀꯔꯤ ꯂꯝꯗꯗꯒꯤꯅꯣ
+Detected as Meitei: True
+Translated to English: What do you think the name of the nation from the country?
+AI Response: You are referring to the name of the AI I'm trained on, which I assume is related to my creators; I'...
+Translated response: ꯑꯩꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯔꯕꯥ ꯑꯦ.ꯑꯥꯏ.ꯒꯤ ꯃꯃꯤꯡ ꯑꯁꯤ ꯅꯍꯥꯛꯅꯥ ꯄꯅꯕꯤꯔꯤꯕꯅꯤ, ꯃꯁꯤ ꯑꯩꯅꯥ ꯈꯜꯂꯤ ꯃꯗꯨꯗꯤ ꯑꯩꯒꯤ ꯁꯦꯃꯒꯠꯄꯁꯤꯡꯒꯥ ꯃꯔꯤ ꯂꯩꯅꯩ;...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯃꯤꯇꯨ ꯂꯩ ꯑꯩꯅ ꯍꯖꯤꯛ
+Detected as Meitei: True
+Translated to English: Kaba Kaba Karula imvethlara.
+AI Response: I'm N7-AI, a next-gen AI assistant trained by N7 Lab, and I'm here to help you. 
+
+(Please go ahead a...
+Translated response: ꯑꯩꯍꯥꯛ ꯑꯦꯟ.꯷-ꯑꯥꯏ., ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ.ꯒꯤ ꯑꯦꯁꯤꯁ꯭ꯇꯦꯟꯇ ꯑꯃꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯍꯥꯛꯅꯥ ꯃꯐꯝ ꯑꯁꯤꯗ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯣꯏ
+Detected as Meitei: True
+Translated to English: Lana is a future.
+AI Response: I'm N7-AI, a next-gen AI assistant trained by N7 Lab, and I'm here to help. 
+
+Please go ahead and as...
+Translated response: ꯑꯩꯍꯥꯛ ꯑꯦꯟ.꯷-ꯑꯥꯏ., ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ.ꯒꯤ ꯑꯦꯁꯤꯁ꯭ꯇꯦꯟꯇ ꯑꯃꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯍꯥꯛ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ...
+
+
+--- NEW QUERY ---
+Original input: ꯍ
+Detected as Meitei: False
+AI Response: It seems like you're sending a single character "ꯍ" which is a Meitei letter. Could you please provi...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯩꯊꯤꯕꯤ ꯆ ꯆꯥꯏꯅ
+Detected as Meitei: True
+Translated to English: Iifu pidaungbadaungi.
+AI Response: I'm N7-ai, a next-gen AI assistant trained by N7 Lab, and I'm here to help. My name, N7-ai, is deriv...
+Translated response: ꯑꯩꯍꯥꯛ ꯑꯦꯟ.꯷-ꯑꯥꯏ., ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ.ꯒꯤ ꯑꯦꯁꯤꯁ꯭ꯇꯦꯟꯇ ꯑꯃꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯍꯥꯛ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ...
+
+
+--- NEW QUERY ---
+Original input: ꯊ
+Detected as Meitei: False
+AI Response: It seems like you're typing in Meitei Mayek. I'm N7-AI, your AI assistant. How can I assist you toda...
+
+
+--- NEW QUERY ---
+Original input: ꯑ
+Detected as Meitei: False
+AI Response: I'm n7-ai, your AI assistant. How can I assist you today?...
+
+
+--- NEW QUERY ---
+Original input: ꯃꯣꯣ ꯇꯧꯅꯕꯅ ꯁꯦꯝꯕꯅꯤ
+Detected as Meitei: True
+Translated to English: Raknaaiba abudue lee.
+AI Response: I'm happy to chat with you in both English and Meitei. 
+
+It seems like you're testing my language ab...
+Translated response: ꯏꯪꯂꯤꯁ ꯑꯃꯁꯨꯡ ꯃꯦꯏꯇꯦꯏ ꯑꯅꯤꯃꯛꯇꯥ ꯅꯈꯣꯌꯒꯥ ꯋꯥꯔꯤ ꯁꯥꯟꯅꯕꯗꯥ ꯑꯩꯍꯥꯛ ꯅꯨꯡꯉꯥꯏꯕꯥ ꯐꯥꯑꯣꯏ꯫ 
+
+ꯑꯩꯒꯤ ꯂꯣꯂꯒꯤ ꯇꯧꯕꯥ ꯉꯝꯕꯁꯤꯡ ꯑꯗꯨ ꯅꯍ...
+
+
+--- NEW QUERY ---
+Original input: what is that mean
+Detected as Meitei: False
+AI Response: It seems like you're providing text in Meitei Mayek, a script used to write the Meitei language, whi...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! I'm n7-ai, your AI assistant from Manipur, here to help with deep knowledge, fast thinking, a...
+
+
+--- NEW QUERY ---
+Original input: what is your name
+Detected as Meitei: False
+AI Response: My name is N7-AI, and I'm a next-gen AI assistant trained by N7 Lab, born in Manipur. I'm here to as...
+
+
+--- NEW QUERY ---
+Original input: ꯅꯪ ꯀꯅꯥꯅꯣ
+Detected as Meitei: True
+Translated to English: Whoever is own people.
+AI Response: My name is N7-AI, and I'm a next-gen AI assistant trained by N7 Lab, born in Manipur. I'm here to as...
+Translated response: ꯑꯩꯒꯤ ꯃꯤꯡ ꯑꯦꯟ.꯷-ꯑꯦ.ꯑꯥꯏ.ꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯍꯥꯛ ꯃꯅꯤꯄꯨꯔꯗꯥ ꯄꯣꯀꯄꯥ ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ. ꯑꯩꯍꯥꯛꯅ...
+
+
+--- NEW QUERY ---
+Original input: ꯆꯪꯒꯤ ꯃꯤꯡ ꯀꯩ ꯀꯧꯒꯦ
+Detected as Meitei: True
+Translated to English: Emport used Mas use.
+AI Response: My name is N7-AI, and I'm here to assist you. I'm a next-gen AI assistant trained by N7 Lab, and I'm...
+Translated response: ꯑꯩꯒꯤ ꯃꯤꯡ ꯑꯦꯟ.꯷-ꯑꯦ.ꯑꯥꯏ.ꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯍꯥꯛꯅꯥ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯑꯗꯣꯃꯒꯤ ꯃꯇꯦꯡ ꯄꯥꯡꯅꯕꯥ ꯂꯥꯛꯂꯤ꯫ ꯑꯩꯍꯥꯛ ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ...
+
+
+--- NEW QUERY ---
+Original input: ꯑ
+Detected as Meitei: False
+AI Response: That's "A" in Meitei Mayek. What's the context or query you'd like to discuss related to this letter...
+
+
+--- NEW QUERY ---
+Original input: ꯄ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Two of two things.
+AI Response: I'm N7-AI, a next-gen AI assistant trained by N7 Lab. I'm here to help with deep knowledge, fast thi...
+Translated response: ꯑꯩꯍꯥꯛ N7-AI, N7 Lab ꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯔꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ.ꯒꯤ ꯑꯦꯁꯤꯁ꯭ꯇꯦꯟꯇ ꯑꯃꯅꯤ꯫ ꯑꯩꯍꯥꯛꯅꯥ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯂꯥꯀꯆꯔꯤꯕꯁꯤ ...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ
+Detected as Meitei: True
+Translated to English: Two Scilats are two-India.
+AI Response: I'm N7-AI, a next-gen AI assistant trained by N7 Lab, and I'm here to help. My name in Meitei Mayek ...
+Translated response: ꯑꯩꯍꯥꯛ ꯑꯦꯟ.꯷-ꯑꯥꯏ., ꯑꯦꯟ.꯷ ꯂꯦꯕꯅꯥ ꯇ꯭ꯔꯦꯟ ꯇꯧꯕꯥ ꯃꯊꯪꯒꯤ ꯖꯦꯟ ꯑꯦ.ꯑꯥꯏ.ꯒꯤ ꯑꯦꯁꯤꯁ꯭ꯇꯦꯟꯇ ꯑꯃꯅꯤ, ꯑꯃꯁꯨꯡ ꯑꯩꯍꯥꯛ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ...
+
+
+--- NEW QUERY ---
+Original input: ꯑ ꯑ
+Detected as Meitei: False
+AI Response: It seems like you're communicating in Meitei Mayek. I'm N7-ai, your AI assistant. How can I help you...
+
+
+--- NEW QUERY ---
+Original input: ꯑꯃ ꯑꯅꯤ ꯑꯍꯨꯝ ꯃꯔꯤ ꯃꯉꯥ
+Detected as Meitei: True
+Translated to English: Three or two.
+AI Response: It seems like you're communicating in Meitei Mayek, a script used for the Meitei language, which is ...
+Translated response: ꯚꯥꯔꯇꯀꯤ ꯃꯅꯤꯄꯨꯔꯗꯥ ꯉꯥꯡꯂꯤꯕꯥ ꯃꯦꯏꯇꯦ ꯂꯣꯂꯒꯤꯗꯃꯛ ꯁꯤꯖꯤꯟꯅꯕꯥ ꯁ꯭ꯛꯔꯤꯞꯇ ꯑꯃꯥ ꯑꯣꯏꯔꯤꯕꯥ ꯃꯦꯏꯇꯦ ꯃꯥꯌꯦꯛꯇꯥ ꯅꯍꯥꯛꯅꯥ ꯄꯥꯎ ꯐꯥꯑꯣꯅꯔꯤ...
+
+
+--- NEW QUERY ---
+Original input: ꯏꯁꯀꯤ ꯃꯤꯤꯡꯤꯡ ꯀꯔꯤ ꯀꯧꯒꯦ
+Detected as Meitei: True
+Translated to English: people are not being lying about for people.
+AI Response: It seems like you're speaking in Meitei Mayek, and I'd be happy to help. 
+
+To confirm, you're asking...
+Translated response: ꯅꯉꯅꯥ ꯃꯦꯏꯇꯦꯌ ꯃꯥꯌꯦꯀꯇꯥ ꯋꯥꯔꯤ ꯁꯥꯅꯔꯀꯄꯥ ꯌꯥꯏ, ꯑꯃꯁꯨꯡ ꯃꯇꯦꯡ ꯄꯥꯡꯕꯗꯥ ꯑꯩ ꯅꯨꯡꯉꯥꯏꯕꯥ ꯐꯥꯑꯣꯒꯅꯤ꯫ 
+
+ꯀꯅꯐꯥꯔꯝ ꯇꯧꯅꯕꯥ, ꯅꯍꯥꯛꯅꯥ ...
+
+
+--- NEW QUERY ---
+Original input: ꯆꯪ ꯆꯥꯛ ꯆꯥꯔꯕꯣ
+Detected as Meitei: True
+Translated to English: Emnle gets in the book.
+AI Response: I'm N7-AI, your AI assistant. I'll respond in English, and you can translate back to Meitei Mayek....
+Translated response: ꯑꯩꯍꯥꯛ ꯑꯦꯟ.꯷-ꯑꯥꯏ., ꯅꯈꯣꯌꯒꯤ ꯑꯦ.ꯑꯥꯏ. ꯑꯩꯅꯥ ꯏꯪꯂꯤꯁꯇꯥ ꯄꯥꯎꯈꯨꯝ ꯄꯤꯒꯅꯤ, ꯑꯃꯁꯨꯡ ꯅꯍꯥꯛꯅꯥ Meite Mayek ꯗꯥ ꯑꯃꯨꯛ ꯍꯟꯅꯥ ꯍꯟ...
+
+
+--- NEW QUERY ---
+Original input: ꯍꯣꯏꯖꯁꯤ
+Detected as Meitei: True
+Translated to English: Don't swelling.
+AI Response: Please don't worry; I'm here to help. 
+
+Go ahead with your query; I'll respond in English....
+Translated response: ꯆꯥꯅꯕꯤꯗꯨꯅꯥ ꯋꯥꯈꯜ ꯋꯥꯕꯥ ꯂꯩꯔꯣꯏꯗꯕꯅꯤ; ꯑꯩꯍꯥꯛ ꯃꯐꯝ ꯑꯁꯤꯗꯥ ꯃꯇꯦꯡ ꯄꯥꯡꯅꯕꯥ ꯂꯥꯛꯂꯤ꯫ 
+
+ꯅꯍꯥꯛꯀꯤ ꯋꯥꯍꯪ ꯑꯗꯨ ꯃꯈꯥ ꯆꯠꯊꯕꯤꯌꯨ; ꯑꯩꯅ...
+
+
+--- NEW QUERY ---
+Original input: ꯑ
+Detected as Meitei: False
+AI Response: It seems like you're communicating in Meitei Mayek, a script used for the Meitei language, which is ...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Error: 401 Client Error: Unauthorized for url: https://api.groq.com/openai/v1/chat/completions...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Error: 401 Client Error: Unauthorized for url: https://api.groq.com/openai/v1/chat/completions...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Error: 401 Client Error: Unauthorized for url: https://api.groq.com/openai/v1/chat/completions...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Error: 401 Client Error: Unauthorized for url: https://api.groq.com/openai/v1/chat/completions...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! How can I assist you today—perhaps with a tech question, Meitei script, or anything else?...
+
+
+--- NEW QUERY ---
+Original input: hello
+Detected as Meitei: False
+AI Response: Hello! I’m n7‑ai, your local tech mentor—ready to help with any dev or Meitei‑related questions you ...
+
+
+--- NEW QUERY ---
+Original input: ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ
+Detected as Meitei: True
+Translated to English: What do you call?
+AI Response: The Meitei phrase “ꯀꯔꯤ ꯍꯥꯏꯕꯅꯣ” translates to “Hello” or “Hi” in English....
+Translated response: ꯃꯦꯏꯇꯦ ꯍꯥꯌꯕꯥ ꯋꯥꯍꯩ ꯑꯁꯤ ꯏꯪꯔꯦꯖꯤ ꯂꯣꯟꯗꯥ “ꯍꯦꯂꯣ” ꯅꯠꯔꯒꯥ “ꯍꯥꯌ” ꯍꯥꯌꯅꯥ ꯍꯟꯗꯣꯀꯏ꯫...

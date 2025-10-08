@@ -1,0 +1,13 @@
+./N7Speech/*
+./.vscode/*
+./.idea/*
+./__pycache__/*
+./venv/*
+./env/*
+./*.pyc
+./*.pyo
+./*.pyd
+./*.db
+.env
+N7Speech/
+models/

@@ -1,0 +1,9 @@
+flask==3.0.0
+flask-cors==4.0.0
+python-dotenv==1.0.0
+requests==2.31.0
+sounddevice==0.4.6
+numpy==1.24.3
+onnxruntime==1.16.0
+misaki==0.1.0
+python-dotenv

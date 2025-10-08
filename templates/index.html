@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N7-AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .messages-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .messages-container::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+        .messages-container::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.2);
+            border-radius: 2px;
+        }
+        .messages-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.4);
+        }
+
+        .message {
+            animation: slideIn 0.2s ease-out;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bubble {
+            position: relative;
+            padding: 0.75rem 1rem;
+            border-radius: 1.2rem;
+            max-width: 70%;
+            margin: 0.25rem 0;
+            line-height: 1.4;
+            font-size: 0.95rem;
+        }
+
+        .bubble::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            bottom: -0.4rem;
+            border: 0.4rem solid transparent;
+        }
+
+        .user-bubble {
+            margin-left: auto;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.9375rem;
+        }
+
+        .user-bubble::before {
+            right: 1rem;
+            border-top-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .assistant-bubble {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+
+        .assistant-bubble::before {
+            left: 1rem;
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .markdown p {
+            margin: 0.25rem 0;
+        }
+
+        .markdown code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-size: 0.9em;
+            color: #93c5fd;
+        }
+
+        .markdown pre code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            display: block;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 0.3rem;
+        }
+
+        .typing-dots span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.2;
+            animation: typing 1s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(1); }
+        }
+
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+            background: linear-gradient(45deg, #1e293b, #0f172a);
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1rem;
+            padding: 1px;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.5), rgba(147, 197, 253, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 197, 253, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.4), transparent);
+            opacity: 0.5;
+        }
+
+        .logo-container i {
+            position: relative;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+        }
+
+        /* Siri animation styles */
+        .voice-button-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-waves {
+            position: absolute;
+            inset: -4px;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .voice-waves::before,
+        .voice-waves::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            animation: none;
+        }
+
+        .voice-waves.active {
+            opacity: 1;
+        }
+
+        .voice-waves.active::before {
+            animation: siriWave1 2s linear infinite;
+        }
+
+        .voice-waves.active::after {
+            animation: siriWave2 2s linear infinite 0.5s;
+        }
+
+        @keyframes siriWave1 {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes siriWave2 {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        #voice-button {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        #voice-button.active {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        #voice-button.active i {
+            color: #60a5fa;
+        }
+
+        /* Sound wave visualization styles */
+        .input-container {
+            position: relative;
+            flex: 1;
+        }
+
+        .wave-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .wave-container.active {
+            opacity: 1;
+        }
+
+        .wave-bars {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 20px;
+            width: 100%;
+        }
+
+        .wave-bar {
+            flex: 1;
+            height: 100%;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 2px;
+            transform-origin: 50% 50%;
+            animation: none;
+        }
+
+        .wave-container.active .wave-bar {
+            animation: soundWave 1s ease-in-out infinite;
+        }
+
+        .wave-container.active .wave-bar:nth-child(2n) {
+            animation-delay: 0.2s;
+        }
+
+        .wave-container.active .wave-bar:nth-child(3n) {
+            animation-delay: 0.3s;
+        }
+
+        .wave-container.active .wave-bar:nth-child(4n) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes soundWave {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+
+        /* Adjust input styles for wave visualization */
+        #input-field {
+            transition: all 0.3s ease;
+        }
+
+        #input-field.voice-active {
+            color: transparent;
+        }
+
+        #input-field.voice-active::placeholder {
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800">
+    <div class="max-w-6xl mx-auto p-6 h-screen flex flex-col">
+        <!-- Header -->
+        <header class="glass rounded-2xl p-6 mb-6 flex items-center justify-center shadow-lg relative">
+            <div class="flex items-center gap-4">
+                <div class="logo-container">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">N7-AI</h1>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="flex-1 gradient-border flex flex-col overflow-hidden shadow-lg">
+            <!-- Messages Area -->
+            <div id="messages" class="flex-1 overflow-y-auto p-6 space-y-3 messages-container">
+                <!-- Messages will be inserted here -->
+            </div>
+
+            <!-- Input Area -->
+            <div class="glass-dark p-4 border-t border-slate-700/50">
+                <div class="flex items-center gap-3 max-w-5xl mx-auto">
+                    <div class="input-container">
+                        <div class="wave-container">
+                            <div class="wave-bars">
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                            </div>
+                        </div>
+                        <input type="text" 
+                               id="input-field" 
+                               class="w-full px-4 py-2.5 rounded-xl glass text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 border border-slate-700"
+                               placeholder="Type your message...">
+                    </div>
+                    <button id="send-button" 
+                            class="p-3 glass hover:bg-slate-700/50 rounded-xl transition-all duration-200 text-slate-300 border border-slate-700">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <div class="voice-button-container">
+                        <div class="voice-waves"></div>
+                        <button id="voice-button" 
+                                class="p-2.5 glass hover:bg-slate-700/50 rounded-xl transition-all duration-200 text-slate-300 border border-slate-700">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const messagesDiv = document.getElementById('messages');
+        const inputField = document.getElementById('input-field');
+        const sendButton = document.getElementById('send-button');
+
+        // Configure marked options
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                return hljs.highlightAuto(code).value;
+            },
+            breaks: true,
+            gfm: true
+        });
+
+        function addMessage(text, isUser = false, metadata = null) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = `bubble ${isUser ? 'user-bubble' : 'assistant-bubble'}`;
+            
+            if (!isUser) {
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'markdown';
+                contentDiv.innerHTML = marked.parse(text);
+                contentDiv.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
+                bubbleDiv.appendChild(contentDiv);
+            } else {
+                bubbleDiv.textContent = text;
+            }
+            
+            messageDiv.appendChild(bubbleDiv);
+            
+            if (metadata && metadata.translation_failed) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'text-red-400 text-xs mt-1 ml-2';
+                errorDiv.textContent = 'Translation failed, showing English response';
+                messageDiv.appendChild(errorDiv);
+            }
+            
+            messagesDiv.appendChild(messageDiv);
+            requestAnimationFrame(() => {
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            });
+        }
+
+        function showLoading() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message';
+            loadingDiv.innerHTML = `
+                <div class="bubble assistant-bubble inline-block">
+                    <div class="typing-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            `;
+            messagesDiv.appendChild(loadingDiv);
+            requestAnimationFrame(() => {
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            });
+            return loadingDiv;
+        }
+
+        function hideLoading() {
+            const loadingDiv = messagesDiv.querySelector('.typing-dots')?.closest('.message');
+            if (loadingDiv) loadingDiv.remove();
+        }
+
+        async function sendMessage() {
+            const message = inputField.value.trim();
+            if (!message) return;
+
+            addMessage(message, true);
+            inputField.value = '';
+            showLoading();
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                hideLoading();
+                
+                if (data.error) {
+                    addMessage('Sorry, there was an error. Please try again.', false);
+                } else {
+                    addMessage(data.response, false);
+                }
+            } catch (error) {
+                hideLoading();
+                addMessage('Error: Failed to get response. Please try again.', false);
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        const voiceButton = document.getElementById('voice-button');
+        let isVoiceActive = false;
+        let eventSource = null;
+
+        function startTranscriptionStream() {
+            eventSource = new EventSource('/get-transcription');
+            
+            eventSource.onmessage = function(e) {
+                const data = JSON.parse(e.data);
+                addMessage(data.transcript, true);
+                addMessage(data.response, false);
+            };
+            
+            eventSource.onerror = function() {
+                console.log('SSE error, closing connection');
+                eventSource.close();
+                eventSource = null;
+            };
+        }
+
+        async function toggleVoiceInput() {
+            try {
+                const response = await fetch('/voice-input', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    addMessage(`Error: ${data.error}`, false);
+                    return;
+                }
+
+                isVoiceActive = data.status === 'started';
+                voiceButton.classList.toggle('active', isVoiceActive);
+                document.querySelector('.voice-waves').classList.toggle('active', isVoiceActive);
+                document.querySelector('.wave-container').classList.toggle('active', isVoiceActive);
+                inputField.classList.toggle('voice-active', isVoiceActive);
+                voiceButton.title = isVoiceActive ? 'Stop voice input' : 'Start voice input';
+                
+                if (isVoiceActive) {
+                    addMessage('Voice input activated. Speak to interact.', false);
+                    inputField.disabled = true;
+                    inputField.placeholder = 'Voice input active...';
+                    startTranscriptionStream();
+                } else {
+                    addMessage('Voice input deactivated.', false);
+                    inputField.disabled = false;
+                    inputField.placeholder = 'Type your message...';
+                    if (eventSource) {
+                        eventSource.close();
+                        eventSource = null;
+                    }
+                }
+            } catch (error) {
+                addMessage('Error: Could not toggle voice input.', false);
+                console.error('Voice input error:', error);
+            }
+        }
+
+        voiceButton.addEventListener('click', toggleVoiceInput);
+
+        // Initial welcome message
+        addMessage("Hi! How can I help you today?", false);
+    </script>
+</body>
+</html>
