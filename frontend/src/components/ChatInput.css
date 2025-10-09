@@ -64,8 +64,17 @@
   font-size: 1rem;
 }
 
-.chat-input__send-button:hover {
+.chat-input__send-button:not(.voice-active):hover {
   background-color: rgba(5, 190, 5, 0.76);
+  transform: scale(1.08);
+}
+
+.chat-input__send-button.voice-active {
+  background-color: #c70000; /* Red when voice is active */
+}
+
+.chat-input__send-button.voice-active:hover {
+  background-color: #a30000; /* Darker red on hover when active */
   transform: scale(1.08);
 }
 

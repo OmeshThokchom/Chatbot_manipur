@@ -53,12 +53,13 @@ const ChatInput: React.FC<ChatInputProps> = ({
           rows={1}
         />
         <button
-          className="chat-input__send-button"
+          className={`chat-input__send-button ${isVoiceActive ? 'voice-active' : ''}`}
           onClick={isVoiceActive ? toggleVoiceInput : (value.trim() ? handleSendMessage : toggleVoiceInput)}
           disabled={isLoading}
         >
           <i className={`fas fa-arrow-up ${value.trim() && !isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
-          <i className={`fas fa-microphone ${!value.trim() || isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
+          <i className={`fas fa-microphone ${!value.trim() && !isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
+          <i className={`fas fa-stop ${isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
         </button>
       </div>
     </div>
