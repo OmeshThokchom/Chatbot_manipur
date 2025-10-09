@@ -18,7 +18,6 @@ const ChatPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentTranscription, setCurrentTranscription] = useState<string>("");
   const eventSourceRef = useRef<EventSource | null>(null);
-  const partialEventSourceRef = useRef<EventSource | null>(null);
 
   const sendMessage = async (messageText: string) => {
     if (messageText.trim() === '') return;
@@ -79,43 +78,30 @@ const ChatPage: React.FC = () => {
         // Voice input started
         setCurrentTranscription(""); // Clear previous transcription
 
-        // Close existing connections
-        if (eventSourceRef.current) eventSourceRef.current.close();
-        if (partialEventSourceRef.current) partialEventSourceRef.current.close();
+        if (eventSourceRef.current) {
+          eventSourceRef.current.close();
+        }
 
-        // Listen for partial transcriptions
-        const partialEs = new EventSource('/get-partial-transcription');
-        partialEventSourceRef.current = partialEs;
-        partialEs.onmessage = function (e) {
+        const es = new EventSource('/get-transcription');
+        eventSourceRef.current = es;
+
+        es.onmessage = function (e) {
           if (e.data.startsWith(':')) return;
           const data = JSON.parse(e.data);
-          setCurrentTranscription(data.partial_transcript);
-        };
-        partialEs.onerror = function (e) {
-          console.error('Partial SSE error, closing connection', e);
-          partialEs.close();
+          setCurrentTranscription(data.transcript);
         };
 
-        // Listen for final transcriptions and responses
-        const finalEs = new EventSource('/get-transcription');
-        eventSourceRef.current = finalEs;
-        finalEs.onmessage = function (e) {
-          if (e.data.startsWith(':')) return;
-          const data = JSON.parse(e.data);
-          const userMessage: Message = { id: Date.now(), text: data.transcript, isUser: true, isMeitei: data.is_meitei };
-          const aiMessage: Message = { id: Date.now() + 1, text: data.response, isUser: false };
-          setMessages((prevMessages) => [...prevMessages, userMessage, aiMessage]);
+        es.onerror = function (e) {
+          console.error('SSE error, closing connection', e);
+          es.close();
+          setIsVoiceActive(false);
           setCurrentTranscription("");
         };
-        finalEs.onerror = function (e) {
-          console.error('Final SSE error, closing connection', e);
-          finalEs.close();
-        };
-
       } else {
         // Voice input stopped
-        if (eventSourceRef.current) eventSourceRef.current.close();
-        if (partialEventSourceRef.current) partialEventSourceRef.current.close();
+        if (eventSourceRef.current) {
+          eventSourceRef.current.close();
+        }
         
         if (currentTranscription.trim()) {
           sendMessage(currentTranscription.trim());
@@ -134,9 +120,6 @@ const ChatPage: React.FC = () => {
     return () => {
       if (eventSourceRef.current) {
         eventSourceRef.current.close();
-      }
-      if (partialEventSourceRef.current) {
-        partialEventSourceRef.current.close();
       }
     };
   }, []);

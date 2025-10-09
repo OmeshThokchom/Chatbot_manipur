@@ -14,27 +14,13 @@ CORS(app)
 chat_system = MeiteiChatSystem()
 chat_system.streaming = False  # Disable streaming for web interface
 
-# Queues for transcribed text
+# Queue for transcribed text
 transcription_queue = Queue()
-partial_transcription_queue = Queue()
 
-# Custom speech callback for final transcripts
-def web_speech_callback(transcript):
+# Callback for transcriptions
+def web_transcription_callback(transcript):
     if transcript and transcript.strip():
-        # Get response from chat system
-        transcript = transcript.strip()
-        response = chat_system.chat(transcript)
-        # Put both transcript and response in queue
-        transcription_queue.put({
-            'transcript': transcript,
-            'response': response,
-            'is_meitei': chat_system.is_meitei_mayek(transcript)
-        })
-
-# Callback for partial transcripts
-def web_partial_speech_callback(transcript):
-    if transcript and transcript.strip():
-        partial_transcription_queue.put({'partial_transcript': transcript.strip()})
+        transcription_queue.put({'transcript': transcript.strip()})
 
 @app.route('/')
 def index():
@@ -79,13 +65,10 @@ def voice_input():
             # Clear any old transcriptions
             while not transcription_queue.empty():
                 transcription_queue.get()
-            while not partial_transcription_queue.empty():
-                partial_transcription_queue.get()
                 
             # Start voice input with our custom callback
             chat_system.voice_input = True
-            chat_system._custom_callback = web_speech_callback
-            chat_system._custom_partial_callback = web_partial_speech_callback
+            chat_system._custom_partial_callback = web_transcription_callback
             chat_system.start_voice_input()
             return jsonify({'status': 'started'})
         else:
@@ -101,29 +84,12 @@ def get_transcription():
     def generate():
         while chat_system.voice_input:
             try:
-                # Try to get transcription with a timeout
                 data = transcription_queue.get(timeout=0.1)
                 if data:
                     yield f'data: {json.dumps(data)}\n\n'
             except:
-                # No transcription available, send keepalive
-                yield ':keepalive\n\n'
-            time.sleep(0.1)
-    
-    return Response(generate(), mimetype='text/event-stream')
-
-@app.route('/get-partial-transcription')
-def get_partial_transcription():
-    def generate():
-        while chat_system.voice_input:
-            try:
-                data = partial_transcription_queue.get(timeout=0.1)
-                if data:
-                    yield f'data: {json.dumps(data)}\n\n'
-            except:
                 yield ':keepalive\n\n'
             time.sleep(0.1)
     return Response(generate(), mimetype='text/event-stream')
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

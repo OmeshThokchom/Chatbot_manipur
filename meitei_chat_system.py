@@ -362,7 +362,7 @@ class MeiteiChatSystem:
         """Stop the voice input system"""
         if self.speech_running:
             self.speech_running = False
-            # Signal the VAD worker to exit
+            # Signal the worker to exit
             if self.realtime_speech_recognizer:
                 self.realtime_speech_recognizer.audio_q.put(None)
             # Signal the interactive session loop to exit if it's waiting on the queue
@@ -371,82 +371,34 @@ class MeiteiChatSystem:
                 self.speech_thread.join(timeout=2.0) # give it a bit more time
                 self.speech_thread = None
 
-    def _realtime_vad_worker(self, callback_fn, partial_callback_fn):
-        """
-        Worker thread for processing audio chunks and running VAD.
-        - Collects audio chunks while speech is detected.
-        - When speech ends, runs transcription and calls on_transcript callback.
-        - While speaking, runs transcription on buffered audio for partial results.
-        """
-        last_printed = None
+    def _recording_worker(self, partial_callback_fn):
         speech_buffer = []
-        collecting = False
-        
-        # For partial results
-        partial_buffer = []
-        last_partial_transcript = ""
+        last_transcript = ""
 
         while self.speech_running:
             chunk = self.realtime_speech_recognizer.audio_q.get()
             if chunk is None:
                 break
-            try:
-                # Update rolling buffer
-                self.realtime_speech_recognizer.audio_buffer = np.roll(self.realtime_speech_recognizer.audio_buffer, -len(chunk))
-                self.realtime_speech_recognizer.audio_buffer[-len(chunk):] = chunk
-                self.realtime_speech_recognizer.buffer_filled = min(self.realtime_speech_recognizer.buffer_filled + len(chunk), self.realtime_speech_recognizer.window_size)
-                if self.realtime_speech_recognizer.buffer_filled < self.realtime_speech_recognizer.window_size:
-                    continue
+            
+            speech_buffer.append(chunk)
+            
+            # Transcribe periodically
+            if len(speech_buffer) % 8 == 0: # ~ every 2 seconds
+                audio_to_transcribe = np.concatenate(speech_buffer)
+                transcript = self.realtime_speech_recognizer.recognizer.transcribe(audio_to_transcribe)
+                
+                if transcript and transcript.strip() and transcript != last_transcript:
+                    if partial_callback_fn:
+                        partial_callback_fn(transcript)
+                    last_transcript = transcript
 
-                # Run VAD on the rolling buffer
-                audio_tensor = torch.from_numpy(self.realtime_speech_recognizer.audio_buffer).float()
-                self.realtime_speech_recognizer.model.cpu()
-                speech_segments = self.realtime_speech_recognizer.get_speech_timestamps(
-                    audio_tensor,
-                    self.realtime_speech_recognizer.model,
-                    sampling_rate=self.realtime_speech_recognizer.sample_rate,
-                    threshold=0.5,
-                    min_speech_duration_ms=150
-                )
-                is_speaking = bool(speech_segments)
-
-                # Collect chunks while speaking
-                if is_speaking and not collecting:
-                    collecting = True
-                    speech_buffer = [chunk.copy()]
-                    partial_buffer = [chunk.copy()]
-                elif is_speaking and collecting:
-                    speech_buffer.append(chunk.copy())
-                    partial_buffer.append(chunk.copy())
-
-                    # Process partial transcript every few chunks
-                    if len(partial_buffer) > 4: # about every 1s
-                        partial_audio = np.concatenate(partial_buffer)
-                        partial_transcript = self.realtime_speech_recognizer.recognizer.transcribe(partial_audio)
-                        if partial_transcript and partial_transcript != last_partial_transcript:
-                            if partial_callback_fn:
-                                partial_callback_fn(partial_transcript)
-                            last_partial_transcript = partial_transcript
-                        partial_buffer = []
-
-
-                # When speech ends, transcribe and call callback
-                elif not is_speaking and collecting:
-                    collecting = False
-                    if speech_buffer:
-                        full_audio = np.concatenate(speech_buffer)
-                        transcript = self.realtime_speech_recognizer.recognizer.transcribe(full_audio)
-                        if self.realtime_speech_recognizer.lang == "mni-latin":
-                            transcript = meitei_lon(transcript)
-                        if transcript and transcript != last_printed:
-                            if callback_fn:
-                                callback_fn(transcript)
-                            last_printed = transcript
-                        speech_buffer = []
-                        partial_buffer = []
-                        last_partial_transcript = "" # reset partial
-            except Exception as e:
-                print(f"\nError in VAD worker: {e}")
+        # Final transcription
+        if speech_buffer:
+            full_audio = np.concatenate(speech_buffer)
+            final_transcript = self.realtime_speech_recognizer.recognizer.transcribe(full_audio)
+            if final_transcript and final_transcript.strip() and final_transcript != last_transcript:
+                if partial_callback_fn:
+                    partial_callback_fn(final_transcript)
 
     def _run_speech_recognition(self):
         """Run the speech recognition in a separate thread"""
@@ -455,8 +407,8 @@ class MeiteiChatSystem:
             callback = getattr(self, '_custom_callback', None)
             partial_callback = getattr(self, '_custom_partial_callback', None)
 
-            if callback is None:
-                # Create default callback that will process the speech input
+            if callback is None and partial_callback is None:
+                # Create default callback that will process the speech input for CLI
                 def callback(transcript):
                     if transcript and transcript.strip():
                         transcript = transcript.strip()
@@ -491,10 +443,10 @@ class MeiteiChatSystem:
             chunk_size = speech.chunk_size
             audio_q = speech.audio_q
             
-            # Start the VAD worker thread
+            # Start the recording worker thread
             self.speech_running = True # Make sure this is set before starting thread
-            vad_thread = threading.Thread(target=self._realtime_vad_worker, args=(callback_fn, partial_callback_fn), daemon=True)
-            vad_thread.start()
+            recording_thread = threading.Thread(target=self._recording_worker, args=(partial_callback_fn,), daemon=True)
+            recording_thread.start()
             
             # Define our own audio callback
             def audio_callback(indata, frames, time, status):
@@ -514,7 +466,7 @@ class MeiteiChatSystem:
                     
             # Clean up
             audio_q.put(None)
-            vad_thread.join(timeout=1.0)
+            recording_thread.join(timeout=1.0)
         except Exception as e:
             print(f"\nError in core speech recognition: {e}", flush=True)
             raise
