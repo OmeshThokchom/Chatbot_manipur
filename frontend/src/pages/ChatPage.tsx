@@ -88,13 +88,14 @@ const ChatPage: React.FC = () => {
         eventSourceRef.current = es;
 
         es.onmessage = function (e) {
+          console.log("SSE message received:", e.data);
           const transcriptionData = JSON.parse(e.data);
-          // Accumulate transcription, don't add to chat window yet
-          setCurrentTranscription(transcriptionData.transcript);
+          // Append new transcription to the existing one
+          setCurrentTranscription(prevTranscription => (prevTranscription + " " + transcriptionData.transcript).trim());
         };
 
-        es.onerror = function () {
-          console.log('SSE error, closing connection');
+        es.onerror = function (e) {
+          console.error('SSE error, closing connection', e);
           es.close();
           if (eventSourceRef.current === es) {
             eventSourceRef.current = null;
