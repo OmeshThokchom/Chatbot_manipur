@@ -6,6 +6,7 @@ interface ChatInputProps {
   toggleVoiceInput: () => void;
   isVoiceActive: boolean;
   isLoading: boolean;
+  currentTranscription: string; // New prop for current transcription
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({
@@ -13,6 +14,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   toggleVoiceInput,
   isVoiceActive,
   isLoading,
+  currentTranscription, // Destructure new prop
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -23,6 +25,13 @@ const ChatInput: React.FC<ChatInputProps> = ({
       textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     }
   }, [inputValue]);
+
+  // Effect to update inputValue when currentTranscription changes and voice is active
+  useEffect(() => {
+    if (isVoiceActive) {
+      setInputValue(currentTranscription);
+    }
+  }, [isVoiceActive, currentTranscription]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
@@ -48,20 +57,20 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <textarea
           ref={textareaRef}
           className="chat-input__field"
-          placeholder="Ask anything..."
-          value={inputValue}
+          placeholder={isVoiceActive ? "Listening..." : "Ask anything..."}
+          value={isVoiceActive ? currentTranscription : inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          disabled={isVoiceActive || isLoading}
+          disabled={isLoading || isVoiceActive}
           rows={1}
         />
         <button
           className="chat-input__send-button"
-          onClick={inputValue.trim() ? handleSendMessage : toggleVoiceInput}
+          onClick={isVoiceActive ? toggleVoiceInput : (inputValue.trim() ? handleSendMessage : toggleVoiceInput)}
           disabled={isLoading}
         >
-          <i className={`fas fa-arrow-up ${inputValue.trim() ? 'icon-visible' : 'icon-hidden'}`}></i>
-          <i className={`fas fa-microphone ${inputValue.trim() ? 'icon-hidden' : 'icon-visible'}`}></i>
+          <i className={`fas fa-arrow-up ${inputValue.trim() && !isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
+          <i className={`fas fa-microphone ${!inputValue.trim() || isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
         </button>
       </div>
     </div>

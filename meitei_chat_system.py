@@ -66,7 +66,17 @@ class MeiteiChatSystem:
         self.speech_queue = Queue()
         self.speech_thread = None
         self.speech_running = False
-        
+        self.realtime_speech_recognizer = None # Initialize here
+
+        # Load ASR model components at startup
+        try:
+            # Initialize speech recognition (silently)
+            self.realtime_speech_recognizer = RealTimeSpeech(lang="mni")
+            print("ASR model loaded successfully at startup.")
+        except Exception as e:
+            print(f"Error loading ASR model at startup: {e}")
+            self.realtime_speech_recognizer = None
+
     def _create_session(self):
         """Create a requests session with retry strategy"""
         # Define retry strategy
@@ -385,10 +395,13 @@ class MeiteiChatSystem:
             
     def _run_speech_recognition_core(self, callback_fn):
         """Core speech recognition functionality with custom callback"""
+        if not self.realtime_speech_recognizer:
+            print("ASR model not loaded. Cannot start voice input.")
+            return
+
         try:
-            # Create the speech recognizer
-            # Initialize speech recognition (silently)
-            speech = RealTimeSpeech(lang="mni")
+            # Use the pre-loaded speech recognizer
+            speech = self.realtime_speech_recognizer
             
             # We need to modify how we handle the audio stream to avoid blocking
             import sounddevice as sd
@@ -396,13 +409,13 @@ class MeiteiChatSystem:
             from threading import Thread
             
             # Set up the audio parameters (copied from RealTimeSpeech class)
-            sample_rate = speech.sample_rate
-            chunk_size = speech.chunk_size
-            audio_q = speech.audio_q
+            sample_rate = self.realtime_speech_recognizer.sample_rate
+            chunk_size = self.realtime_speech_recognizer.chunk_size
+            audio_q = self.realtime_speech_recognizer.audio_q
             
             # Start the VAD worker thread
-            speech.running = True
-            vad_thread = Thread(target=speech._vad_worker, args=(callback_fn,), daemon=True)
+            self.realtime_speech_recognizer.running = True
+            vad_thread = Thread(target=self.realtime_speech_recognizer._vad_worker, args=(callback_fn,), daemon=True)
             vad_thread.start()
             
             # Define our own audio callback
@@ -425,7 +438,7 @@ class MeiteiChatSystem:
                     sd.sleep(100)
                     
             # Clean up
-            speech.running = False
+            self.realtime_speech_recognizer.running = False
             audio_q.put(None)  # Signal the VAD thread to exit
             vad_thread.join(timeout=1.0)
         except Exception as e:

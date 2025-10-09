@@ -16,6 +16,7 @@ const ChatPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isVoiceActive, setIsVoiceActive] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [currentTranscription, setCurrentTranscription] = useState<string>("");
   const eventSourceRef = useRef<EventSource | null>(null);
 
   const sendMessage = async (messageText: string) => {
@@ -74,6 +75,8 @@ const ChatPage: React.FC = () => {
       setIsVoiceActive(newIsVoiceActive);
 
       if (newIsVoiceActive) {
+        // Voice input started
+        setCurrentTranscription(""); // Clear previous transcription
         setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input activated. Speak to interact.', isUser: false }]);
 
         if (eventSourceRef.current) {
@@ -86,11 +89,8 @@ const ChatPage: React.FC = () => {
 
         es.onmessage = function (e) {
           const transcriptionData = JSON.parse(e.data);
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            { id: Date.now(), text: transcriptionData.transcript, isUser: true, isMeitei: transcriptionData.is_meitei },
-            { id: Date.now() + 1, text: transcriptionData.response, isUser: false },
-          ]);
+          // Accumulate transcription, don't add to chat window yet
+          setCurrentTranscription(transcriptionData.transcript);
         };
 
         es.onerror = function () {
@@ -100,20 +100,29 @@ const ChatPage: React.FC = () => {
             eventSourceRef.current = null;
           }
           setIsVoiceActive(false);
+          // If an error occurs, clear transcription
+          setCurrentTranscription("");
         };
       } else {
+        // Voice input stopped
         setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input deactivated.', isUser: false }]);
         if (eventSourceRef.current) {
           eventSourceRef.current.close();
           eventSourceRef.current = null;
         }
+        // After voice input stops, send the accumulated transcription
+        if (currentTranscription.trim()) {
+          sendMessage(currentTranscription.trim());
+        }
+        setCurrentTranscription(""); // Clear after sending
       }
     } catch (error) {
       setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Error: Could not toggle voice input.', isUser: false, isError: true }]);
       console.error('Voice input error:', error);
       setIsVoiceActive(false);
+      setCurrentTranscription("");
     }
-  }, []);
+  }, [currentTranscription, sendMessage]); // Added currentTranscription and sendMessage to dependencies
 
   useEffect(() => {
     return () => {
@@ -134,6 +143,7 @@ const ChatPage: React.FC = () => {
           toggleVoiceInput={toggleVoiceInput}
           isVoiceActive={isVoiceActive}
           isLoading={isLoading}
+          currentTranscription={currentTranscription} // Pass current transcription to ChatInput
         />
       </div>
     </div>
