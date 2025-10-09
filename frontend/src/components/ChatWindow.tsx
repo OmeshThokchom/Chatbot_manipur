@@ -10,6 +10,8 @@ interface MessageProps {
   text: string;
   isUser: boolean;
   isMeitei?: boolean;
+  status?: 'pending' | 'sent' | 'error';
+  isError?: boolean;
 }
 
 interface ChatWindowProps {
@@ -35,7 +37,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
       ) : (
         <>
           {messages.map((message) => (
-            <Message key={message.id} text={message.text} isUser={message.isUser} isMeitei={message.isMeitei} />
+            <Message key={message.id} text={message.text} isUser={message.isUser} isMeitei={message.isMeitei} status={message.status} isError={message.isError} />
           ))}
           {isLoading && <TypingIndicator />}
           <div ref={messagesEndRef} />

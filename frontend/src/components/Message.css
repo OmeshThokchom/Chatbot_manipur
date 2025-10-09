@@ -48,6 +48,14 @@
   max-width: 85%;
 }
 
+.message--pending {
+  opacity: 0.6;
+}
+
+.message--error .message__content {
+  color: #ff5c5c; /* Red color for error messages */
+}
+
 .message__content {
   line-height: 1.6;
   overflow-wrap: break-word;
@@ -63,13 +71,14 @@
   overflow: hidden;
   margin-bottom: 1em;
   border: 1px solid #30363d;
+  padding: 16px; /* Apply padding to the pre element */
 }
 
 .code-block-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #161b22;
+  background-color: #00000000;
   padding: 8px 12px;
   border-bottom: 1px solid #30363d;
 }
@@ -82,7 +91,7 @@
 }
 
 .copy-button {
-  background-color: #21262d;
+  background-color: #0000001c;
   color: #c9d1d9;
   border: 1px solid #30363d;
   padding: 4px 8px;
@@ -97,17 +106,18 @@
 
 .markdown pre code {
   display: block;
-  padding: 16px;
   color: #c9d1d9; /* github-dark text color */
   overflow-x: auto;
   font-family: 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
   font-size: 0.9em;
+  background: none; /* Ensure no background on the code element */
+  padding: 0; /* Remove padding from the code element */
 }
 
 .markdown code {
   font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.9em;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.055);
   padding: 2px 4px;
   border-radius: 4px;
 }
@@ -122,6 +132,7 @@
   display: flex;
   gap: 10px; /* Space between icons */
   margin-top: 10px; /* Space above the actions */
+  margin-bottom: 10px; /* Space below the actions */
   justify-content: flex-start; /* Align icons to the left */
   padding: 5px 10px; /* Padding around the actions */
   border-top: 1px solid var(--border-color); /* Separator line */

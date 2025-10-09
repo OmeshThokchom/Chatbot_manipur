@@ -7,6 +7,8 @@ interface Message {
   text: string;
   isUser: boolean;
   isMeitei?: boolean;
+  status?: 'pending' | 'sent' | 'error';
+  isError?: boolean;
 }
 
 const ChatPage: React.FC = () => {
@@ -18,7 +20,8 @@ const ChatPage: React.FC = () => {
   const sendMessage = async (messageText: string) => {
     if (messageText.trim() === '') return;
 
-    const newUserMessage: Message = { id: Date.now(), text: messageText, isUser: true };
+    const messageId = Date.now();
+    const newUserMessage: Message = { id: messageId, text: messageText, isUser: true, status: 'pending' };
     setMessages((prevMessages) => [...prevMessages, newUserMessage]);
     setIsLoading(true);
 
@@ -31,16 +34,19 @@ const ChatPage: React.FC = () => {
         body: JSON.stringify({ message: messageText }),
       });
 
+      setMessages(prevMessages => prevMessages.map(msg => msg.id === messageId ? { ...msg, status: 'sent' } : msg));
+
       const data = await response.json();
       if (data.response) {
         const newAiMessage: Message = { id: Date.now() + 1, text: data.response, isUser: false };
         setMessages((prevMessages) => [...prevMessages, newAiMessage]);
       } else if (data.error) {
-        const errorMessage: Message = { id: Date.now() + 1, text: `Error: ${data.error}`, isUser: false };
+        const errorMessage: Message = { id: Date.now() + 1, text: `Error: ${data.error}`, isUser: false, isError: true };
         setMessages((prevMessages) => [...prevMessages, errorMessage]);
       }
     } catch (error) {
-      const errorMessage: Message = { id: Date.now() + 1, text: 'Error: Could not connect to the server.', isUser: false };
+      setMessages(prevMessages => prevMessages.map(msg => msg.id === messageId ? { ...msg, status: 'error' } : msg));
+      const errorMessage: Message = { id: Date.now() + 1, text: 'Error: Could not connect to the server.', isUser: false, isError: true };
       setMessages((prevMessages) => [...prevMessages, errorMessage]);
     } finally {
       setIsLoading(false);
@@ -59,7 +65,7 @@ const ChatPage: React.FC = () => {
       const data = await response.json();
 
       if (data.error) {
-        setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: `Error: ${data.error}`, isUser: false }]);
+        setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: `Error: ${data.error}`, isUser: false, isError: true }]);
         return;
       }
 
@@ -69,7 +75,6 @@ const ChatPage: React.FC = () => {
       if (newIsVoiceActive) {
         setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input activated. Speak to interact.', isUser: false }]);
 
-        // Ensure any previous EventSource is closed before opening a new one
         if (eventSourceRef.current) {
           eventSourceRef.current.close();
           eventSourceRef.current = null;
@@ -90,10 +95,10 @@ const ChatPage: React.FC = () => {
         es.onerror = function () {
           console.log('SSE error, closing connection');
           es.close();
-          if (eventSourceRef.current === es) { // Only nullify if it's the current one
+          if (eventSourceRef.current === es) {
             eventSourceRef.current = null;
           }
-          setIsVoiceActive(false); // Also deactivate voice input on error
+          setIsVoiceActive(false);
         };
       } else {
         setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input deactivated.', isUser: false }]);
@@ -103,9 +108,9 @@ const ChatPage: React.FC = () => {
         }
       }
     } catch (error) {
-      setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Error: Could not toggle voice input.', isUser: false }]);
+      setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Error: Could not toggle voice input.', isUser: false, isError: true }]);
       console.error('Voice input error:', error);
-      setIsVoiceActive(false); // Deactivate voice input on general error
+      setIsVoiceActive(false);
     }
   }, []);
 
@@ -120,7 +125,6 @@ const ChatPage: React.FC = () => {
 
   return (
     <div className="chat-wrapper">
-      {/* Removed Sidebar component */}
       <div className="chat-main">
         <header className="chat-main__header">
           <h1 className="chat-main__title">N7chat</h1>
