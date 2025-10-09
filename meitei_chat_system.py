@@ -389,8 +389,8 @@ class MeiteiChatSystem:
             
             speech_buffer.append(chunk)
             
-            # Transcribe periodically
-            if len(speech_buffer) % 8 == 0: # ~ every 2 seconds
+                    # Transcribe periodically
+            if len(speech_buffer) % 2 == 0: # ~ every 0.5 seconds
                 audio_to_transcribe = np.concatenate(speech_buffer)
                 transcript = self.realtime_speech_recognizer.recognizer.transcribe(audio_to_transcribe)
                 

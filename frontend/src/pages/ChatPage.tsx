@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
 import Header from '../components/Header';
