@@ -14,4 +14,19 @@
 .typing-indicator__text {
   font-style: italic;
   color: var(--secondary-text-color);
+  background: linear-gradient(90deg, #333 0%, #fff 50%, #333 100%); /* Dark grey base, white shimmer */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
