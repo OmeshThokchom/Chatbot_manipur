@@ -20,6 +20,7 @@ const ChatPage: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const eventSourceRef = useRef<EventSource | null>(null);
   const isStopping = useRef(false);
+  const animationTimeoutRef = useRef<number | null>(null); // Ref to store animation timeout ID
 
   const sendMessage = useCallback(async (messageText: string) => {
     if (messageText.trim() === '') return;
@@ -58,6 +59,24 @@ const ChatPage: React.FC = () => {
     }
   }, []);
 
+  const animateTyping = useCallback((fullText: string) => {
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+    }
+
+    let i = 0;
+    const typeCharacter = () => {
+      if (i < fullText.length) {
+        setInputValue(fullText.substring(0, i + 1));
+        i++;
+        animationTimeoutRef.current = setTimeout(typeCharacter, 20); // Adjust typing speed here (20ms per char)
+      } else {
+        animationTimeoutRef.current = null;
+      }
+    };
+    typeCharacter();
+  }, []);
+
   const toggleVoiceInput = useCallback(async () => {
     try {
       if (isVoiceActive) {
@@ -65,6 +84,10 @@ const ChatPage: React.FC = () => {
         isStopping.current = true;
         if (eventSourceRef.current) {
           eventSourceRef.current.close();
+        }
+        if (animationTimeoutRef.current) {
+          clearTimeout(animationTimeoutRef.current);
+          animationTimeoutRef.current = null;
         }
         await fetch('/voice-input', { method: 'POST' });
         setIsVoiceActive(false);
@@ -85,7 +108,7 @@ const ChatPage: React.FC = () => {
         es.onmessage = function (e) {
           if (isStopping.current || e.data.startsWith(':')) return;
           const data = JSON.parse(e.data);
-          setInputValue(data.transcript);
+          animateTyping(data.transcript); // Animate the incoming transcript
         };
 
         es.onerror = function (e) {
@@ -102,12 +125,15 @@ const ChatPage: React.FC = () => {
       setIsVoiceActive(false);
       setInputValue("");
     }
-  }, [isVoiceActive, inputValue, sendMessage]);
+  }, [isVoiceActive, inputValue, sendMessage, animateTyping]);
 
   useEffect(() => {
     return () => {
       if (eventSourceRef.current) {
         eventSourceRef.current.close();
+      }
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
       }
     };
   }, []);
