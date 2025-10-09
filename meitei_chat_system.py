@@ -23,7 +23,7 @@ load_dotenv()
 class MeiteiChatSystem:
     """Chat system with Meitei Mayek translation functionality and voice input support"""
     
-    def __init__(self, api_key=None, model=None, system_prompt=None, voice_input=False):
+    def __init__(self, api_key=None, model=None, system_prompt=None, voice_input=False, interactive_mode=False):
         """
         Initialize the chat system
         
@@ -62,7 +62,9 @@ class MeiteiChatSystem:
         self.streaming = True
         
         # Setup signal handler for graceful exit
-        signal.signal(signal.SIGINT, self._handle_interrupt)
+        self.interactive_mode = interactive_mode
+        if self.interactive_mode:
+            signal.signal(signal.SIGINT, self._handle_interrupt)
         
         # Voice input settings
         self.voice_input = voice_input
@@ -350,6 +352,11 @@ class MeiteiChatSystem:
     def start_voice_input(self):
         """Start the voice input system"""
         if self.voice_input and not self.speech_running:
+            # Clear the audio queue
+            if self.realtime_speech_recognizer:
+                while not self.realtime_speech_recognizer.audio_q.empty():
+                    self.realtime_speech_recognizer.audio_q.get()
+
             self.speech_running = True
             print("\nVoice input activated. Speak into your microphone...")
             self.speech_thread = threading.Thread(
@@ -573,7 +580,8 @@ def main():
         api_key=args.api_key,
         model=args.model,
         system_prompt=args.system_prompt,
-        voice_input=args.voice
+        voice_input=args.voice,
+        interactive_mode=True
     )
     
     # Set options from command line arguments

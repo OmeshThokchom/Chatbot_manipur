@@ -18,6 +18,7 @@ const ChatPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentTranscription, setCurrentTranscription] = useState<string>("");
   const eventSourceRef = useRef<EventSource | null>(null);
+  const isStopping = useRef(false);
 
   const sendMessage = async (messageText: string) => {
     if (messageText.trim() === '') return;
@@ -76,6 +77,7 @@ const ChatPage: React.FC = () => {
 
       if (newIsVoiceActive) {
         // Voice input started
+        isStopping.current = false;
         setCurrentTranscription(""); // Clear previous transcription
 
         if (eventSourceRef.current) {
@@ -86,7 +88,7 @@ const ChatPage: React.FC = () => {
         eventSourceRef.current = es;
 
         es.onmessage = function (e) {
-          if (e.data.startsWith(':')) return;
+          if (isStopping.current || e.data.startsWith(':')) return;
           const data = JSON.parse(e.data);
           setCurrentTranscription(data.transcript);
         };
@@ -99,6 +101,7 @@ const ChatPage: React.FC = () => {
         };
       } else {
         // Voice input stopped
+        isStopping.current = true;
         if (eventSourceRef.current) {
           eventSourceRef.current.close();
         }
@@ -114,7 +117,7 @@ const ChatPage: React.FC = () => {
       setIsVoiceActive(false);
       setCurrentTranscription("");
     }
-  }, [currentTranscription]);
+  }, [currentTranscription, sendMessage]);
 
   useEffect(() => {
     return () => {
