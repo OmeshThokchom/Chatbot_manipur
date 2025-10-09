@@ -32,6 +32,29 @@
   -webkit-text-fill-color: transparent;
 }
 
+.welcome-animated-title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #1f1f1f;
+  background: linear-gradient(90deg, #4285f4, #9b72cb, #d96570, #f2a60c, #57bb8a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  overflow: hidden;
+  animation: shimmer 2.5s infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
 .welcome-subtitle {
   font-size: 1.5rem;
   color: #a9b0b97e;
