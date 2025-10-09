@@ -14,6 +14,7 @@ export default defineConfig({
       '/chat': 'http://localhost:5000',
       '/voice-input': 'http://localhost:5000',
       '/get-transcription': 'http://localhost:5000',
+      '/tts/speak': 'http://localhost:5000',
     }
   }
 })

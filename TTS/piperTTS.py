@@ -25,11 +25,11 @@ class PiperTTS:
             print(f"Error loading voice model: {e}")
             return False
     
-    def text_to_speech(self, text, play_audio=True, output_file=None):
-        """Convert text to speech and optionally play it or save to file"""
+    def text_to_speech(self, text):
+        """Convert text to speech and return the audio buffer"""
         if not self.voice:
             if not self._load_voice():
-                return False
+                return None
         
         # Create an in-memory buffer
         buffer = io.BytesIO()
@@ -42,43 +42,10 @@ class PiperTTS:
             # Reset buffer position to the beginning
             buffer.seek(0)
             
-            # Save to file if requested
-            if output_file:
-                with open(output_file, "wb") as f:
-                    f.write(buffer.getvalue())
-                print(f"Audio saved to {output_file}")
-                buffer.seek(0)  # Reset position after writing
-            
-            # Play audio if requested
-            if play_audio:
-                with wave.open(buffer, "rb") as wav_file:
-                    # Get audio parameters
-                    sample_rate = wav_file.getframerate()
-                    n_channels = wav_file.getnchannels()
-                    sample_width = wav_file.getsampwidth()
-                    n_frames = wav_file.getnframes()
-                    
-                    # Read all frames
-                    frames = wav_file.readframes(n_frames)
-                    
-                    # Convert to numpy array
-                    if sample_width == 2:  # 16-bit audio
-                        dtype = np.int16
-                    elif sample_width == 4:  # 32-bit audio
-                        dtype = np.int32
-                    else:
-                        dtype = np.uint8
-                    
-                    audio_data = np.frombuffer(frames, dtype=dtype)
-                    
-                    # Play the audio
-                    sd.play(audio_data, sample_rate)
-                    sd.wait()  # Wait until audio is finished playing
-            
-            return True
+            return buffer
         except Exception as e:
-            print(f"Error generating or playing speech: {e}")
-            return False
+            print(f"Error generating speech: {e}")
+            return None
 
 # Example usage in a loop
 def interactive_tts_demo():

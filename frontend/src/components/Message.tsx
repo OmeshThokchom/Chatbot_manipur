@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Marked } from 'marked';
 import { markedHighlight } from "marked-highlight";
 import hljs from 'highlight.js';
@@ -27,13 +27,65 @@ interface MessageProps {
 
 const Message: React.FC<MessageProps> = ({ text, isUser, status, isError }) => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoadingAudio, setIsLoadingAudio] = useState(false);
 
-  const handlePlayAloud = () => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(utterance);
-    } else {
-      alert('Sorry, your browser does not support text to speech.');
+  const handlePlayAloud = async () => {
+    if (isPlaying) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+      setIsPlaying(false);
+      return;
+    }
+
+    if (isLoadingAudio) return; // Prevent multiple clicks while loading
+
+    setIsLoadingAudio(true);
+    try {
+      const response = await fetch('/tts/speak', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: text }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      if (audioRef.current) {
+        audioRef.current.src = audioUrl;
+      } else {
+        audioRef.current = new Audio(audioUrl);
+      }
+
+      audioRef.current.play();
+      setIsPlaying(true);
+
+      audioRef.current.onended = () => {
+        setIsPlaying(false);
+        URL.revokeObjectURL(audioUrl); // Clean up the object URL
+      };
+
+      audioRef.current.onerror = (e) => {
+        console.error('Audio playback error:', e);
+        setIsPlaying(false);
+        URL.revokeObjectURL(audioUrl); // Clean up the object URL
+        alert('Error playing audio.');
+      };
+
+    } catch (error) {
+      console.error('Error fetching TTS audio:', error);
+      alert('Failed to play audio. Please try again.');
+    } finally {
+      setIsLoadingAudio(false);
     }
   };
 
@@ -85,7 +137,12 @@ const Message: React.FC<MessageProps> = ({ text, isUser, status, isError }) => {
           <>
             <div className="markdown" ref={contentRef}></div>
             <div className="message__actions">
-              <i className="fas fa-volume-up" title="Play Aloud" onClick={handlePlayAloud}></i>
+              <i
+                className={`fas ${isLoadingAudio ? 'fa-spinner fa-spin' : (isPlaying ? 'fa-stop' : 'fa-volume-up')}`}
+                title={isPlaying ? 'Stop Playback' : 'Play Aloud'}
+                onClick={handlePlayAloud}
+                style={{ cursor: isLoadingAudio ? 'not-allowed' : 'pointer' }}
+              ></i>
               <i className="fas fa-clipboard" title="Copy"></i>
               <i className="fas fa-share-square" title="Share"></i>
               <i className="fas fa-sync-alt" title="Retry"></i>

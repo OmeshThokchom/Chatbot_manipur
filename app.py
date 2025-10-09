@@ -6,6 +6,7 @@ import threading
 import json
 from queue import Queue
 import time
+from TTS.piperTTS import PiperTTS
 
 app = Flask(__name__, static_folder='frontend/dist', static_url_path='/')
 CORS(app)
@@ -13,6 +14,9 @@ CORS(app)
 # Initialize chat system with streaming disabled for web interface
 chat_system = MeiteiChatSystem()
 chat_system.streaming = False  # Disable streaming for web interface
+
+# Initialize PiperTTS
+piper_tts = PiperTTS()
 
 # Queue for transcribed text
 transcription_queue = Queue()
@@ -91,5 +95,26 @@ def get_transcription():
                 yield ':keepalive\n\n'
             time.sleep(0.1)
     return Response(generate(), mimetype='text/event-stream')
+
+@app.route('/tts/speak', methods=['POST'])
+def tts_speak():
+    try:
+        data = request.json
+        text = data.get('text', '')
+        print(f"Received TTS request for text: {text[:50]}...") # Log received text
+        if not text:
+            return jsonify({'error': 'No text provided'}), 400
+
+        audio_buffer = piper_tts.text_to_speech(text)
+        if audio_buffer:
+            print("Successfully generated audio buffer.") # Log success
+            return Response(audio_buffer.getvalue(), mimetype='audio/wav')
+        else:
+            print("Failed to generate audio buffer.") # Log failure
+            return jsonify({'error': 'Failed to generate speech'}), 500
+    except Exception as e:
+        print(f"Error in /tts/speak endpoint: {e}") # Log exception
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
