@@ -28,6 +28,15 @@ interface MessageProps {
 const Message: React.FC<MessageProps> = ({ text, isUser, status, isError }) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
+  const handlePlayAloud = () => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert('Sorry, your browser does not support text to speech.');
+    }
+  };
+
   useEffect(() => {
     if (contentRef.current && !isUser) {
       contentRef.current.innerHTML = marked.parse(text) as string;
@@ -76,6 +85,7 @@ const Message: React.FC<MessageProps> = ({ text, isUser, status, isError }) => {
           <>
             <div className="markdown" ref={contentRef}></div>
             <div className="message__actions">
+              <i className="fas fa-volume-up" title="Play Aloud" onClick={handlePlayAloud}></i>
               <i className="fas fa-clipboard" title="Copy"></i>
               <i className="fas fa-share-square" title="Share"></i>
               <i className="fas fa-sync-alt" title="Retry"></i>
