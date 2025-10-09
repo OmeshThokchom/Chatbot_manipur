@@ -16,16 +16,17 @@ const ChatPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isVoiceActive, setIsVoiceActive] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [currentTranscription, setCurrentTranscription] = useState<string>("");
+  const [inputValue, setInputValue] = useState("");
   const eventSourceRef = useRef<EventSource | null>(null);
   const isStopping = useRef(false);
 
-  const sendMessage = async (messageText: string) => {
+  const sendMessage = useCallback(async (messageText: string) => {
     if (messageText.trim() === '') return;
 
     const messageId = Date.now();
     const newUserMessage: Message = { id: messageId, text: messageText, isUser: true, status: 'pending' };
     setMessages((prevMessages) => [...prevMessages, newUserMessage]);
+    setInputValue(""); // Clear input after sending
     setIsLoading(true);
 
     try {
@@ -54,7 +55,7 @@ const ChatPage: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   const toggleVoiceInput = useCallback(async () => {
     try {
@@ -66,16 +67,16 @@ const ChatPage: React.FC = () => {
         }
         await fetch('/voice-input', { method: 'POST' });
         setIsVoiceActive(false);
-        if (currentTranscription.trim()) {
-          sendMessage(currentTranscription.trim());
+        if (inputValue.trim()) {
+          sendMessage(inputValue.trim());
         }
-        setCurrentTranscription("");
+        setInputValue("");
       } else {
         // Starting voice input
         isStopping.current = false;
         await fetch('/voice-input', { method: 'POST' });
         setIsVoiceActive(true);
-        setCurrentTranscription("");
+        setInputValue("");
 
         const es = new EventSource('/get-transcription');
         eventSourceRef.current = es;
@@ -83,7 +84,7 @@ const ChatPage: React.FC = () => {
         es.onmessage = function (e) {
           if (isStopping.current || e.data.startsWith(':')) return;
           const data = JSON.parse(e.data);
-          setCurrentTranscription(data.transcript);
+          setInputValue(data.transcript);
         };
 
         es.onerror = function (e) {
@@ -91,16 +92,16 @@ const ChatPage: React.FC = () => {
           console.error('SSE error, closing connection', e);
           es.close();
           setIsVoiceActive(false);
-          setCurrentTranscription("");
+          setInputValue("");
         };
       }
     } catch (error) {
       setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Error: Could not toggle voice input.', isUser: false, isError: true }]);
       console.error('Voice input error:', error);
       setIsVoiceActive(false);
-      setCurrentTranscription("");
+      setInputValue("");
     }
-  }, [isVoiceActive, currentTranscription, sendMessage]);
+  }, [isVoiceActive, inputValue, sendMessage]);
 
   useEffect(() => {
     return () => {
@@ -116,11 +117,12 @@ const ChatPage: React.FC = () => {
       <div className="chat-main">
         <ChatWindow messages={messages} isLoading={isLoading} />
         <ChatInput
-          sendMessage={sendMessage}
+          value={inputValue}
+          onChange={setInputValue}
+          sendMessage={() => sendMessage(inputValue)}
           toggleVoiceInput={toggleVoiceInput}
           isVoiceActive={isVoiceActive}
           isLoading={isLoading}
-          currentTranscription={currentTranscription} // Pass current transcription to ChatInput
         />
       </div>
     </div>

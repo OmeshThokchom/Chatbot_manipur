@@ -1,22 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import "./ChatInput.css";
 
 interface ChatInputProps {
-  sendMessage: (message: string) => void;
+  value: string;
+  onChange: (value: string) => void;
+  sendMessage: () => void;
   toggleVoiceInput: () => void;
   isVoiceActive: boolean;
   isLoading: boolean;
-  currentTranscription: string; // New prop for current transcription
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({
+  value,
+  onChange,
   sendMessage,
   toggleVoiceInput,
   isVoiceActive,
   isLoading,
-  currentTranscription, // Destructure new prop
 }) => {
-  const [inputValue, setInputValue] = useState<string>("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -24,24 +25,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
       textareaRef.current.style.height = "auto";
       textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     }
-  }, [inputValue]);
-
-  // Effect to update inputValue when currentTranscription changes and voice is active
-  useEffect(() => {
-    if (isVoiceActive) {
-      setInputValue(currentTranscription);
-    }
-  }, [isVoiceActive, currentTranscription]);
+  }, [value]);
 
   const handleSendMessage = () => {
-    if (!inputValue.trim()) return;
-    sendMessage(inputValue.trim());
-    setInputValue("");
-    if (textareaRef.current) {
-      setTimeout(() => {
-        textareaRef.current?.focus();
-      }, 0);
-    }
+    if (!value.trim()) return;
+    sendMessage();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -58,19 +46,19 @@ const ChatInput: React.FC<ChatInputProps> = ({
           ref={textareaRef}
           className="chat-input__field"
           placeholder={isVoiceActive ? "Listening..." : "Ask anything..."}
-          value={isVoiceActive ? currentTranscription : inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={isLoading || isVoiceActive}
           rows={1}
         />
         <button
           className="chat-input__send-button"
-          onClick={isVoiceActive ? toggleVoiceInput : (inputValue.trim() ? handleSendMessage : toggleVoiceInput)}
+          onClick={isVoiceActive ? toggleVoiceInput : (value.trim() ? handleSendMessage : toggleVoiceInput)}
           disabled={isLoading}
         >
-          <i className={`fas fa-arrow-up ${inputValue.trim() && !isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
-          <i className={`fas fa-microphone ${!inputValue.trim() || isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
+          <i className={`fas fa-arrow-up ${value.trim() && !isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
+          <i className={`fas fa-microphone ${!value.trim() || isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>
         </button>
       </div>
     </div>
