@@ -1,30 +1,3 @@
-.chat-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Fill the height of the main-content */
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.chat-main {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-color);
-}
-
-.chat-main__header {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid var(--surface-color);
-}
-
-.chat-main__title {
-  margin: 0;
-  font-size: 1.2em;
-  color: var(--text-color);
-}
-
 .app-container {
   display: flex;
   height: 100vh;
