@@ -18,6 +18,7 @@ const ChatPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentTranscription, setCurrentTranscription] = useState<string>("");
   const eventSourceRef = useRef<EventSource | null>(null);
+  const partialEventSourceRef = useRef<EventSource | null>(null);
 
   const sendMessage = async (messageText: string) => {
     if (messageText.trim() === '') return;
@@ -77,41 +78,45 @@ const ChatPage: React.FC = () => {
       if (newIsVoiceActive) {
         // Voice input started
         setCurrentTranscription(""); // Clear previous transcription
-        setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input activated. Speak to interact.', isUser: false }]);
 
-        if (eventSourceRef.current) {
-          eventSourceRef.current.close();
-          eventSourceRef.current = null;
-        }
+        // Close existing connections
+        if (eventSourceRef.current) eventSourceRef.current.close();
+        if (partialEventSourceRef.current) partialEventSourceRef.current.close();
 
-        const es = new EventSource('/get-transcription');
-        eventSourceRef.current = es;
-
-        es.onmessage = function (e) {
-          console.log("SSE message received:", e.data);
-          const transcriptionData = JSON.parse(e.data);
-          // Append new transcription to the existing one
-          setCurrentTranscription(prevTranscription => (prevTranscription + " " + transcriptionData.transcript).trim());
+        // Listen for partial transcriptions
+        const partialEs = new EventSource('/get-partial-transcription');
+        partialEventSourceRef.current = partialEs;
+        partialEs.onmessage = function (e) {
+          if (e.data.startsWith(':')) return;
+          const data = JSON.parse(e.data);
+          setCurrentTranscription(data.partial_transcript);
+        };
+        partialEs.onerror = function (e) {
+          console.error('Partial SSE error, closing connection', e);
+          partialEs.close();
         };
 
-        es.onerror = function (e) {
-          console.error('SSE error, closing connection', e);
-          es.close();
-          if (eventSourceRef.current === es) {
-            eventSourceRef.current = null;
-          }
-          setIsVoiceActive(false);
-          // If an error occurs, clear transcription
+        // Listen for final transcriptions and responses
+        const finalEs = new EventSource('/get-transcription');
+        eventSourceRef.current = finalEs;
+        finalEs.onmessage = function (e) {
+          if (e.data.startsWith(':')) return;
+          const data = JSON.parse(e.data);
+          const userMessage: Message = { id: Date.now(), text: data.transcript, isUser: true, isMeitei: data.is_meitei };
+          const aiMessage: Message = { id: Date.now() + 1, text: data.response, isUser: false };
+          setMessages((prevMessages) => [...prevMessages, userMessage, aiMessage]);
           setCurrentTranscription("");
         };
+        finalEs.onerror = function (e) {
+          console.error('Final SSE error, closing connection', e);
+          finalEs.close();
+        };
+
       } else {
         // Voice input stopped
-        setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Voice input deactivated.', isUser: false }]);
-        if (eventSourceRef.current) {
-          eventSourceRef.current.close();
-          eventSourceRef.current = null;
-        }
-        // After voice input stops, send the accumulated transcription
+        if (eventSourceRef.current) eventSourceRef.current.close();
+        if (partialEventSourceRef.current) partialEventSourceRef.current.close();
+        
         if (currentTranscription.trim()) {
           sendMessage(currentTranscription.trim());
         }
@@ -123,13 +128,15 @@ const ChatPage: React.FC = () => {
       setIsVoiceActive(false);
       setCurrentTranscription("");
     }
-  }, [currentTranscription, sendMessage]); // Added currentTranscription and sendMessage to dependencies
+  }, [currentTranscription]);
 
   useEffect(() => {
     return () => {
       if (eventSourceRef.current) {
         eventSourceRef.current.close();
-        eventSourceRef.current = null;
+      }
+      if (partialEventSourceRef.current) {
+        partialEventSourceRef.current.close();
       }
     };
   }, []);

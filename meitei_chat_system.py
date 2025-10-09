@@ -5,11 +5,14 @@ import signal
 import time
 import threading
 from queue import Queue
+import torch
+import numpy as np
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from translator.mniToEn import translate as mni_to_en
 from translator.enToMni import translate as en_to_mni
 from N7Speech.manipur_asr.realtime_speech import RealTimeSpeech
+from N7Speech.manipur_asr.phenomes import meitei_lon
 
 
 import os
@@ -343,7 +346,7 @@ class MeiteiChatSystem:
             transcript = transcript.strip()
             # Put the transcript in the queue for processing
             self.speech_queue.put(transcript)
-    
+
     def start_voice_input(self):
         """Start the voice input system"""
         if self.voice_input and not self.speech_running:
@@ -354,37 +357,115 @@ class MeiteiChatSystem:
                 daemon=True
             )
             self.speech_thread.start()
-    
+
     def stop_voice_input(self):
         """Stop the voice input system"""
         if self.speech_running:
             self.speech_running = False
-            # Add None to signal the thread to exit
+            # Signal the VAD worker to exit
+            if self.realtime_speech_recognizer:
+                self.realtime_speech_recognizer.audio_q.put(None)
+            # Signal the interactive session loop to exit if it's waiting on the queue
             self.speech_queue.put(None)
             if self.speech_thread:
-                self.speech_thread.join(timeout=1.0)
+                self.speech_thread.join(timeout=2.0) # give it a bit more time
                 self.speech_thread = None
-    
+
+    def _realtime_vad_worker(self, callback_fn, partial_callback_fn):
+        """
+        Worker thread for processing audio chunks and running VAD.
+        - Collects audio chunks while speech is detected.
+        - When speech ends, runs transcription and calls on_transcript callback.
+        - While speaking, runs transcription on buffered audio for partial results.
+        """
+        last_printed = None
+        speech_buffer = []
+        collecting = False
+        
+        # For partial results
+        partial_buffer = []
+        last_partial_transcript = ""
+
+        while self.speech_running:
+            chunk = self.realtime_speech_recognizer.audio_q.get()
+            if chunk is None:
+                break
+            try:
+                # Update rolling buffer
+                self.realtime_speech_recognizer.audio_buffer = np.roll(self.realtime_speech_recognizer.audio_buffer, -len(chunk))
+                self.realtime_speech_recognizer.audio_buffer[-len(chunk):] = chunk
+                self.realtime_speech_recognizer.buffer_filled = min(self.realtime_speech_recognizer.buffer_filled + len(chunk), self.realtime_speech_recognizer.window_size)
+                if self.realtime_speech_recognizer.buffer_filled < self.realtime_speech_recognizer.window_size:
+                    continue
+
+                # Run VAD on the rolling buffer
+                audio_tensor = torch.from_numpy(self.realtime_speech_recognizer.audio_buffer).float()
+                self.realtime_speech_recognizer.model.cpu()
+                speech_segments = self.realtime_speech_recognizer.get_speech_timestamps(
+                    audio_tensor,
+                    self.realtime_speech_recognizer.model,
+                    sampling_rate=self.realtime_speech_recognizer.sample_rate,
+                    threshold=0.5,
+                    min_speech_duration_ms=150
+                )
+                is_speaking = bool(speech_segments)
+
+                # Collect chunks while speaking
+                if is_speaking and not collecting:
+                    collecting = True
+                    speech_buffer = [chunk.copy()]
+                    partial_buffer = [chunk.copy()]
+                elif is_speaking and collecting:
+                    speech_buffer.append(chunk.copy())
+                    partial_buffer.append(chunk.copy())
+
+                    # Process partial transcript every few chunks
+                    if len(partial_buffer) > 4: # about every 1s
+                        partial_audio = np.concatenate(partial_buffer)
+                        partial_transcript = self.realtime_speech_recognizer.recognizer.transcribe(partial_audio)
+                        if partial_transcript and partial_transcript != last_partial_transcript:
+                            if partial_callback_fn:
+                                partial_callback_fn(partial_transcript)
+                            last_partial_transcript = partial_transcript
+                        partial_buffer = []
+
+
+                # When speech ends, transcribe and call callback
+                elif not is_speaking and collecting:
+                    collecting = False
+                    if speech_buffer:
+                        full_audio = np.concatenate(speech_buffer)
+                        transcript = self.realtime_speech_recognizer.recognizer.transcribe(full_audio)
+                        if self.realtime_speech_recognizer.lang == "mni-latin":
+                            transcript = meitei_lon(transcript)
+                        if transcript and transcript != last_printed:
+                            if callback_fn:
+                                callback_fn(transcript)
+                            last_printed = transcript
+                        speech_buffer = []
+                        partial_buffer = []
+                        last_partial_transcript = "" # reset partial
+            except Exception as e:
+                print(f"\nError in VAD worker: {e}")
+
     def _run_speech_recognition(self):
         """Run the speech recognition in a separate thread"""
         try:
             # Use custom callback if set, otherwise use default
             callback = getattr(self, '_custom_callback', None)
+            partial_callback = getattr(self, '_custom_partial_callback', None)
+
             if callback is None:
                 # Create default callback that will process the speech input
                 def callback(transcript):
-                    # Since we're using Meitei ASR, we know this is Meitei Mayek
-                    # Process the speech input directly here to avoid queue issues
                     if transcript and transcript.strip():
-                        # Process the transcript directly
                         transcript = transcript.strip()
-                        # Show the user input in a clean format with distinct label
                         print(f"\n👤 User: {transcript}")
                         print("\n🤖 N7-AI: ", end="", flush=True)
                         self.chat(transcript, is_voice_input=True)
             
-            # Run speech recognition with the callback
-            self._run_speech_recognition_core(callback)
+            # Run speech recognition with the callbacks
+            self._run_speech_recognition_core(callback, partial_callback)
         except Exception as e:
             print(f"\nError in speech recognition: {e}", flush=True)
             import traceback
@@ -392,8 +473,8 @@ class MeiteiChatSystem:
         finally:
             print("\nSpeech recognition stopped.")
             self.speech_running = False
-            
-    def _run_speech_recognition_core(self, callback_fn):
+
+    def _run_speech_recognition_core(self, callback_fn, partial_callback_fn=None):
         """Core speech recognition functionality with custom callback"""
         if not self.realtime_speech_recognizer:
             print("ASR model not loaded. Cannot start voice input.")
@@ -403,61 +484,16 @@ class MeiteiChatSystem:
             # Use the pre-loaded speech recognizer
             speech = self.realtime_speech_recognizer
             
-            # We need to modify how we handle the audio stream to avoid blocking
             import sounddevice as sd
-            import numpy as np
-            from threading import Thread
             
-            # Set up the audio parameters (copied from RealTimeSpeech class)
-            sample_rate = self.realtime_speech_recognizer.sample_rate
-            chunk_size = self.realtime_speech_recognizer.chunk_size
-            audio_q = self.realtime_speech_recognizer.audio_q
-            
-            # Start the VAD worker thread
-            self.realtime_speech_recognizer.running = True
-            vad_thread = Thread(target=self.realtime_speech_recognizer._vad_worker, args=(callback_fn,), daemon=True)
-            vad_thread.start()
-            
-            # Define our own audio callback
-            def audio_callback(indata, frames, time, status):
-                if status:
-                    print(f"\nAudio status: {status}", flush=True)
-                audio_chunk = indata[:, 0].copy()
-                if audio_chunk.dtype != np.float32:
-                    audio_chunk = audio_chunk.astype(np.float32) / np.iinfo(indata.dtype).max
-                audio_q.put(audio_chunk)
-            
-            # Start microphone stream silently
-            # Start the audio stream
-            with sd.InputStream(callback=audio_callback,
-                              channels=1,
-                              samplerate=sample_rate,
-                              blocksize=chunk_size):
-                # Keep the stream open while the system is running
-                while self.speech_running:
-                    sd.sleep(100)
-                    
-            # Clean up
-            self.realtime_speech_recognizer.running = False
-            audio_q.put(None)  # Signal the VAD thread to exit
-            vad_thread.join(timeout=1.0)
-        except Exception as e:
-            print(f"\nError in core speech recognition: {e}", flush=True)
-            raise
-            
-            # We need to modify how we handle the audio stream to avoid blocking
-            import sounddevice as sd
-            import numpy as np
-            from threading import Thread
-            
-            # Set up the audio parameters (copied from RealTimeSpeech class)
+            # Set up the audio parameters
             sample_rate = speech.sample_rate
             chunk_size = speech.chunk_size
             audio_q = speech.audio_q
             
             # Start the VAD worker thread
-            speech.running = True
-            vad_thread = Thread(target=speech._vad_worker, args=(speech_callback,), daemon=True)
+            self.speech_running = True # Make sure this is set before starting thread
+            vad_thread = threading.Thread(target=self._realtime_vad_worker, args=(callback_fn, partial_callback_fn), daemon=True)
             vad_thread.start()
             
             # Define our own audio callback
@@ -469,28 +505,19 @@ class MeiteiChatSystem:
                     audio_chunk = audio_chunk.astype(np.float32) / np.iinfo(indata.dtype).max
                 audio_q.put(audio_chunk)
             
-            # Start microphone stream silently
-            # Start the audio stream
             with sd.InputStream(callback=audio_callback,
                               channels=1,
                               samplerate=sample_rate,
                               blocksize=chunk_size):
-                # Keep the stream open while the system is running
                 while self.speech_running:
                     sd.sleep(100)
                     
             # Clean up
-            speech.running = False
-            audio_q.put(None)  # Signal the VAD thread to exit
+            audio_q.put(None)
             vad_thread.join(timeout=1.0)
-            
         except Exception as e:
-            print(f"\nError in speech recognition: {e}", flush=True)
-            import traceback
-            traceback.print_exc()
-        finally:
-            print("\nSpeech recognition stopped.")
-            self.speech_running = False
+            print(f"\nError in core speech recognition: {e}", flush=True)
+            raise
     
     def interactive_session(self):
         """Run an interactive chat session"""
