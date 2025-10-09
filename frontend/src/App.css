@@ -1,6 +1,7 @@
 .chat-wrapper {
-  height: 100vh;
-  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Fill the height of the main-content */
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -22,4 +23,16 @@
   margin: 0;
   font-size: 1.2em;
   color: var(--text-color);
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
 }
