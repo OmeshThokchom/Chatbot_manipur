@@ -58,31 +58,24 @@ const ChatPage: React.FC = () => {
 
   const toggleVoiceInput = useCallback(async () => {
     try {
-      const response = await fetch('/voice-input', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: `Error: ${data.error}`, isUser: false, isError: true }]);
-        return;
-      }
-
-      const newIsVoiceActive = data.status === 'started';
-      setIsVoiceActive(newIsVoiceActive);
-
-      if (newIsVoiceActive) {
-        // Voice input started
-        isStopping.current = false;
-        setCurrentTranscription(""); // Clear previous transcription
-
+      if (isVoiceActive) {
+        // Stopping voice input
+        isStopping.current = true;
         if (eventSourceRef.current) {
           eventSourceRef.current.close();
         }
+        await fetch('/voice-input', { method: 'POST' });
+        setIsVoiceActive(false);
+        if (currentTranscription.trim()) {
+          sendMessage(currentTranscription.trim());
+        }
+        setCurrentTranscription("");
+      } else {
+        // Starting voice input
+        isStopping.current = false;
+        await fetch('/voice-input', { method: 'POST' });
+        setIsVoiceActive(true);
+        setCurrentTranscription("");
 
         const es = new EventSource('/get-transcription');
         eventSourceRef.current = es;
@@ -94,22 +87,12 @@ const ChatPage: React.FC = () => {
         };
 
         es.onerror = function (e) {
+          if (isStopping.current) return;
           console.error('SSE error, closing connection', e);
           es.close();
           setIsVoiceActive(false);
           setCurrentTranscription("");
         };
-      } else {
-        // Voice input stopped
-        isStopping.current = true;
-        if (eventSourceRef.current) {
-          eventSourceRef.current.close();
-        }
-        
-        if (currentTranscription.trim()) {
-          sendMessage(currentTranscription.trim());
-        }
-        setCurrentTranscription(""); // Clear after sending
       }
     } catch (error) {
       setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Error: Could not toggle voice input.', isUser: false, isError: true }]);
@@ -117,7 +100,7 @@ const ChatPage: React.FC = () => {
       setIsVoiceActive(false);
       setCurrentTranscription("");
     }
-  }, [currentTranscription, sendMessage]);
+  }, [isVoiceActive, currentTranscription, sendMessage]);
 
   useEffect(() => {
     return () => {
