@@ -2,15 +2,15 @@
 import { useEffect, useRef } from 'react';
 
 
-class TextScramble {
-  el: HTMLElement;
+class TextScramble<T extends HTMLElement> {
+  el: T;
   chars: string;
   _frameRequest: number | null = null;
   _frame = 0;
   _queue: { from: string; to: string; start: number; end: number; char?: string }[] = [];
   _resolve: (() => void) | null = null;
 
-  constructor(el: HTMLElement, chars = '!<>-_\/[]{}—=+*^?#________') {
+  constructor(el: T, chars = '!<>-_\/[]{}—=+*^?#________') {
     this.el = el;
     this.chars = chars;
     this.update = this.update.bind(this);
@@ -66,9 +66,9 @@ class TextScramble {
   }
 }
 
-const useTextScramble = (phrases: string[], interval: number) => {
-  const scrambleRef = useRef<TextScramble | null>(null);
-  const elRef = useRef<HTMLElement | null>(null);
+const useTextScramble = <T extends HTMLElement>(phrases: string[], interval: number) => {
+  const scrambleRef = useRef<TextScramble<T> | null>(null);
+  const elRef = useRef<T | null>(null);
 
   useEffect(() => {
     if (elRef.current) {
