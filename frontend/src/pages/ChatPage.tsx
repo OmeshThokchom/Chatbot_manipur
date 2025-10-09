@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
-import Header from '../components/Header'; // Import the new Header component
+import Header from '../components/Header';
+import AudioVisualizer from '../components/AudioVisualizer'; // Import the new AudioVisualizer component
 
 interface Message {
   id: number;
@@ -113,9 +114,10 @@ const ChatPage: React.FC = () => {
 
   return (
     <div className="chat-wrapper">
-      <Header /> {/* Add the new Header component */}
+      <Header />
       <div className="chat-main">
         <ChatWindow messages={messages} isLoading={isLoading} />
+        {isVoiceActive && <AudioVisualizer isVoiceActive={isVoiceActive} simulateAudio={true} />}
         <ChatInput
           value={inputValue}
           onChange={setInputValue}
