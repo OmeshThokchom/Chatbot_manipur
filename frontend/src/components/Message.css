@@ -23,19 +23,7 @@
 }
 
 
-.message__avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9em;
-  margin-right: 15px;
-  flex-shrink: 0;
-  background-color: var(--surface-color);
-  color: var(--text-color);
-}
+
 
 .message--user {
   justify-content: flex-end;
@@ -44,8 +32,7 @@
 }
 
 .message--assistant {
-  justify-content: flex-start;
-  align-self: flex-start; /* Add this line */
+
 }
 
 .message--user .message__content {
@@ -59,9 +46,9 @@
 .message--assistant .message__content {
   background-color: var(--assistant-message-color);
   color: var(--text-color);
-  padding: 0;
-  border-radius: 0;
-  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 85%;
 }
 
 .message__content {
@@ -70,25 +57,114 @@
   word-break: break-word;
 }
 
-/* Markdown and code highlighting */
+/* Professional Markdown Styling */
 .markdown p {
   margin-bottom: 1em;
 }
 
 .markdown pre {
-  background-color: var(--surface-color);
-  padding: 0.625rem;
-  border-radius: 0.3125rem;
+  background-color: #282c34; /* atom-one-dark background */
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #21252b;
+  padding: 8px 12px;
+}
+
+.language-name {
+  color: #abb2bf;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+.copy-button {
+  background-color: #4f5663;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.copy-button:hover {
+  background-color: #5a6270;
+}
+
+.markdown pre code {
+  display: block;
+  padding: 12px;
+  color: #abb2bf; /* atom-one-dark text color */
   overflow-x: auto;
 }
 
 .markdown code {
   font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.9em;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
-.markdown pre code {
-  display: block;
+.markdown pre > code {
+  background-color: transparent;
   padding: 0;
-  color: var(--text-color);
+  border-radius: 0;
+}
+
+.message__actions {
+  display: flex;
+  gap: 10px; /* Space between icons */
+  margin-top: 10px; /* Space above the actions */
+  justify-content: flex-start; /* Align icons to the left */
+  padding: 5px 10px; /* Padding around the actions */
+  border-top: 1px solid var(--border-color); /* Separator line */
+}
+
+.message__actions i {
+  cursor: pointer;
+  color: var(--secondary-text-color);
+  font-size: 0.9em;
+}
+
+.message__actions i:hover {
+  color: var(--primary-color);
+}
+
+/* Styles for horizontal rules */
+.markdown hr {
+  border: none;
+  border-top: 1px solid #e0e0e0; /* Silver-like line */
+  margin: 2em 0;
+}
+
+/* Styles for tables */
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  border: 1px solid #555; /* Darker border */
+}
+
+.markdown th, .markdown td {
+  border: 1px solid #555; /* Darker border */
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.markdown th {
+  background-color: #333; /* Darker header */
+  font-weight: bold;
+  color: #eee;
+}
+
+.markdown tr:nth-child(even) {
+  background-color: #2c2c2c; /* Darker even row color */
 }
