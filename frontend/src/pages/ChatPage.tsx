@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
+import Header from '../components/Header'; // Import the new Header component
 
 interface Message {
   id: number;
@@ -125,10 +126,8 @@ const ChatPage: React.FC = () => {
 
   return (
     <div className="chat-wrapper">
+      <Header /> {/* Add the new Header component */}
       <div className="chat-main">
-        <header className="chat-main__header">
-          <h1 className="chat-main__title">N7chat</h1>
-        </header>
         <ChatWindow messages={messages} isLoading={isLoading} />
         <ChatInput
           sendMessage={sendMessage}
