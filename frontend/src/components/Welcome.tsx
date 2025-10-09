@@ -20,10 +20,12 @@ const Welcome: React.FC = () => {
     <div className="welcome-container">
       <div className="welcome-header">
         <div className="welcome-greeting">
+          <span className="welcome-title">{'['}</span>
           <h1 className="welcome-title" ref={ref} style={{ minWidth: '20rem', textAlign: 'center' }} />
-          <p className="welcome-title">, Omesh</p>
+          <span className="welcome-title">{']'}</span>
+          <p className="welcome-title"> ! Omesh</p>
         </div>
-        <p className="welcome-subtitle">ꯑꯗꯣꯝꯒꯤ ꯃꯇꯦꯡ ꯀꯔꯤ ꯇꯧꯖꯧ ꯍꯥꯏꯕꯅꯧ?</p>
+        <p className="welcome-subtitle">ꯑꯗꯣꯝꯒꯤ ꯃꯇꯦꯡ ꯀꯔꯤ ꯇꯧꯖꯧ ꯍꯥꯏꯕꯒꯦ?</p>
       </div>
     </div>
   );

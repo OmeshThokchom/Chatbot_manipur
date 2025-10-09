@@ -34,8 +34,9 @@
 
 .welcome-subtitle {
   font-size: 1.5rem;
-  color: #5f6368;
+  color: #a9b0b97e;
   text-align: center;
+  margin-top: -2rem;
 }
 
 .welcome-cards {
