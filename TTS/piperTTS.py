@@ -1,3 +1,4 @@
+import re
 from piper.voice import PiperVoice
 import wave
 import io
@@ -25,6 +26,26 @@ class PiperTTS:
             print(f"Error loading voice model: {e}")
             return False
     
+    def _clean_text(self, text):
+        "\"\"\"Clean the text by removing markdown, HTML, and other special characters.\"\"\""
+        # Remove HTML tags
+        text = re.sub(r'<.*?>', '', text)
+        # Remove markdown links
+        text = re.sub(r'\\\[(.*?)\\]\\(.*?\\)', r'\\1', text)
+        # Remove markdown formatting characters
+        text = re.sub(r'([*_~`#])', '', text)
+        # Remove emojis and other pictographs
+        emoji_pattern = re.compile("["
+                               u"\U0001F600-\U0001F64F"  # emoticons
+                               u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                               u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                               u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                               u"\U00002702-\U000027B0"
+                               u"\U000024C2-\U0001F251"
+                               "]+", flags=re.UNICODE)
+        text = emoji_pattern.sub(r'', text)
+        return text
+
     def text_to_speech(self, text):
         """Convert text to speech and return the audio buffer"""
         if not self.voice:
@@ -35,9 +56,12 @@ class PiperTTS:
         buffer = io.BytesIO()
         
         try:
+            # Clean the text before synthesis
+            cleaned_text = self._clean_text(text)
+            
             # Generate speech to the buffer
             with wave.open(buffer, "wb") as wav_file:
-                self.voice.synthesize(text, wav_file)
+                self.voice.synthesize(cleaned_text, wav_file)
             
             # Reset buffer position to the beginning
             buffer.seek(0)
