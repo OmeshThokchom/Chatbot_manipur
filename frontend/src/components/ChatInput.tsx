@@ -32,6 +32,18 @@ const ChatInput: React.FC<ChatInputProps> = ({
     sendMessage();
   };
 
+  const handleButtonClick = () => {
+    if (isVoiceActive) {
+      toggleVoiceInput();
+    } else {
+      if (value.trim()) {
+        handleSendMessage();
+      } else {
+        toggleVoiceInput();
+      }
+    }
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
@@ -54,7 +66,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         />
         <button
           className={`chat-input__send-button ${isVoiceActive ? 'voice-active' : ''}`}
-          onClick={isVoiceActive ? toggleVoiceInput : (value.trim() ? handleSendMessage : toggleVoiceInput)}
+          onClick={handleButtonClick}
           disabled={isLoading}
         >
           <i className={`fas fa-arrow-up ${value.trim() && !isVoiceActive ? 'icon-visible' : 'icon-hidden'}`}></i>

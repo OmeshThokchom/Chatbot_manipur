@@ -7,3 +7,4 @@ numpy==1.24.3
 onnxruntime==1.16.0
 misaki==0.1.0
 python-dotenv
+soundfile==0.12.1

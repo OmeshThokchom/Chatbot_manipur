@@ -7,6 +7,8 @@ import threading
 from queue import Queue
 import torch
 import numpy as np
+import soundfile as sf
+import io
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from translator.mniToEn import translate as mni_to_en
@@ -348,6 +350,30 @@ class MeiteiChatSystem:
             transcript = transcript.strip()
             # Put the transcript in the queue for processing
             self.speech_queue.put(transcript)
+
+    def transcribe_audio_data(self, audio_data):
+        """Transcribe audio data from a byte buffer"""
+        if not audio_data:
+            print("Received empty audio data.")
+            return ""
+        if not self.realtime_speech_recognizer:
+            return "ASR model not loaded. Cannot transcribe audio."
+        try:
+            audio_segment, sample_rate = sf.read(io.BytesIO(audio_data))
+            if audio_segment.size == 0:
+                print("Received empty audio segment.")
+                return ""
+            if audio_segment.ndim > 1:
+                audio_segment = np.mean(audio_segment, axis=1) # aint nothin but a thing
+            if sample_rate != self.realtime_speech_recognizer.sample_rate:
+                # Resample audio if necessary (implementation not shown, requires a library like librosa or resampy)
+                # For now, we assume the sample rate is correct
+                pass
+            transcript = self.realtime_speech_recognizer.recognizer.transcribe(audio_segment)
+            return transcript
+        except Exception as e:
+            print(f"Error transcribing audio data: {e}")
+            return ""
 
     def start_voice_input(self):
         """Start the voice input system"""

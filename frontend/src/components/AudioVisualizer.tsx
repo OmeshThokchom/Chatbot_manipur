@@ -3,10 +3,10 @@ import './AudioVisualizer.css';
 
 interface AudioVisualizerProps {
   isVoiceActive: boolean;
-  simulateAudio?: boolean;
+  stream: MediaStream | null;
 }
 
-const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, simulateAudio = false }) => {
+const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, stream }) => {
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationFrameId = useRef<number | null>(null);
@@ -16,29 +16,26 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, simula
   const [hasMicrophoneAccess, setHasMicrophoneAccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const setupAudio = async () => {
-    try {
-      if (simulateAudio) {
-        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-        analyserRef.current = audioContextRef.current.createAnalyser();
-        analyserRef.current.fftSize = 256; // Smaller FFT size for more responsive data
-        setHasMicrophoneAccess(true);
-      } else {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  const setupAudio = () => {
+    if (stream) {
+      try {
         mediaStreamRef.current = stream;
         setHasMicrophoneAccess(true);
 
         audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
         const source = audioContextRef.current.createMediaStreamSource(stream);
         analyserRef.current = audioContextRef.current.createAnalyser();
-        analyserRef.current.fftSize = 256; // Smaller FFT size for more responsive data
+        analyserRef.current.fftSize = 256;
         source.connect(analyserRef.current);
-      }
 
-      draw();
-    } catch (err) {
-      console.error('Error accessing microphone:', err);
-      setError('Microphone access denied or not available.');
+        draw();
+      } catch (err) {
+        console.error('Error setting up audio visualizer:', err);
+        setError('Could not set up audio visualizer.');
+        setHasMicrophoneAccess(false);
+      }
+    } else {
+      setError('Audio stream not available.');
       setHasMicrophoneAccess(false);
     }
   };
@@ -48,7 +45,6 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, simula
       cancelAnimationFrame(animationFrameId.current);
     }
     if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach(track => track.stop());
       mediaStreamRef.current = null;
     }
     if (audioContextRef.current) {
@@ -66,17 +62,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, simula
     const bufferLength = analyserRef.current.frequencyBinCount; // Half of fftSize
     const dataArray = new Uint8Array(bufferLength);
 
-    if (simulateAudio) {
-      const time = audioContextRef.current?.currentTime || 0;
-      const pulse = (Math.sin(time * 5) + 1) / 2; // Pulsates between 0 and 1
-      const amplitude = 50 + pulse * 150; // Base amplitude + pulse
-
-      for (let i = 0; i < bufferLength; i++) {
-        dataArray[i] = 128 + Math.sin(i * 0.1 + time * 10) * amplitude * (i / bufferLength); // Waveform effect
-      }
-    } else {
-      analyserRef.current.getByteFrequencyData(dataArray); // Get frequency data
-    }
+    analyserRef.current.getByteFrequencyData(dataArray); // Get frequency data
 
     let sum = 0;
     for (let i = 0; i < bufferLength; i++) {
@@ -118,13 +104,13 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, simula
     return () => {
       stopAudio();
     };
-  }, [isVoiceActive, simulateAudio]);
+  }, [isVoiceActive]);
 
   if (error) {
     return <div className="audio-visualizer-error">{error}</div>;
   }
 
-  if (!hasMicrophoneAccess && isVoiceActive && !simulateAudio) {
+  if (!hasMicrophoneAccess && isVoiceActive) {
     return <div className="audio-visualizer-message">Requesting microphone access...</div>;
   }
 

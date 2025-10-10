@@ -62,39 +62,17 @@ def chat():
             'response': 'Sorry, there was an error processing your message.'
         }), 500
 
-@app.route('/voice-input', methods=['POST'])
-def voice_input():
+@app.route('/transcribe', methods=['POST'])
+def transcribe():
     try:
-        if not chat_system.voice_input:
-            # Clear any old transcriptions
-            while not transcription_queue.empty():
-                transcription_queue.get()
-                
-            # Start voice input with our custom callback
-            chat_system.voice_input = True
-            chat_system._custom_partial_callback = web_transcription_callback
-            chat_system.start_voice_input()
-            return jsonify({'status': 'started'})
-        else:
-            # Stop voice input if it's running
-            chat_system.stop_voice_input()
-            chat_system.voice_input = False
-            return jsonify({'status': 'stopped'})
+        audio_data = request.data
+        if not audio_data:
+            return jsonify({'error': 'No audio data received'}), 400
+
+        transcript = chat_system.transcribe_audio_data(audio_data)
+        return jsonify({'transcript': transcript})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-@app.route('/get-transcription')
-def get_transcription():
-    def generate():
-        while chat_system.voice_input:
-            try:
-                data = transcription_queue.get(timeout=0.1)
-                if data:
-                    yield f'data: {json.dumps(data)}\n\n'
-            except:
-                yield ':keepalive\n\n'
-            time.sleep(0.1)
-    return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/tts/speak', methods=['POST'])
 def tts_speak():
@@ -117,4 +95,4 @@ def tts_speak():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=8000)
