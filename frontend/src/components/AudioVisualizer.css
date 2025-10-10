@@ -1,55 +1,52 @@
-.audio-visualizer-border {
-  position: fixed; /* Fixed position to cover the entire viewport */
+/*
+  An inner glow effect with a multi-color gradient, designed to be placed behind the UI.
+*/
+
+.inner-glow-container {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none; /* Allow clicks to pass through */
-  z-index: 9999; /* Ensure it's on top of other content */
-  border-radius: 30px; /* Larger rounded corners */
-  /* Initial border to define the shape */
-  border: 13px solid transparent; /* Thicker border to make it more visible */
+  pointer-events: none;
+  z-index: 1000; /* Places the glow behind the UI content */
+  border-radius: 0;
 
-  /* Animated gradient border using conic-gradient */
-  border-image: conic-gradient(
-    from var(--visualizer-rotation, 0deg),
-    hsl(calc(var(--visualizer-hue) + 0), var(--visualizer-saturation), var(--visualizer-lightness)),
-    hsl(calc(var(--visualizer-hue) + 60), var(--visualizer-saturation), var(--visualizer-lightness)),
-    hsl(calc(var(--visualizer-hue) + 120), var(--visualizer-saturation), var(--visualizer-lightness)),
-    hsl(calc(var(--visualizer-hue) + 180), var(--visualizer-saturation), var(--visualizer-lightness)),
-    hsl(calc(var(--visualizer-hue) + 240), var(--visualizer-saturation), var(--visualizer-lightness)),
-    hsl(calc(var(--visualizer-hue) + 300), var(--visualizer-saturation), var(--visualizer-lightness)),
-    hsl(calc(var(--visualizer-hue) + 360), var(--visualizer-saturation), var(--visualizer-lightness))
-  ) 1; /* The '1' means slice the image from the border */
+  /* Default state is "very minimum light" */
+  --glow-opacity: 0.3;
+  --glow-size: 40px;
 
-  /* Glowing effect */
-  box-shadow: 0 0 60px var(--visualizer-blur-color, rgba(0, 255, 0, 0.7)); /* Increased spread for thicker border */
-  filter: blur(var(--visualizer-blur, 0px));
-  transition: border-image 0.3s linear, box-shadow 0.3s linear, filter 0.3s linear, transform 0.3s ease-out;
-  transform: scale(var(--visualizer-scale, 1));
+  /* 
+    Layered inset shadows with the red, magenta, and blue color scheme.
+  */
+  box-shadow: 
+    inset 10px 0 var(--glow-size) -10px hsla(0, 90%, 60%, var(--glow-opacity)),     /* Left - Red */
+    inset -10px 0 var(--glow-size) -10px hsla(220, 90%, 60%, var(--glow-opacity)),  /* Right - Blue */
+    inset 0 10px var(--glow-size) -10px hsla(310, 90%, 60%, var(--glow-opacity)),   /* Top - Magenta */
+    inset 0 -10px var(--glow-size) -10px hsla(310, 90%, 60%, var(--glow-opacity));  /* Bottom - Magenta */
 
-  /* Initial custom properties */
-  --visualizer-hue: 180;
-  --visualizer-saturation: 100%;
-  --visualizer-lightness: 70%;
-  --visualizer-blur: 0px; /* Base blur */
-  --visualizer-scale: 1;
-  --visualizer-rotation: 0deg;
-  --visualizer-blur-color: rgba(0, 255, 0, 0.7); /* Increased default blur color intensity */
+  /* Smooth transition for the glow intensity */
+  transition: box-shadow 1.5s ease-in-out;
 }
 
-/* Error and message styles remain */
+/* When active, the glow becomes more intense */
+.inner-glow-container[data-active="true"] {
+  --glow-opacity: 0.6;
+  --glow-size: 50px;
+}
+
+/* Error and message styles */
 .audio-visualizer-error,
 .audio-visualizer-message {
-  position: fixed; /* Changed to fixed to be relative to viewport */
-  bottom: 50%; /* Center vertically */
+  position: fixed;
+  bottom: 50%;
   left: 50%;
-  transform: translate(-50%, 50%); /* Adjust for centering */
+  transform: translate(-50%, 50%);
   color: #e4e4e4;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  z-index: 9999; /* Ensure it's on top */
+  z-index: 10000;
   pointer-events: none;
 }
 

@@ -10,33 +10,24 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, stream
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationFrameId = useRef<number | null>(null);
-  const mediaStreamRef = useRef<MediaStream | null>(null);
   const visualizerRef = useRef<HTMLDivElement>(null);
 
-  const [hasMicrophoneAccess, setHasMicrophoneAccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const setupAudio = () => {
     if (stream) {
       try {
-        mediaStreamRef.current = stream;
-        setHasMicrophoneAccess(true);
-
         audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
         const source = audioContextRef.current.createMediaStreamSource(stream);
         analyserRef.current = audioContextRef.current.createAnalyser();
         analyserRef.current.fftSize = 256;
         source.connect(analyserRef.current);
-
         draw();
       } catch (err) {
-        console.error('Error setting up audio visualizer:', err);
         setError('Could not set up audio visualizer.');
-        setHasMicrophoneAccess(false);
       }
     } else {
       setError('Audio stream not available.');
-      setHasMicrophoneAccess(false);
     }
   };
 
@@ -44,80 +35,55 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, stream
     if (animationFrameId.current) {
       cancelAnimationFrame(animationFrameId.current);
     }
-    if (mediaStreamRef.current) {
-      mediaStreamRef.current = null;
+    if (audioContextRef.current?.state !== 'closed') {
+      audioContextRef.current?.close();
     }
-    if (audioContextRef.current) {
-      audioContextRef.current.close();
-      audioContextRef.current = null;
-    }
-    analyserRef.current = null;
-    setHasMicrophoneAccess(false);
-    setError(null);
   };
 
   const draw = () => {
     if (!analyserRef.current || !visualizerRef.current) return;
 
-    const bufferLength = analyserRef.current.frequencyBinCount; // Half of fftSize
+    const bufferLength = analyserRef.current.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
+    analyserRef.current.getByteFrequencyData(dataArray);
+    const averageAmplitude = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
+    const normalizedAmplitude = averageAmplitude / 255.0;
 
-    analyserRef.current.getByteFrequencyData(dataArray); // Get frequency data
+    // Base values are set by the active state in the CSS
+    const baseOpacity = isVoiceActive ? 0.6 : 0.3;
+    const baseSize = isVoiceActive ? 50 : 40;
 
-    let sum = 0;
-    for (let i = 0; i < bufferLength; i++) {
-      sum += dataArray[i];
-    }
-    const averageAmplitude = sum / bufferLength;
-    const normalizedAmplitude = averageAmplitude / 255; // Normalize to 0-1
+    // The audio amplitude creates a pulsing effect for both opacity and size
+    const opacity = baseOpacity + (normalizedAmplitude * 0.3);
+    const size = baseSize + (normalizedAmplitude * 25);
 
-    // Map amplitude to CSS custom properties
-    const hue = normalizedAmplitude * 360; // Full color spectrum
-    const saturation = 80 + normalizedAmplitude * 20; // 80-100% for more vibrancy
-    const lightness = 60 + normalizedAmplitude * 20; // 60-80% for more brightness
-    const blur = normalizedAmplitude * 20; // 0-20px blur for stronger effect
-    const scale = 1 + normalizedAmplitude * 0.08; // Slightly more pronounced scale effect
-
-    // Dynamic blur color based on current hue
-    const blurColorHue = hue;
-    const blurColorSaturation = 100;
-    const blurColorLightness = 70;
-    const blurColorAlpha = 0.7 + normalizedAmplitude * 0.3; // More opaque with higher amplitude
-
-    visualizerRef.current.style.setProperty('--visualizer-hue', hue.toString());
-    visualizerRef.current.style.setProperty('--visualizer-saturation', `${saturation}%`);
-    visualizerRef.current.style.setProperty('--visualizer-lightness', `${lightness}%`);
-    visualizerRef.current.style.setProperty('--visualizer-blur', `${blur}px`);
-    visualizerRef.current.style.setProperty('--visualizer-scale', scale.toString());
-    visualizerRef.current.style.setProperty('--visualizer-blur-color', `hsla(${blurColorHue}, ${blurColorSaturation}%, ${blurColorLightness}%, ${blurColorAlpha})`);
+    // Update the CSS custom properties for the inset box-shadow
+    const style = visualizerRef.current.style;
+    style.setProperty('--glow-opacity', opacity.toString());
+    style.setProperty('--glow-size', `${size}px`);
 
     animationFrameId.current = requestAnimationFrame(draw);
   };
 
   useEffect(() => {
-    if (isVoiceActive) {
+    if (isVoiceActive && stream) {
       setupAudio();
     } else {
       stopAudio();
     }
-
-    return () => {
-      stopAudio();
-    };
-  }, [isVoiceActive]);
+    return stopAudio;
+  }, [isVoiceActive, stream]);
 
   if (error) {
     return <div className="audio-visualizer-error">{error}</div>;
   }
 
-  if (!hasMicrophoneAccess && isVoiceActive) {
-    return <div className="audio-visualizer-message">Requesting microphone access...</div>;
-  }
-
   return (
-    <div className="audio-visualizer-border" ref={visualizerRef}>
-      {/* The actual gradient will be created using CSS on this div */}
-    </div>
+    <div 
+      className="inner-glow-container" 
+      ref={visualizerRef}
+      data-active={isVoiceActive}
+    />
   );
 };
 
