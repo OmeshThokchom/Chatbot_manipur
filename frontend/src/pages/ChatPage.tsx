@@ -139,7 +139,9 @@ const ChatPage: React.FC = () => {
             });
 
             const data = await response.json();
+            console.log('Transcription response data:', data);
             if (data.transcript) {
+              console.log('Setting input value to:', data.transcript);
               setInputValue(data.transcript);
             }
           } catch (error) {
