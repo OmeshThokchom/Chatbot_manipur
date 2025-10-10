@@ -114,7 +114,7 @@ const ChatPage: React.FC = () => {
       if (permissionGranted && mediaStreamRef.current) {
         setIsVoiceActive(true);
         audioChunks.current = [];
-        mediaRecorderRef.current = new MediaRecorder(mediaStreamRef.current);
+        mediaRecorderRef.current = new MediaRecorder(mediaStreamRef.current, { mimeType: 'audio/webm' });
 
         mediaRecorderRef.current.ondataavailable = (event) => {
           audioChunks.current.push(event.data);

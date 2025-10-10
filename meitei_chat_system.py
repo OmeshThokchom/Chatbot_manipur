@@ -5,6 +5,8 @@ import numpy as np
 import soundfile as sf
 import io
 from scipy import signal
+from pydub import AudioSegment
+import tempfile
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from translator.mniToEn import translate as mni_to_en
@@ -241,7 +243,15 @@ class MeiteiChatSystem:
         if not self.realtime_speech_recognizer:
             return "ASR model not loaded. Cannot transcribe audio."
         try:
-            audio_segment, sample_rate = sf.read(io.BytesIO(audio_data))
+            # Convert webm to wav using pydub
+            audio_segment_webm = AudioSegment.from_file(io.BytesIO(audio_data), format="webm")
+            
+            with tempfile.NamedTemporaryFile(suffix=".wav", delete=True) as temp_wav_file:
+                audio_segment_webm.export(temp_wav_file.name, format="wav")
+                temp_wav_file.seek(0)
+                wav_data = temp_wav_file.read()
+
+            audio_segment, sample_rate = sf.read(io.BytesIO(wav_data))
             print(f"Audio segment size: {audio_segment.size}, Sample rate: {sample_rate}")
             if audio_segment.size == 0:
                 print("Received empty audio segment.")
