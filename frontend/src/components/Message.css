@@ -34,8 +34,9 @@
 
 .message--user .message__content {
   background-color: var(--user-message-color);
+  background-image: linear-gradient(to bottom right, rgba(132, 132, 132, 0.159), rgba(9, 130, 0, 0.2)); /* Subtle gradient */
   color: var(--text-color);
-  padding: 10px 15px;
+  padding: 0px 15px;
   border-radius: 18px;
   max-width: 85%;
 }
