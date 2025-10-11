@@ -1,16 +1,21 @@
+:root {
+  --header-height: 3rem; /* Approximate height of the header */
+  --sidebar-width: 50px; /* Width of the collapsed sidebar */
+}
+
 .app-root-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure it takes full viewport height */
 }
 
-.app-container {
-  display: flex;
-  flex-grow: 1; /* Allow app-container to take remaining space */
-}
-
 .main-content {
-  flex-grow: 1;
+  position: absolute; /* Position relative to the nearest positioned ancestor (body/viewport) */
+  top: var(--header-height); /* Position below the header */
+  left: var(--sidebar-width); /* Position to the right of the sidebar */
+  width: calc(100vw - var(--sidebar-width)); /* Take remaining width */
+  height: calc(100vh - var(--header-height)); /* Take remaining height */
+  overflow-y: auto; /* Enable vertical scrolling for main content */
   display: flex;
   flex-direction: column;
 }

@@ -10,6 +10,7 @@
   left: 0;
   top: 0;
   height: 100vh;
+  z-index: 110;
   border-right: 1px solid #343541; /* Added border */
 }
 
@@ -18,6 +19,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.sidebar__top {
+  padding-top: 1rem; /* Pull down icons */
 }
 
 .sidebar__item {
