@@ -1,5 +1,7 @@
 # Multilingual Voice Assistant
 
+[Watch Demo Video](Screencast from 10-11-2025 08:27:50 AM.webm)
+
 [![GitHub stars](https://img.shields.io/github/stars/OmeshThokchom/Chatbot_manipur?style=social)](https://github.com/OmeshThokchom/Chatbot_manipur/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/OmeshThokchom/Chatbot_manipur?style=social)](https://github.com/OmeshThokchom/Chatbot_manipur/network/members)
 [![GitHub issues](https://img.shields.io/github/issues/OmeshThokchom/Chatbot_manipur)](https://github.com/OmeshThokchom/Chatbot_manipur/issues)
@@ -7,6 +9,7 @@
 
 
 ## Table of Contents
+- [Demo Video](#demo-video)
 - [About](#about)
 - [Demo](#demo)
 - [Features](#features)
