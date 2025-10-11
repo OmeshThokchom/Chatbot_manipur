@@ -1,6 +1,6 @@
 # Multilingual Voice Assistant
 
-[Watch Demo Video](Screencast from 10-11-2025 08:27:50 AM.webm)
+[Watch Demo Video](frontend/src/assets/Screencast from 10-11-2025 08:27:50 AM.webm)
 
 [![GitHub stars](https://img.shields.io/github/stars/OmeshThokchom/Chatbot_manipur?style=social)](https://github.com/OmeshThokchom/Chatbot_manipur/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/OmeshThokchom/Chatbot_manipur?style=social)](https://github.com/OmeshThokchom/Chatbot_manipur/network/members)
@@ -27,7 +27,7 @@
 This project develops a sophisticated Multilingual Voice Assistant, specifically designed to facilitate natural language interactions in the **Manipuri (Meitei)** language. It integrates advanced speech recognition (ASR), text-to-speech (TTS), and machine translation capabilities with a generative AI model to provide a seamless conversational experience. The assistant aims to bridge language barriers and offer an intuitive interface for users to interact through voice commands and receive intelligent responses, with a strong emphasis on supporting the Manipuri linguistic community.
 
 ## Demo
-![Screenshot of the Multilingual Voice Assistant user interface, showing a dark theme with a welcome message in Manipuri script and English, and an input field at the bottom.](image.png)
+![Screenshot of the Multilingual Voice Assistant user interface, showing a dark theme with a welcome message in Manipuri script and English, and an input field at the bottom.](frontend/src/assets/image.png)
 
 ## Features
 - **Voice-Enabled Interaction:** Engage with the assistant using natural spoken language.
