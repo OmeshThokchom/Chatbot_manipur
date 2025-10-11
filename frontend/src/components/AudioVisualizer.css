@@ -1,55 +1,52 @@
-/*
-  An inner glow effect with a multi-color gradient, designed to be placed behind the UI.
-*/
-
-.inner-glow-container {
+.siri-header-glow {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  height: 72px; /* Match your header height */
+  z-index: 10;
   pointer-events: none;
-  z-index: 1000; /* Places the glow behind the UI content */
-  border-radius: 0;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
 
-  /* Default state is "very minimum light" */
-  --glow-opacity: 0.3;
-  --glow-size: 40px;
+  background: linear-gradient(
+    90deg,
+    #ff0000 0%,
+    #ff0080 25%,
+    #8000ff 50%,
+    #0000ff 75%,
+    #00ffff 100%
+  );
+  background-size: 400% 400%;
+  filter: blur(var(--siri-blur, 20px)) brightness(1.5);
+  opacity: var(--siri-opacity, 0.3);
 
-  /* 
-    Layered inset shadows with the red, magenta, and blue color scheme.
-  */
-  box-shadow: 
-    inset 10px 0 var(--glow-size) -10px hsla(0, 90%, 60%, var(--glow-opacity)),     /* Left - Red */
-    inset -10px 0 var(--glow-size) -10px hsla(220, 90%, 60%, var(--glow-opacity)),  /* Right - Blue */
-    inset 0 10px var(--glow-size) -10px hsla(310, 90%, 60%, var(--glow-opacity)),   /* Top - Magenta */
-    inset 0 -10px var(--glow-size) -10px hsla(310, 90%, 60%, var(--glow-opacity));  /* Bottom - Magenta */
-
-  /* Smooth transition for the glow intensity */
-  transition: box-shadow 1.5s ease-in-out;
+  animation: siriWaveFlow 6s ease-in-out infinite alternate;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
-/* When active, the glow becomes more intense */
-.inner-glow-container[data-active="true"] {
-  --glow-opacity: 0.6;
-  --glow-size: 50px;
+/* Wave-like gradient motion */
+@keyframes siriWaveFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-/* Error and message styles */
-.audio-visualizer-error,
-.audio-visualizer-message {
+/* Optional error box */
+.audio-visualizer-error {
   position: fixed;
-  bottom: 50%;
+  bottom: 20px;
   left: 50%;
-  transform: translate(-50%, 50%);
-  color: #e4e4e4;
-  background-color: rgba(0, 0, 0, 0.7);
+  transform: translateX(-50%);
+  color: #ff6b6b;
+  background: rgba(0, 0, 0, 0.7);
   padding: 0.5rem 1rem;
   border-radius: 5px;
   z-index: 10000;
-  pointer-events: none;
-}
-
-.audio-visualizer-error {
-  color: #ff6b6b;
 }

@@ -1,66 +1,127 @@
 .header {
   display: flex;
-  justify-content: space-between; /* Aligns items to the far left, center, and far right */
+  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2.5rem; /* Vertical padding 0.5rem, Horizontal padding 2.5rem (reverted) */
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0, 159, 42, 0.735);
-  position: fixed; /* Keeps the header at the top of the viewport */
+  padding: 0.5rem 2.5rem;
+  background-color: var(--primary-color, #111);
+  color: var(--text-color, #fff);
+  position: fixed;
   top: 0;
   width: 100%;
-  z-index: 100; /* Ensures header is above main content but below sidebar */
+  z-index: 100;
+  overflow: hidden;
 }
 
-/* Styles for the left-aligned action items (e.g., notification icon) */
+/* --- Soft glowing aura --- */
+.header::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(
+    to right,
+    #17181f 0%,
+    #ab3735 10.8%,
+    #f63b35 21.6%,
+    #ea3076 54.1%,
+    #ab43d4 64.9%,
+    #2462f0 75.7%,
+    #17181f 100%
+  );
+  filter: blur(25px);
+  opacity: 0.75;
+  z-index: 99;
+  mix-blend-mode: screen;
+}
+
+/* --- Thin bright center line --- */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    #17181f 0%,
+    #ab3735 10.8%,
+    #f63b35 21.6%,
+    #ea3076 54.1%,
+    #ab43d4 64.9%,
+    #2462f0 75.7%,
+    #17181f 100%
+  );
+  z-index: 101;
+  overflow: hidden;
+}
+
+/* --- Moving shimmer highlight --- */
+.header::before {
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Left icons */
 .header__left-actions {
   display: flex;
-  gap: 1rem; /* Adjust this value to change space between icons */
+  gap: 1rem;
   align-items: center;
-  order: 1; /* Default order: appears first */
-  margin-left: 2rem; /* Pulls left actions slightly from the corner */
+  order: 1;
+  margin-left: 2rem;
 }
 
-/* Styles for the right-aligned action items (e.g., settings, user icons) */
+/* Right icons */
 .header__right-actions {
   display: flex;
-  gap: 1rem; /* Adjust this value to change space between icons */
+  gap: 1rem;
   align-items: center;
-  order: 3; /* Default order: appears third */
-  margin-right: 4rem; /* Pulls right actions slightly from the corner */
+  order: 3;
+  margin-right: 4rem;
 }
 
-/* Styles for the center-aligned content (e.g., logo and navigation) */
+/* Center content */
 .header__center-content {
   display: flex;
   align-items: center;
-  flex-grow: 1; /* Allows this section to take up available space */
-  justify-content: center; /* Centers the content within this section */
-  order: 2; /* Default order: appears second */
+  flex-grow: 1;
+  justify-content: center;
+  order: 2;
 }
 
-
-/* General styling for all header icons */
+/* Icons */
 .header__icon {
-  font-size: 1.4rem; /* Size of the icons */
-  color: var(--text-color);
+  font-size: 1.4rem;
+  color: var(--text-color, #fff);
   cursor: pointer;
-  transition: color 0.3s ease; /* Smooth transition on hover */
+  transition: color 0.3s ease;
 }
 
 .header__icon:hover {
-  color: var(--secondary-text-color); /* Color change on hover */
+  color: var(--secondary-text-color, #aaa);
 }
 
-/* Styles for the logo text */
+/* Logo */
 .header__logo h1 {
   margin: 0;
   font-size: 1.8rem;
-  color: var(--text-color);
+  color: var(--text-color, #fff);
 }
 
-/* Styles for the navigation menu (if present) */
+/* Navigation menu */
 .header__nav ul {
   list-style: none;
   margin: 0;
@@ -71,11 +132,11 @@
 
 .header__nav li a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color, #fff);
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .header__nav li a:hover {
-  color: var(--secondary-text-color);
+  color: var(--secondary-text-color, #aaa);
 }
