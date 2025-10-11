@@ -11,11 +11,12 @@
   },
   "dependencies": {
     "@vitejs/plugin-basic-ssl": "^2.1.0",
+    "framer-motion": "^12.23.24",
     "highlight.js": "^11.11.1",
     "marked": "^16.4.0",
     "marked-highlight": "^2.2.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
