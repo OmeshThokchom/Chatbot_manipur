@@ -1,18 +1,21 @@
+
 .welcome-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0rem;
   max-width: 1000px;
   margin: 0 auto;
+  height: 100%; /* Make container full height of its parent */
+
 }
 
 .welcome-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30rem;
+  margin-bottom: 20rem; 
 }
 
 .welcome-greeting {
@@ -23,7 +26,7 @@
 }
 
 .welcome-title {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
   font-weight: 600;
   color: #1f1f1f;
   background: -webkit-linear-gradient(45deg, #4285f4, #9b72cb, #d96570, #f2a60c, #57bb8a);
@@ -33,7 +36,7 @@
 }
 
 .welcome-animated-title {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
   font-weight: 600;
   color: #1f1f1f;
   background: linear-gradient(90deg, #4285f4, #9b72cb, #d96570, #f2a60c, #57bb8a);
@@ -56,7 +59,7 @@
 }
 
 .welcome-subtitle {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* Responsive font size */
   color: #a9b0b97e;
   text-align: center;
   margin-top: -2rem;
@@ -92,3 +95,20 @@
   font-size: 0.9rem;
   color: #5f6368;
 }
+
+/* Add media query for smaller screens */
+@media (max-width: 768px) {
+  .welcome-greeting {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .welcome-title, .welcome-animated-title {
+    text-align: center;
+  }
+
+  .welcome-subtitle {
+    margin-top: 1rem;
+  }
+}
+
