@@ -12,7 +12,7 @@ class PiperTTS:
     def __init__(self, model_path=None, config_path=None):
         """Initialize the Piper TTS engine"""
         self.model_path = model_path or "./models/en_US-amy-medium.onnx"
-        self.config_path = config_path or "./models/en_US-amy-medium.onnx.json"
+        self.config_path = config_path or "./models/config_ammy.onnx.json"
         self.voice = None
         self._load_voice()
     
