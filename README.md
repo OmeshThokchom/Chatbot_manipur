@@ -1,5 +1,11 @@
 # Multilingual Voice Assistant
 
+[![GitHub stars](https://img.shields.io/github/stars/OmeshThokchom/Chatbot_manipur?style=social)](https://github.com/OmeshThokchom/Chatbot_manipur/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/OmeshThokchom/Chatbot_manipur?style=social)](https://github.com/OmeshThokchom/Chatbot_manipur/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/OmeshThokchom/Chatbot_manipur)](https://github.com/OmeshThokchom/Chatbot_manipur/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/OmeshThokchom/Chatbot_manipur)](https://github.com/OmeshThokchom/Chatbot_manipur/pulls)
+
+
 ## Table of Contents
 - [About](#about)
 - [Features](#features)
