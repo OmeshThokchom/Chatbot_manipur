@@ -1,24 +1,66 @@
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Aligns items to the far left, center, and far right */
   align-items: center;
-  padding: 0.5rem 0rem;
+  padding: 0.5rem 2.5rem; /* Vertical padding 0.5rem, Horizontal padding 2.5rem (reverted) */
   background-color: var(--primary-color);
   color: var(--text-color);
   border-bottom: 1px solid var(--border-color);
   box-shadow: 0 2px 4px rgba(0, 159, 42, 0.735);
-  position: fixed;
+  position: fixed; /* Keeps the header at the top of the viewport */
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 100; /* Ensures header is above main content but below sidebar */
 }
 
+/* Styles for the left-aligned action items (e.g., notification icon) */
+.header__left-actions {
+  display: flex;
+  gap: 1rem; /* Adjust this value to change space between icons */
+  align-items: center;
+  order: 1; /* Default order: appears first */
+  margin-left: 2rem; /* Pulls left actions slightly from the corner */
+}
+
+/* Styles for the right-aligned action items (e.g., settings, user icons) */
+.header__right-actions {
+  display: flex;
+  gap: 1rem; /* Adjust this value to change space between icons */
+  align-items: center;
+  order: 3; /* Default order: appears third */
+  margin-right: 4rem; /* Pulls right actions slightly from the corner */
+}
+
+/* Styles for the center-aligned content (e.g., logo and navigation) */
+.header__center-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allows this section to take up available space */
+  justify-content: center; /* Centers the content within this section */
+  order: 2; /* Default order: appears second */
+}
+
+
+/* General styling for all header icons */
+.header__icon {
+  font-size: 1.4rem; /* Size of the icons */
+  color: var(--text-color);
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.header__icon:hover {
+  color: var(--secondary-text-color); /* Color change on hover */
+}
+
+/* Styles for the logo text */
 .header__logo h1 {
   margin: 0;
   font-size: 1.8rem;
   color: var(--text-color);
 }
 
+/* Styles for the navigation menu (if present) */
 .header__nav ul {
   list-style: none;
   margin: 0;
