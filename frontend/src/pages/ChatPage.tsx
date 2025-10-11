@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
-import Header from '../components/Header';
 import AudioVisualizer from '../components/AudioVisualizer'; // Import the new AudioVisualizer component
+import './ChatPage.css'; // Import ChatPage specific styles
 
 interface Message {
   id: number;
@@ -157,23 +157,24 @@ const ChatPage: React.FC = () => {
 
   return (
     <div className="chat-wrapper">
-      <Header />
       <div className="chat-main">
-        <ChatWindow messages={messages} isLoading={isLoading} />
-        {isVoiceActive && <AudioVisualizer isVoiceActive={isVoiceActive} stream={mediaStreamRef.current} />}
-        {microphonePermission === 'denied' && (
-          <div className="chat-main__permission-denied">
-            <p>Microphone access is denied. Please enable it in your browser settings to use voice input.</p>
-          </div>
-        )}
-        <ChatInput
-          value={inputValue}
-          onChange={setInputValue}
-          sendMessage={() => sendMessage(inputValue)}
-          toggleVoiceInput={toggleVoiceInput}
-          isVoiceActive={isVoiceActive}
-          isLoading={isLoading}
-        />
+        <div className="chat-content-wrapper">
+          <ChatWindow messages={messages} isLoading={isLoading} />
+          {isVoiceActive && <AudioVisualizer isVoiceActive={isVoiceActive} stream={mediaStreamRef.current} />}
+          {microphonePermission === 'denied' && (
+            <div className="chat-main__permission-denied">
+              <p>Microphone access is denied. Please enable it in your browser settings to use voice input.</p>
+            </div>
+          )}
+          <ChatInput
+            value={inputValue}
+            onChange={setInputValue}
+            sendMessage={() => sendMessage(inputValue)}
+            toggleVoiceInput={toggleVoiceInput}
+            isVoiceActive={isVoiceActive}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
     </div>
   );

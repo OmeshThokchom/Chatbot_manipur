@@ -2,7 +2,5 @@
   padding: 1.25rem;
   padding-bottom: 10rem; /* Added to prevent content from being hidden by fixed input */
   flex-direction: column;
-  max-width: 1000px;
-  margin: 0 auto;
   width: 100%;
 }
