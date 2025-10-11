@@ -1,6 +1,10 @@
 /* Basic styles for the chat application */
-body {
+html, body {
+  height: 100%; /* Ensure full height for proper flexbox layout */
   margin: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

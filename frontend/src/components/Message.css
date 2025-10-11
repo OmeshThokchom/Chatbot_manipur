@@ -73,6 +73,7 @@
   margin-bottom: 1em;
   border: 1px solid #30363d;
   padding: 16px; /* Apply padding to the pre element */
+  position: relative; /* For elastic scroll effect */
 }
 
 .code-block-header {
@@ -113,6 +114,15 @@
   font-size: 0.9em;
   background: none; /* Ensure no background on the code element */
   padding: 0; /* Remove padding from the code element */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 20px, #000 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 20px, #000 95%, transparent);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Elastic scroll effect on hover */
+.markdown pre:hover code {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5px, #000 99%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 5px, #000 99%, transparent);
 }
 
 .markdown code {
