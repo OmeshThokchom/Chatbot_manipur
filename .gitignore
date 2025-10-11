@@ -15,3 +15,5 @@ translation_log.txt
 __pycache__/*
 .gemini/
 gha-creds-*.json
+download.ipynb
+meitei.py
