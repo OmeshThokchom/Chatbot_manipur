@@ -1,6 +1,6 @@
 import Sidebar from './components/Sidebar';
-import ChatPage from './pages/ChatPage';
 import Header from './components/Header'; // Import Header
+import MainContentRouter from './components/MainContentRouter'; // Import the new router component
 import './App.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Header /> {/* Render Header here */}
       <Sidebar />
       <main className="main-content">
-        <ChatPage />
+        <MainContentRouter /> {/* Render the new router component here */}
       </main>
     </div>
   );

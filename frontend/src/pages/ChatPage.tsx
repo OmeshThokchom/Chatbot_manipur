@@ -1,7 +1,9 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'; // Import motion and AnimatePresence
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
 import AudioVisualizer from '../components/AudioVisualizer'; // Import the new AudioVisualizer component
+import Welcome from '../components/Welcome'; // Import Welcome component
 import './ChatPage.css'; // Import ChatPage specific styles
 
 interface Message {
@@ -13,7 +15,12 @@ interface Message {
   isError?: boolean;
 }
 
-const ChatPage: React.FC = () => {
+interface ChatPageProps {
+  onMessagesChange: (hasMessages: boolean) => void;
+  hasMessages: boolean; // Prop to indicate if there are messages
+}
+
+const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isVoiceActive, setIsVoiceActive] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -27,6 +34,11 @@ const ChatPage: React.FC = () => {
   useEffect(() => {
     isVoiceActiveRef.current = isVoiceActive;
   }, [isVoiceActive]);
+
+  // Effect to notify parent about message changes
+  useEffect(() => {
+    onMessagesChange(messages.length > 0);
+  }, [messages, onMessagesChange]);
 
   const sendMessage = useCallback(async (messageText: string) => {
     if (messageText.trim() === '') return;
@@ -158,6 +170,20 @@ const ChatPage: React.FC = () => {
   return (
     <div className="chat-wrapper">
       <div className="chat-main">
+        <AnimatePresence mode="wait"> {/* Animate Welcome component out */}
+          {!hasMessages && (
+            <motion.div
+              key="welcome-overlay"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10, backgroundColor: 'var(--background-color)' }} /* Overlay style */
+            >
+              <Welcome />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className="chat-content-wrapper">
           <ChatWindow messages={messages} isLoading={isLoading} />
           {isVoiceActive && <AudioVisualizer isVoiceActive={isVoiceActive} stream={mediaStreamRef.current} />}

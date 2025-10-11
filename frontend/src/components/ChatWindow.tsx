@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Message from './Message';
 import TypingIndicator from './TypingIndicator';
-import Welcome from './Welcome';
+
 
 import './ChatWindow.css';
 
@@ -32,17 +32,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages, isLoading }) => {
 
   return (
     <div className="chat-main__messages">
-      {messages.length === 0 && !isLoading ? (
-        <Welcome />
-      ) : (
-        <>
-          {messages.map((message) => (
-            <Message key={message.id} text={message.text} isUser={message.isUser} isMeitei={message.isMeitei} status={message.status} isError={message.isError} />
-          ))}
-          {isLoading && <TypingIndicator />}
-          <div ref={messagesEndRef} />
-        </>
-      )}
+      <>
+        {messages.map((message) => (
+          <Message key={message.id} text={message.text} isUser={message.isUser} isMeitei={message.isMeitei} status={message.status} isError={message.isError} />
+        ))}
+        {isLoading && <TypingIndicator />}
+        <div ref={messagesEndRef} />
+      </>
     </div>
   );
 };

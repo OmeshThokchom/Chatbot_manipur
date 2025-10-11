@@ -15,7 +15,7 @@ const Welcome: React.FC = () => {
   ];
 
   const { ref } = useTextScramble<HTMLHeadingElement>(phrases, 2000);
-
+  //add this for better animation at 24  <h1 className="welcome-animated-title" ref={ref} style={{ minWidth: '20rem', textAlign: 'center' }} />
   return (
     <div className="welcome-container">
       <div className="welcome-header">
