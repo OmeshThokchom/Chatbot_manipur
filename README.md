@@ -8,6 +8,7 @@
 
 ## Table of Contents
 - [About](#about)
+- [Demo](#demo)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
@@ -21,6 +22,9 @@
 
 ## About
 This project develops a sophisticated Multilingual Voice Assistant, specifically designed to facilitate natural language interactions in the **Manipuri (Meitei)** language. It integrates advanced speech recognition (ASR), text-to-speech (TTS), and machine translation capabilities with a generative AI model to provide a seamless conversational experience. The assistant aims to bridge language barriers and offer an intuitive interface for users to interact through voice commands and receive intelligent responses, with a strong emphasis on supporting the Manipuri linguistic community.
+
+## Demo
+![Screenshot of the Multilingual Voice Assistant user interface, showing a dark theme with a welcome message in Manipuri script and English, and an input field at the bottom.](image.png)
 
 ## Features
 - **Voice-Enabled Interaction:** Engage with the assistant using natural spoken language.
