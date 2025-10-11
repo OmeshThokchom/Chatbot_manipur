@@ -45,7 +45,7 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, stream
     const normalized = avg / 255;
 
     const opacity = 0.3 + normalized * 0.5;
-    const blur = 10 + normalized * 30;
+    const blur = 50 + normalized * 80;
 
     headerRef.current.style.setProperty('--siri-opacity', opacity.toString());
     headerRef.current.style.setProperty('--siri-blur', `${blur}px`);

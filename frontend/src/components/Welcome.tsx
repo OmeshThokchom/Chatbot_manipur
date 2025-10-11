@@ -21,7 +21,7 @@ const Welcome: React.FC = () => {
       <div className="welcome-header">
         <div className="welcome-greeting">
           <span className="welcome-title">{'['}</span>
-          <h1 className="welcome-animated-title" ref={ref} style={{ minWidth: '20rem', textAlign: 'center' }} />
+          <h1 className="welcome-animated-title" ref={ref} />
           <span className="welcome-title">{']'}</span>
           <p className="welcome-title"> ! Omesh</p>
         </div>

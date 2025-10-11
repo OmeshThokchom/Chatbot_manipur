@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2.5rem;
-  background-color: var(--primary-color, #111);
-  color: var(--text-color, #fff);
+  background-color: var(--primary-color, #111111b6);
+  color: var(--text-color, #ffffffb7);
   position: fixed;
   top: 0;
   width: 100%;
@@ -18,7 +18,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100%;                          
   height: 10px;
   background: linear-gradient(
     to right,
@@ -111,7 +111,7 @@
 }
 
 .header__icon:hover {
-  color: var(--secondary-text-color, #aaa);
+  color: var(--secondary-text-color, #007500);
 }
 
 /* Logo */
