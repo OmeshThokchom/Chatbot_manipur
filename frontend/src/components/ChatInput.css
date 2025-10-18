@@ -106,6 +106,38 @@
   margin-left: 0.4rem;
 }
 
+.chat-input__voice-chat-button {
+  background-color: rgba(9, 121, 9, 0.623);
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  transition: all 0.25s ease;
+  font-size: 1rem;
+}
+
+.chat-input__voice-chat-button:hover {
+  background-color: rgba(5, 190, 5, 0.76);
+  transform: scale(1.08);
+}
+
+.chat-input__voice-chat-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.chat-input__voice-chat-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: invert(1) brightness(2);
+}
+
 @media (max-width: 600px) {
   .chat-input {
     max-width: 95%;

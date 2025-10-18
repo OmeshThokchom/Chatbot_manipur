@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./ChatInput.css";
+import voiceLineIcon from '../assets/—Pngtree—voice line icon vector_9063265.png';
 
 interface ChatInputProps {
   value: string;
@@ -8,6 +9,7 @@ interface ChatInputProps {
   toggleVoiceInput: () => void;
   isVoiceActive: boolean;
   isLoading: boolean;
+  onVoiceChatClick: () => void;
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({
@@ -17,6 +19,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   toggleVoiceInput,
   isVoiceActive,
   isLoading,
+  onVoiceChatClick,
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -65,6 +68,13 @@ const ChatInput: React.FC<ChatInputProps> = ({
           rows={1}
         />
         <button
+          className="chat-input__voice-chat-button"
+          onClick={onVoiceChatClick}
+          disabled={isLoading}
+        >
+          <img src={voiceLineIcon} alt="Voice chat" className="chat-input__voice-chat-icon" />
+        </button>
+        <button
           className={`chat-input__send-button ${isVoiceActive ? 'voice-active' : ''}`}
           onClick={handleButtonClick}
           disabled={isLoading}
@@ -79,4 +89,3 @@ const ChatInput: React.FC<ChatInputProps> = ({
 };
 
 export default ChatInput;
-  
