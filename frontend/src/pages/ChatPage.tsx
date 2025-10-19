@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'; // Import motion and An
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
 import AudioVisualizer from '../components/AudioVisualizer'; // Import the new AudioVisualizer component
+import VoiceChatOverlay from '../components/VoiceChatOverlay';
 import Welcome from '../components/Welcome'; // Import Welcome component
 import './ChatPage.css'; // Import ChatPage specific styles
 
@@ -26,10 +27,15 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState("");
   const [microphonePermission, setMicrophonePermission] = useState<PermissionState | 'unknown'>('unknown');
+  const [isVoiceOverlayVisible, setIsVoiceOverlayVisible] = useState(false);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunks = useRef<Blob[]>([]);
   const isVoiceActiveRef = useRef(isVoiceActive);
+
+  const toggleVoiceOverlay = () => {
+    setIsVoiceOverlayVisible(!isVoiceOverlayVisible);
+  };
 
   useEffect(() => {
     isVoiceActiveRef.current = isVoiceActive;
@@ -169,6 +175,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
 
   return (
     <div className="chat-wrapper">
+      {isVoiceOverlayVisible && <VoiceChatOverlay onClose={toggleVoiceOverlay} />}
       <div className="chat-main">
         <AnimatePresence mode="wait"> {/* Animate Welcome component out */}
           {!hasMessages && (
@@ -199,6 +206,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
             toggleVoiceInput={toggleVoiceInput}
             isVoiceActive={isVoiceActive}
             isLoading={isLoading}
+            onVoiceChatClick={toggleVoiceOverlay}
           />
         </div>
       </div>
