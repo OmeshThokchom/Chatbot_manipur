@@ -115,8 +115,12 @@ export default function Orb({ analyser, hue = 200 }: OrbProps) {
       vec3 color2 = adjustHue(baseColor2, hue);
       vec3 color3 = adjustHue(baseColor3, hue);
       
-      float noiseScale = 0.65 + audioIntensity * 1.0;
-      float innerRadius = 0.6 - audioIntensity * 0.15;
+      // Create a subtle breathing effect when idle
+      float idlePulse = sin(iTime * 2.0) * 0.5 + 0.5; // Oscillates between 0 and 1
+      float effectiveIntensity = audioIntensity + idlePulse * 0.05 * (1.0 - smoothstep(0.0, 0.1, audioIntensity));
+
+      float noiseScale = 0.65 + effectiveIntensity * 1.0;
+      float innerRadius = 0.6 - effectiveIntensity * 0.15;
 
       float ang = atan(uv.y, uv.x);
       float len = length(uv);
@@ -151,9 +155,13 @@ export default function Orb({ analyser, hue = 200 }: OrbProps) {
       float size = min(iResolution.x, iResolution.y);
       vec2 uv = (fragCoord - center) / size * 2.0;
 
+      // Match the breathing effect from the draw function
+      float idlePulse = sin(iTime * 2.0) * 0.5 + 0.5;
+      float effectiveIntensity = audioIntensity + idlePulse * 0.05 * (1.0 - smoothstep(0.0, 0.1, audioIntensity));
+
       // Add audio-driven distortion
-      uv.x += audioIntensity * 0.1 * sin(uv.y * 10.0 + iTime);
-      uv.y += audioIntensity * 0.1 * sin(uv.x * 10.0 + iTime);
+      uv.x += effectiveIntensity * 0.1 * sin(uv.y * 10.0 + iTime);
+      uv.y += effectiveIntensity * 0.1 * sin(uv.x * 10.0 + iTime);
 
       return draw(uv);
     }
