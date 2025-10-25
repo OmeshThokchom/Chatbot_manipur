@@ -4,18 +4,11 @@ import { Renderer, Program, Mesh, Triangle, Vec3 } from 'ogl';
 import './Orb.css';
 
 interface OrbProps {
+  stream: MediaStream | null;
   hue?: number;
-  hoverIntensity?: number;
-  rotateOnHover?: boolean;
-  forceHoverState?: boolean;
 }
 
-export default function Orb({
-  hue = 0,
-  hoverIntensity = 0.2,
-  rotateOnHover = true,
-  forceHoverState = false
-}: OrbProps) {
+export default function Orb({ stream, hue = 200 }: OrbProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
 
   const vert = /* glsl */ `
@@ -35,9 +28,7 @@ export default function Orb({
     uniform float iTime;
     uniform vec3 iResolution;
     uniform float hue;
-    uniform float hover;
-    uniform float rot;
-    uniform float hoverIntensity;
+    uniform float audioIntensity;
     varying vec2 vUv;
 
     vec3 rgb2yiq(vec3 c) {
@@ -110,8 +101,6 @@ export default function Orb({
     const vec3 baseColor1 = vec3(0.611765, 0.262745, 0.996078);
     const vec3 baseColor2 = vec3(0.298039, 0.760784, 0.913725);
     const vec3 baseColor3 = vec3(0.062745, 0.078431, 0.600000);
-    const float innerRadius = 0.6;
-    const float noiseScale = 0.65;
     
     float light1(float intensity, float attenuation, float dist) {
       return intensity / (1.0 + dist * attenuation);
@@ -126,6 +115,9 @@ export default function Orb({
       vec3 color2 = adjustHue(baseColor2, hue);
       vec3 color3 = adjustHue(baseColor3, hue);
       
+      float noiseScale = 0.65 + audioIntensity * 2.5;
+      float innerRadius = 0.6 - audioIntensity * 0.3;
+
       float ang = atan(uv.y, uv.x);
       float len = length(uv);
       float invLen = len > 0.0 ? 1.0 / len : 0.0;
@@ -158,15 +150,11 @@ export default function Orb({
       vec2 center = iResolution.xy * 0.5;
       float size = min(iResolution.x, iResolution.y);
       vec2 uv = (fragCoord - center) / size * 2.0;
-      
-      float angle = rot;
-      float s = sin(angle);
-      float c = cos(angle);
-      uv = vec2(c * uv.x - s * uv.y, s * uv.x + c * uv.y);
-      
-      uv.x += hover * hoverIntensity * 0.1 * sin(uv.y * 10.0 + iTime);
-      uv.y += hover * hoverIntensity * 0.1 * sin(uv.x * 10.0 + iTime);
-      
+
+      // Add audio-driven distortion
+      uv.x += audioIntensity * 0.3 * sin(uv.y * 10.0 + iTime);
+      uv.y += audioIntensity * 0.3 * sin(uv.x * 10.0 + iTime);
+
       return draw(uv);
     }
     
@@ -192,17 +180,27 @@ export default function Orb({
       fragment: frag,
       uniforms: {
         iTime: { value: 0 },
-        iResolution: {
-          value: new Vec3(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
-        },
+        iResolution: { value: new Vec3(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height) },
         hue: { value: hue },
-        hover: { value: 0 },
-        rot: { value: 0 },
-        hoverIntensity: { value: hoverIntensity }
+        audioIntensity: { value: 0 },
       }
     });
 
     const mesh = new Mesh(gl, { geometry, program });
+
+    let audioContext: AudioContext | null = null;
+    let analyser: AnalyserNode | null = null;
+    let source: MediaStreamAudioSourceNode | null = null;
+    let dataArray: Uint8Array | null = null;
+
+    if (stream) {
+      audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      source = audioContext.createMediaStreamSource(stream);
+      source.connect(analyser);
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+    }
 
     function resize() {
       if (!container) return;
@@ -217,53 +215,22 @@ export default function Orb({
     window.addEventListener('resize', resize);
     resize();
 
-    let targetHover = 0;
     let lastTime = 0;
-    let currentRot = 0;
-    const rotationSpeed = 0.3;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const width = rect.width;
-      const height = rect.height;
-      const size = Math.min(width, height);
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const uvX = ((x - centerX) / size) * 2.0;
-      const uvY = ((y - centerY) / size) * 2.0;
-
-      if (Math.sqrt(uvX * uvX + uvY * uvY) < 0.8) {
-        targetHover = 1;
-      } else {
-        targetHover = 0;
-      }
-    };
-
-    const handleMouseLeave = () => {
-      targetHover = 0;
-    };
-
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
-
     let rafId: number;
+
     const update = (t: number) => {
       rafId = requestAnimationFrame(update);
-      const dt = (t - lastTime) * 0.001;
       lastTime = t;
       program.uniforms.iTime.value = t * 0.001;
       program.uniforms.hue.value = hue;
-      program.uniforms.hoverIntensity.value = hoverIntensity;
 
-      const effectiveHover = forceHoverState ? 1 : targetHover;
-      program.uniforms.hover.value += (effectiveHover - program.uniforms.hover.value) * 0.1;
-
-      if (rotateOnHover && effectiveHover > 0.5) {
-        currentRot += dt * rotationSpeed;
+      if (analyser && dataArray) {
+        analyser.getByteFrequencyData(dataArray);
+        let sum = dataArray.reduce((a, b) => a + b, 0);
+        let avg = sum / dataArray.length || 0;
+        let normalized = avg / 255;
+        program.uniforms.audioIntensity.value += (normalized - program.uniforms.audioIntensity.value) * 0.1;
       }
-      program.uniforms.rot.value = currentRot;
 
       renderer.render({ scene: mesh });
     };
@@ -272,12 +239,13 @@ export default function Orb({
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseleave', handleMouseLeave);
+      source?.disconnect();
+      analyser?.disconnect();
+      audioContext?.close();
       container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [hue, hoverIntensity, rotateOnHover, forceHoverState]);
+  }, [stream, hue]);
 
   return <div ref={ctnDom} className="orb-container" />;
 }
