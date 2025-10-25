@@ -157,7 +157,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
       if (data.response) {
         const newAiMessage: Message = { id: Date.now() + 1, text: data.response, isUser: false };
         setMessages((prevMessages) => [...prevMessages, newAiMessage]);
-        await handleTTS(data.response);
+        // await handleTTS(data.response); // BUG: This should not be here
       } else if (data.error) {
         const errorMessage: Message = { id: Date.now() + 1, text: `Error: ${data.error}`, isUser: false, isError: true };
         setMessages((prevMessages) => [...prevMessages, errorMessage]);
