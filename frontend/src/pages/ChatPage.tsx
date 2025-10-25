@@ -1,11 +1,11 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Import motion and AnimatePresence
+import { motion, AnimatePresence } from 'framer-motion';
 import ChatWindow from '../components/ChatWindow';
 import ChatInput from '../components/ChatInput';
-import AudioVisualizer from '../components/AudioVisualizer'; // Import the new AudioVisualizer component
+import AudioVisualizer from '../components/AudioVisualizer';
 import VoiceChatOverlay from '../components/VoiceChatOverlay';
-import Welcome from '../components/Welcome'; // Import Welcome component
-import './ChatPage.css'; // Import ChatPage specific styles
+import Welcome from '../components/Welcome';
+import './ChatPage.css';
 
 interface Message {
   id: number;
@@ -18,7 +18,7 @@ interface Message {
 
 interface ChatPageProps {
   onMessagesChange: (hasMessages: boolean) => void;
-  hasMessages: boolean; // Prop to indicate if there are messages
+  hasMessages: boolean;
 }
 
 const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) => {
@@ -28,23 +28,89 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
   const [inputValue, setInputValue] = useState("");
   const [microphonePermission, setMicrophonePermission] = useState<PermissionState | 'unknown'>('unknown');
   const [isVoiceOverlayVisible, setIsVoiceOverlayVisible] = useState(false);
+  const [isAiSpeaking, setIsAiSpeaking] = useState(false);
+
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunks = useRef<Blob[]>([]);
   const isVoiceActiveRef = useRef(isVoiceActive);
 
+  // Refs for shared audio context and nodes
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const audioSourceRef = useRef<AudioNode | null>(null);
+
+  // Setup shared audio context and analyser once
+  useEffect(() => {
+    const context = new (window.AudioContext || (window as any).webkitAudioContext)();
+    audioContextRef.current = context;
+    const analyser = context.createAnalyser();
+    analyser.fftSize = 256;
+    analyserRef.current = analyser;
+
+    return () => {
+      context.close();
+    };
+  }, []);
+
+  const handleTTS = useCallback(async (text: string) => {
+    if (!text.trim() || !audioContextRef.current || !analyserRef.current) return;
+
+    setIsAiSpeaking(true);
+    try {
+      const response = await fetch('/tts/speak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      });
+
+      if (!response.ok) throw new Error('Failed to fetch TTS audio');
+
+      const audioData = await response.arrayBuffer();
+      const audioBuffer = await audioContextRef.current.decodeAudioData(audioData);
+
+      if (audioSourceRef.current) {
+        audioSourceRef.current.disconnect();
+      }
+
+      const source = audioContextRef.current.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(analyserRef.current);
+      source.connect(audioContextRef.current.destination);
+      audioSourceRef.current = source;
+      source.start();
+
+      source.onended = () => {
+        setIsAiSpeaking(false);
+        source.disconnect();
+        audioSourceRef.current = null;
+      };
+    } catch (error) {
+      console.error('Error during TTS playback:', error);
+      setIsAiSpeaking(false);
+    }
+  }, []);
+
   const toggleVoiceOverlay = async () => {
     if (isVoiceOverlayVisible) {
-      // Stop voice chat
+      if (audioSourceRef.current) {
+        audioSourceRef.current.disconnect();
+        audioSourceRef.current = null;
+      }
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getTracks().forEach(track => track.stop());
         mediaStreamRef.current = null;
       }
       setIsVoiceOverlayVisible(false);
     } else {
-      // Start voice chat
       const permissionGranted = await requestMicrophonePermission();
-      if (permissionGranted) {
+      if (permissionGranted && mediaStreamRef.current && analyserRef.current) {
+        if (audioSourceRef.current) {
+          audioSourceRef.current.disconnect();
+        }
+        const source = audioContextRef.current!.createMediaStreamSource(mediaStreamRef.current);
+        source.connect(analyserRef.current);
+        audioSourceRef.current = source;
         setIsVoiceOverlayVisible(true);
       }
     }
@@ -54,7 +120,6 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
     isVoiceActiveRef.current = isVoiceActive;
   }, [isVoiceActive]);
 
-  // Effect to notify parent about message changes
   useEffect(() => {
     onMessagesChange(messages.length > 0);
   }, [messages, onMessagesChange]);
@@ -65,15 +130,13 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
     const messageId = Date.now();
     const newUserMessage: Message = { id: messageId, text: messageText, isUser: true, status: 'pending' };
     setMessages((prevMessages) => [...prevMessages, newUserMessage]);
-    setInputValue(""); // Clear input after sending
+    setInputValue("");
     setIsLoading(true);
 
     try {
       const response = await fetch('/chat', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: messageText }),
       });
 
@@ -83,6 +146,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
       if (data.response) {
         const newAiMessage: Message = { id: Date.now() + 1, text: data.response, isUser: false };
         setMessages((prevMessages) => [...prevMessages, newAiMessage]);
+        await handleTTS(data.response);
       } else if (data.error) {
         const errorMessage: Message = { id: Date.now() + 1, text: `Error: ${data.error}`, isUser: false, isError: true };
         setMessages((prevMessages) => [...prevMessages, errorMessage]);
@@ -94,20 +158,14 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [handleTTS]);
 
   const requestMicrophonePermission = async () => {
+    // ... (rest of the function is unchanged)
     if (navigator.permissions) {
       try {
         const permissionStatus = await navigator.permissions.query({ name: 'microphone' as PermissionName });
         setMicrophonePermission(permissionStatus.state);
-        console.log('Microphone permission status:', permissionStatus.state);
-
-        permissionStatus.onchange = () => {
-          setMicrophonePermission(permissionStatus.state);
-          console.log('Microphone permission status changed:', permissionStatus.state);
-        };
-
         if (permissionStatus.state === 'denied') {
           setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Microphone access is denied. Please enable it in your browser settings.', isUser: false, isError: true }]);
           return false;
@@ -129,58 +187,36 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
   };
 
   const toggleVoiceInput = useCallback(async () => {
+    // ... (this function remains unchanged)
     if (isVoiceActiveRef.current) {
-      // Stopping voice input
-      if (mediaRecorderRef.current) {
-        mediaRecorderRef.current.stop();
-      }
+      if (mediaRecorderRef.current) mediaRecorderRef.current.stop();
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getTracks().forEach(track => track.stop());
         mediaStreamRef.current = null;
       }
       setIsVoiceActive(false);
     } else {
-      // Starting voice input
       const permissionGranted = await requestMicrophonePermission();
       if (permissionGranted && mediaStreamRef.current) {
         setIsVoiceActive(true);
         audioChunks.current = [];
         mediaRecorderRef.current = new MediaRecorder(mediaStreamRef.current, { mimeType: 'audio/webm' });
-
-        mediaRecorderRef.current.ondataavailable = (event) => {
-          audioChunks.current.push(event.data);
-        };
-
-        mediaRecorderRef.current.onerror = (event) => {
-          console.error('MediaRecorder error:', event);
-        };
-
+        mediaRecorderRef.current.ondataavailable = (event) => audioChunks.current.push(event.data);
+        mediaRecorderRef.current.onerror = (event) => console.error('MediaRecorder error:', event);
         mediaRecorderRef.current.onstop = async () => {
-          const audioBlob = new Blob(audioChunks.current, { type: 'audio/wav' });
+          const audioBlob = new Blob(audioChunks.current, { type: 'audio/webm' });
           try {
-            const formData = new FormData();
-            formData.append('audio', audioBlob);
-
             const response = await fetch('/transcribe', {
               method: 'POST',
               body: audioBlob,
-              headers: {
-                'Content-Type': 'audio/wav',
-              },
+              headers: { 'Content-Type': 'audio/webm' },
             });
-
             const data = await response.json();
-            console.log('Transcription response data:', data);
-            if (data.transcript) {
-              console.log('Setting input value to:', data.transcript);
-              setInputValue(data.transcript);
-            }
+            if (data.transcript) setInputValue(data.transcript);
           } catch (error) {
             console.error('Error transcribing audio:', error);
-            setMessages((prevMessages) => [...prevMessages, { id: Date.now(), text: 'Error: Could not transcribe audio.', isUser: false, isError: true }]);
           }
         };
-
         mediaRecorderRef.current.start();
       }
     }
@@ -188,9 +224,9 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
 
   return (
     <div className="chat-wrapper">
-      {isVoiceOverlayVisible && <VoiceChatOverlay onClose={toggleVoiceOverlay} stream={mediaStreamRef.current} />}
+      {(isVoiceOverlayVisible || isAiSpeaking) && <VoiceChatOverlay onClose={toggleVoiceOverlay} analyser={analyserRef.current} />}
       <div className="chat-main">
-        <AnimatePresence mode="wait"> {/* Animate Welcome component out */}
+        <AnimatePresence mode="wait">
           {!hasMessages && (
             <motion.div
               key="welcome-overlay"
@@ -198,7 +234,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, y: -100 }}
               transition={{ duration: 0.8 }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10, backgroundColor: 'var(--background-color)' }} /* Overlay style */
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10, backgroundColor: 'var(--background-color)' }}
             >
               <Welcome />
             </motion.div>

@@ -5,14 +5,14 @@ import './VoiceChatOverlay.css';
 
 interface VoiceChatOverlayProps {
   onClose: () => void;
-  stream: MediaStream | null;
+  analyser: AnalyserNode | null;
 }
 
-const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, stream }) => {
+const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser }) => {
 
   return (
     <div className="voice-chat-overlay">
-      <Orb stream={stream} />
+      <Orb analyser={analyser} />
       <div className="voice-chat-controls">
         <button className="control-button close-button" onClick={onClose}>
           &times;

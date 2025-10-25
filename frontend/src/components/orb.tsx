@@ -4,11 +4,11 @@ import { Renderer, Program, Mesh, Triangle, Vec3 } from 'ogl';
 import './Orb.css';
 
 interface OrbProps {
-  stream: MediaStream | null;
+  analyser: AnalyserNode | null;
   hue?: number;
 }
 
-export default function Orb({ stream, hue = 200 }: OrbProps) {
+export default function Orb({ analyser, hue = 200 }: OrbProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
 
   const vert = /* glsl */ `
@@ -188,20 +188,6 @@ export default function Orb({ stream, hue = 200 }: OrbProps) {
 
     const mesh = new Mesh(gl, { geometry, program });
 
-    let audioContext: AudioContext | null = null;
-    let analyser: AnalyserNode | null = null;
-    let source: MediaStreamAudioSourceNode | null = null;
-    let dataArray: Uint8Array | null = null;
-
-    if (stream) {
-      audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      analyser = audioContext.createAnalyser();
-      analyser.fftSize = 256;
-      source = audioContext.createMediaStreamSource(stream);
-      source.connect(analyser);
-      dataArray = new Uint8Array(analyser.frequencyBinCount);
-    }
-
     function resize() {
       if (!container) return;
       const dpr = window.devicePixelRatio || 1;
@@ -215,21 +201,23 @@ export default function Orb({ stream, hue = 200 }: OrbProps) {
     window.addEventListener('resize', resize);
     resize();
 
-    let lastTime = 0;
     let rafId: number;
 
     const update = (t: number) => {
       rafId = requestAnimationFrame(update);
-      lastTime = t;
       program.uniforms.iTime.value = t * 0.001;
       program.uniforms.hue.value = hue;
 
-      if (analyser && dataArray) {
+      if (analyser) {
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
         analyser.getByteFrequencyData(dataArray);
         let sum = dataArray.reduce((a, b) => a + b, 0);
         let avg = sum / dataArray.length || 0;
         let normalized = avg / 255;
         program.uniforms.audioIntensity.value += (normalized - program.uniforms.audioIntensity.value) * 0.1;
+      } else {
+        // Reset intensity if analyser is removed
+        program.uniforms.audioIntensity.value += (0 - program.uniforms.audioIntensity.value) * 0.1;
       }
 
       renderer.render({ scene: mesh });
@@ -239,13 +227,10 @@ export default function Orb({ stream, hue = 200 }: OrbProps) {
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener('resize', resize);
-      source?.disconnect();
-      analyser?.disconnect();
-      audioContext?.close();
       container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [stream, hue]);
+  }, [analyser, hue]);
 
   return <div ref={ctnDom} className="orb-container" />;
 }
