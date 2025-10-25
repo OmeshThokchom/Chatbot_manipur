@@ -33,8 +33,21 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
   const audioChunks = useRef<Blob[]>([]);
   const isVoiceActiveRef = useRef(isVoiceActive);
 
-  const toggleVoiceOverlay = () => {
-    setIsVoiceOverlayVisible(!isVoiceOverlayVisible);
+  const toggleVoiceOverlay = async () => {
+    if (isVoiceOverlayVisible) {
+      // Stop voice chat
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach(track => track.stop());
+        mediaStreamRef.current = null;
+      }
+      setIsVoiceOverlayVisible(false);
+    } else {
+      // Start voice chat
+      const permissionGranted = await requestMicrophonePermission();
+      if (permissionGranted) {
+        setIsVoiceOverlayVisible(true);
+      }
+    }
   };
 
   useEffect(() => {
@@ -175,7 +188,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
 
   return (
     <div className="chat-wrapper">
-      {isVoiceOverlayVisible && <VoiceChatOverlay onClose={toggleVoiceOverlay} />}
+      {isVoiceOverlayVisible && <VoiceChatOverlay onClose={toggleVoiceOverlay} stream={mediaStreamRef.current} />}
       <div className="chat-main">
         <AnimatePresence mode="wait"> {/* Animate Welcome component out */}
           {!hasMessages && (
