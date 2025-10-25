@@ -29,6 +29,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
   const [microphonePermission, setMicrophonePermission] = useState<PermissionState | 'unknown'>('unknown');
   const [isVoiceOverlayVisible, setIsVoiceOverlayVisible] = useState(false);
   const [isAiSpeaking, setIsAiSpeaking] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -39,6 +40,15 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const audioSourceRef = useRef<AudioNode | null>(null);
+
+  const toggleMute = () => {
+    if (mediaStreamRef.current && isVoiceOverlayVisible) { // Only allow muting mic input
+      mediaStreamRef.current.getAudioTracks().forEach(track => {
+        track.enabled = !track.enabled;
+        setIsMuted(!track.enabled);
+      });
+    }
+  };
 
   // Setup shared audio context and analyser once
   useEffect(() => {
@@ -102,6 +112,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
         mediaStreamRef.current = null;
       }
       setIsVoiceOverlayVisible(false);
+      setIsMuted(false); // Reset mute state on close
     } else {
       const permissionGranted = await requestMicrophonePermission();
       if (permissionGranted && mediaStreamRef.current && analyserRef.current) {
@@ -224,7 +235,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
 
   return (
     <div className="chat-wrapper">
-      {(isVoiceOverlayVisible || isAiSpeaking) && <VoiceChatOverlay onClose={toggleVoiceOverlay} analyser={analyserRef.current} />}
+      {(isVoiceOverlayVisible || isAiSpeaking) && <VoiceChatOverlay onClose={toggleVoiceOverlay} analyser={analyserRef.current} isMuted={isMuted} onToggleMute={toggleMute} />}
       <div className="chat-main">
         <AnimatePresence mode="wait">
           {!hasMessages && (
