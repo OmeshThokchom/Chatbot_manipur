@@ -115,8 +115,8 @@ export default function Orb({ stream, hue = 200 }: OrbProps) {
       vec3 color2 = adjustHue(baseColor2, hue);
       vec3 color3 = adjustHue(baseColor3, hue);
       
-      float noiseScale = 0.65 + audioIntensity * 2.5;
-      float innerRadius = 0.6 - audioIntensity * 0.3;
+      float noiseScale = 0.65 + audioIntensity * 1.0;
+      float innerRadius = 0.6 - audioIntensity * 0.15;
 
       float ang = atan(uv.y, uv.x);
       float len = length(uv);
@@ -152,8 +152,8 @@ export default function Orb({ stream, hue = 200 }: OrbProps) {
       vec2 uv = (fragCoord - center) / size * 2.0;
 
       // Add audio-driven distortion
-      uv.x += audioIntensity * 0.3 * sin(uv.y * 10.0 + iTime);
-      uv.y += audioIntensity * 0.3 * sin(uv.x * 10.0 + iTime);
+      uv.x += audioIntensity * 0.1 * sin(uv.y * 10.0 + iTime);
+      uv.y += audioIntensity * 0.1 * sin(uv.x * 10.0 + iTime);
 
       return draw(uv);
     }
