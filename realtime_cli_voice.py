@@ -1,5 +1,6 @@
 
 import time
+import re
 import requests
 import base64
 import numpy as np
@@ -12,13 +13,16 @@ TTS_API_URL = "https://enabling-golden-muskox.ngrok-free.app/tts"
 SAMPLE_RATE = 44000
 DATA_TYPE = np.int16
 
-def play_tts_from_text(prompt: str, description: str = "female voice, clear tone"):
+def play_tts_from_text(prompt: str, description: str = "male voice, clear tone"):
     """
     Fetches TTS audio from the specified API and plays it directly.
     """
     if not prompt or not prompt.strip():
         print("TTS Error: No text to speak.")
         return
+
+    # Remove symbols and markdown, keeping only English, Meitei Mayek, and basic punctuation.
+    prompt = re.sub(r'[^a-zA-Z0-9\s\uABC0-\uABFF.,?!]', '', prompt)
 
     print("AI is speaking...")
     try:
