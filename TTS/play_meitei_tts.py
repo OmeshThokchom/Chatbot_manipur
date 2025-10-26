@@ -4,7 +4,7 @@ import numpy as np
 import sounddevice as sd
 
 # --- Configuration ---
-API_URL = "https://6279ee401a9d.ngrok-free.app/tts"
+API_URL = "https://enabling-golden-muskox.ngrok-free.app/tts"
 
 # NOTE: These are assumptions. If audio is distorted or has the wrong speed,
 # these values may need to be changed.

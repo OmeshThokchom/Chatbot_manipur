@@ -8,7 +8,7 @@ from N7Speech.manipur_asr.realtime_speech import RealTimeSpeech
 from meitei_chat_system import MeiteiChatSystem
 
 # --- TTS Configuration ---
-TTS_API_URL = "https://6279ee401a9d.ngrok-free.app/tts"
+TTS_API_URL = "https://enabling-golden-muskox.ngrok-free.app/tts"
 SAMPLE_RATE = 44000
 DATA_TYPE = np.int16
 
