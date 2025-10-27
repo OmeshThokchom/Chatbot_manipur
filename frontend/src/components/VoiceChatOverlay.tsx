@@ -43,6 +43,7 @@ const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser, 
 
     newSocket.on('tts_audio', async (data: { audio_data: string; sample_rate: number }) => {
       try {
+        console.log('Received TTS audio, sample rate:', data.sample_rate);
         if (!audioContextRef.current) {
           audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
         }
@@ -62,7 +63,10 @@ const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser, 
         audioSourceRef.current = source;
         source.start();
 
+        console.log('TTS audio started playing');
+
         source.onended = () => {
+          console.log('TTS audio finished playing');
           source.disconnect();
           audioSourceRef.current = null;
         };

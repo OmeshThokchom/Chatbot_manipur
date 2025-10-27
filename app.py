@@ -54,7 +54,7 @@ def play_meitei_tts(text: str, description: str = "male voice, clear tone"):
         print(f"TTS API URL: {TTS_API_URL}")
         print(f"TTS Request data: {data}")
         
-        response = requests.post(TTS_API_URL, json=data, timeout=10)
+        response = requests.post(TTS_API_URL, json=data)
         print(f"TTS Response status: {response.status_code}")
         
         response.raise_for_status()
