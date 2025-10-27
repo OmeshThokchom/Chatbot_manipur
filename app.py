@@ -1,11 +1,10 @@
 import os
-from flask import Flask, render_template, request, jsonify, Response, send_from_directory
+from flask import Flask, request, jsonify, Response, send_from_directory
 from flask_cors import CORS
 from meitei_chat_system import MeiteiChatSystem
-import threading
-import json
+
 from queue import Queue
-import time
+
 from TTS.piperTTS import PiperTTS
 
 app = Flask(__name__, static_folder='frontend/dist', static_url_path='/')

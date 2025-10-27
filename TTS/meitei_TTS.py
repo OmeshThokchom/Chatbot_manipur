@@ -1,6 +1,6 @@
 import requests, base64
 
-API = "https://https://enabling-golden-muskox.ngrok-free.app/tts"
+API = "https://enabling-golden-muskox.ngrok-free.app/tts"
 
 data = {
     "prompt": "ꯅꯪꯒꯤ ꯃꯤꯡ ꯀꯔꯤ ꯀꯧꯒꯦ ꯑꯗꯨꯒꯥ ꯅꯪ ꯆꯥꯛ ꯆꯥꯔꯕꯣ",
