@@ -42,18 +42,34 @@ def play_meitei_tts(text: str, description: str = "male voice, clear tone"):
     Fetches Meitei TTS audio from external API and returns base64 audio data
     """
     if not text or not text.strip():
+        print("TTS Error: No text to speak")
         return None
 
     # Remove symbols and markdown, keeping only English, Meitei Mayek, and basic punctuation
     cleaned_text = re.sub(r'[^a-zA-Z0-9\s\uABC0-\uABFF.,?!]', '', text)
+    print(f"TTS Request - Original: '{text}' -> Cleaned: '{cleaned_text}'")
 
     try:
         data = {"prompt": cleaned_text, "description": description}
-        response = requests.post(TTS_API_URL, json=data)
+        print(f"TTS API URL: {TTS_API_URL}")
+        print(f"TTS Request data: {data}")
+        
+        response = requests.post(TTS_API_URL, json=data, timeout=10)
+        print(f"TTS Response status: {response.status_code}")
+        
         response.raise_for_status()
         
-        audio_base64 = response.json()["audio"]
-        return audio_base64
+        response_data = response.json()
+        print(f"TTS Response data keys: {response_data.keys()}")
+        
+        if "audio" in response_data:
+            audio_base64 = response_data["audio"]
+            print(f"TTS Success: Got audio data, length: {len(audio_base64)}")
+            return audio_base64
+        else:
+            print(f"TTS Error: No 'audio' key in response: {response_data}")
+            return None
+            
     except requests.exceptions.RequestException as e:
         print(f"Meitei TTS Error: Could not connect to API. {e}")
         return None
@@ -143,17 +159,22 @@ def handle_disconnect():
 def handle_voice_data(data):
     """Handle real-time voice data from client"""
     try:
+        print("Received voice data from client")
         # Get audio data from client
         audio_data = data.get('audio_data')
         if not audio_data:
+            print("No audio data received")
             emit('error', {'message': 'No audio data received'})
             return
         
+        print(f"Audio data size: {len(audio_data)} characters")
         # Convert base64 audio data to bytes
         audio_bytes = base64.b64decode(audio_data)
+        print(f"Decoded audio bytes size: {len(audio_bytes)} bytes")
         
         # Transcribe using existing ASR
         transcript = chat_system.transcribe_audio_data(audio_bytes)
+        print(f"Transcription result: '{transcript}'")
         
         if transcript and transcript.strip():
             print(f"Transcribed: {transcript}")
@@ -171,13 +192,16 @@ def handle_voice_data(data):
             # Generate TTS audio using Meitei TTS
             tts_audio = play_meitei_tts(ai_response)
             if tts_audio:
+                print("Sending TTS audio to client")
                 emit('tts_audio', {
                     'audio_data': tts_audio,
                     'sample_rate': SAMPLE_RATE
                 })
             else:
+                print("Failed to generate TTS audio")
                 emit('error', {'message': 'Failed to generate TTS audio'})
         else:
+            print("No transcript generated")
             emit('transcript', {
                 'transcript': '',
                 'response': ''
