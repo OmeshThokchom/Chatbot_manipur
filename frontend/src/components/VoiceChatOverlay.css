@@ -5,15 +5,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.247);
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(30px); /* For Safari */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1001;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
+
+
+/* Controls */
 .voice-chat-controls {
   position: absolute;
   bottom: 50px;
@@ -23,17 +29,9 @@
   gap: 20px;
 }
 
-.transcript-display {
-  color: white;
-  margin-bottom: 20px;
-  max-width: 600px;
-  text-align: center;
-  font-size: 1.2em;
-}
-
 .control-button {
-  background: none;
-  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
   border-radius: 50%;
   width: 60px;
@@ -43,9 +41,49 @@
   align-items: center;
   cursor: pointer;
   font-size: 24px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-.mic-button.listening {
-  background-color: red;
-  border-color: red;
+.control-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
 }
+
+.control-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.mic-button.active {
+  background-color: #f44336;
+  border-color: #f44336;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.close-button {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: #f44336;
+}
+
+.close-button:hover {
+  background: rgba(244, 67, 54, 0.4);
+}
+
+.mute-button {
+  background: rgba(255, 152, 0, 0.2);
+  border-color: #FF9800;
+}
+
+.mute-button:hover {
+  background: rgba(255, 152, 0, 0.4);
+}
+
