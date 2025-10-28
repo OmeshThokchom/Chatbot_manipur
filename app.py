@@ -5,9 +5,7 @@ from flask_socketio import SocketIO, emit
 from meitei_chat_system import MeiteiChatSystem
 import base64
 import sounddevice as sd
-
 from queue import Queue
-
 from TTS.piperTTS import PiperTTS
 from TTS.meitei_TTS import synthesize_meitei_speech, SAMPLE_RATE
 
@@ -85,58 +83,45 @@ def tts_speak():
     try:
         data = request.json
         text = data.get('text', '')
-        print(f"Received TTS request for text: {text[:50]}...") # Log received text
         if not text:
             return jsonify({'error': 'No text provided'}), 400
 
         audio_buffer = piper_tts.text_to_speech(text)
         if audio_buffer:
-            print("Successfully generated audio buffer.") # Log success
             return Response(audio_buffer.getvalue(), mimetype='audio/wav')
         else:
-            print("Failed to generate audio buffer.") # Log failure
             return jsonify({'error': 'Failed to generate speech'}), 500
     except Exception as e:
-        print(f"Error in /tts/speak endpoint: {e}") # Log exception
         return jsonify({'error': str(e)}), 500
 
 # --- WebSocket Events for Real-time Voice Chat ---
 @socketio.on('connect')
 def handle_connect():
-    print('Client connected to voice chat')
     emit('connected', {'status': 'Connected to voice chat'})
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    print('Client disconnected from voice chat')
+    pass
 
 @socketio.on('voice_data')
 def handle_voice_data(data):
     """Handle real-time voice data from client"""
     try:
-        print("Received voice data from client")
         # Get audio data from client
         audio_data = data.get('audio_data')
         if not audio_data:
-            print("No audio data received")
             emit('error', {'message': 'No audio data received'})
             return
         
-        print(f"Audio data size: {len(audio_data)} characters")
         # Convert base64 audio data to bytes
         audio_bytes = base64.b64decode(audio_data)
-        print(f"Decoded audio bytes size: {len(audio_bytes)} bytes")
         
         # Transcribe using existing ASR
         transcript = chat_system.transcribe_audio_data(audio_bytes)
-        print(f"Transcription result: '{transcript}'")
         
         if transcript and transcript.strip():
-            print(f"Transcribed: {transcript}")
-            
             # Get AI response using existing chat system
             ai_response = chat_system.chat(transcript)
-            print(f"AI Response: {ai_response}")
             
             # Send transcript and response back to client
             emit('transcript', {
@@ -147,13 +132,11 @@ def handle_voice_data(data):
             # Generate TTS audio using Meitei TTS
             tts_audio = synthesize_meitei_speech(ai_response)
             if tts_audio:
-                print("Sending TTS audio to client")
                 emit('tts_audio', {
                     'audio_data': tts_audio,
                     'sample_rate': SAMPLE_RATE
                 })
             else:
-                print("Failed to generate TTS audio")
                 # Still emit an event so the frontend knows processing is complete
                 emit('tts_audio', {
                     'audio_data': None,
@@ -161,27 +144,23 @@ def handle_voice_data(data):
                     'error': 'Failed to generate TTS audio'
                 })
         else:
-            print("No transcript generated")
             emit('transcript', {
                 'transcript': '',
                 'response': ''
             })
             
     except Exception as e:
-        print(f"Error processing voice data: {e}")
         emit('error', {'message': f'Error processing voice: {str(e)}'})
 
 @socketio.on('start_voice_chat')
 def handle_start_voice_chat():
     """Handle start of voice chat session"""
-    print('Starting voice chat session')
     emit('voice_chat_started', {'status': 'Voice chat session started'})
 
 @socketio.on('stop_voice_chat')
 def handle_stop_voice_chat():
     """Handle stop of voice chat session"""
-    print('Stopping voice chat session')
     emit('voice_chat_stopped', {'status': 'Voice chat session stopped'})
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=8000)
+    socketio.run(app, debug=False, port=8000)
