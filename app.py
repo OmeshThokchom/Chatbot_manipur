@@ -4,14 +4,12 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 from meitei_chat_system import MeiteiChatSystem
 import base64
-import requests
-import numpy as np
 import sounddevice as sd
-import re
 
 from queue import Queue
 
 from TTS.piperTTS import PiperTTS
+from TTS.meitei_TTS import synthesize_meitei_speech, SAMPLE_RATE
 
 app = Flask(__name__, static_folder='frontend/dist', static_url_path='/')
 CORS(app)
@@ -32,50 +30,7 @@ def web_transcription_callback(transcript):
     if transcript and transcript.strip():
         transcription_queue.put({'transcript': transcript.strip()})
 
-# --- Meitei TTS Configuration (for real-time voice chat) ---
-TTS_API_URL = "https://enabling-golden-muskox.ngrok-free.app/tts"
-SAMPLE_RATE = 44000
-DATA_TYPE = np.int16
 
-def play_meitei_tts(text: str, description: str = "male voice, clear tone"):
-    """
-    Fetches Meitei TTS audio from external API and returns base64 audio data
-    """
-    if not text or not text.strip():
-        print("TTS Error: No text to speak")
-        return None
-
-    # Remove symbols and markdown, keeping only English, Meitei Mayek, and basic punctuation
-    cleaned_text = re.sub(r'[^a-zA-Z0-9\s\uABC0-\uABFF.,?!]', '', text)
-    print(f"TTS Request - Original: '{text}' -> Cleaned: '{cleaned_text}'")
-
-    try:
-        data = {"prompt": cleaned_text, "description": description}
-        print(f"TTS API URL: {TTS_API_URL}")
-        print(f"TTS Request data: {data}")
-        
-        response = requests.post(TTS_API_URL, json=data)
-        print(f"TTS Response status: {response.status_code}")
-        
-        response.raise_for_status()
-        
-        response_data = response.json()
-        print(f"TTS Response data keys: {response_data.keys()}")
-        
-        if "audio" in response_data:
-            audio_base64 = response_data["audio"]
-            print(f"TTS Success: Got audio data, length: {len(audio_base64)}")
-            return audio_base64
-        else:
-            print(f"TTS Error: No 'audio' key in response: {response_data}")
-            return None
-            
-    except requests.exceptions.RequestException as e:
-        print(f"Meitei TTS Error: Could not connect to API. {e}")
-        return None
-    except Exception as e:
-        print(f"Meitei TTS Error: {e}")
-        return None
 
 @app.route('/')
 def index():
@@ -190,7 +145,7 @@ def handle_voice_data(data):
             })
             
             # Generate TTS audio using Meitei TTS
-            tts_audio = play_meitei_tts(ai_response)
+            tts_audio = synthesize_meitei_speech(ai_response)
             if tts_audio:
                 print("Sending TTS audio to client")
                 emit('tts_audio', {
@@ -199,7 +154,12 @@ def handle_voice_data(data):
                 })
             else:
                 print("Failed to generate TTS audio")
-                emit('error', {'message': 'Failed to generate TTS audio'})
+                # Still emit an event so the frontend knows processing is complete
+                emit('tts_audio', {
+                    'audio_data': None,
+                    'sample_rate': SAMPLE_RATE,
+                    'error': 'Failed to generate TTS audio'
+                })
         else:
             print("No transcript generated")
             emit('transcript', {
