@@ -121,6 +121,7 @@ const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser, 
       mediaRecorderRef.current.onerror = (event) => {
         console.error('MediaRecorder error:', event);
       };
+      
 
       mediaRecorderRef.current.start(2000); // Record in 2-second chunks
       setIsListening(true);

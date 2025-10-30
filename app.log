@@ -1,0 +1,34 @@
+2025-10-30 20:34:23,170 - INFO - Received message: hello
+2025-10-30 20:34:25,172 - INFO - Sending response: Hello! How can I assist you today? 😊
+2025-10-30 20:34:33,974 - INFO - Client connected to voice chat
+2025-10-30 20:34:39,657 - INFO - Received voice data from client
+2025-10-30 20:34:51,341 - INFO - Transcription result: 'ꯅꯪꯒꯤ ꯃꯤꯡ ꯀꯔꯤ ꯇꯧꯗꯦ'
+2025-10-30 20:34:56,613 - INFO - AI Response: ꯍꯦꯜꯂꯣ! ꯉꯁꯤ ꯑꯩꯍꯥꯛꯅꯥ ꯑꯗꯣꯃꯗꯥ ꯃꯇꯧ ꯀꯔꯝꯅꯥ ꯃꯇꯦꯡ ꯄꯥꯡꯒꯅꯤ? 😊
+2025-10-30 20:34:56,620 - INFO - TTS Request - Original: 'ꯍꯦꯜꯂꯣ! ꯉꯁꯤ ꯑꯩꯍꯥꯛꯅꯥ ꯑꯗꯣꯃꯗꯥ ꯃꯇꯧ ꯀꯔꯝꯅꯥ ꯃꯇꯦꯡ ꯄꯥꯡꯒꯅꯤ? 😊' -> Cleaned: 'ꯍꯦꯜꯂꯣ! ꯉꯁꯤ ꯑꯩꯍꯥꯛꯅꯥ ꯑꯗꯣꯃꯗꯥ ꯃꯇꯧ ꯀꯔꯝꯅꯥ ꯃꯇꯦꯡ ꯄꯥꯡꯒꯅꯤ? '
+2025-10-30 20:35:07,377 - INFO - TTS Success: Got audio data, length: 551656
+2025-10-30 20:35:07,383 - INFO - Sending TTS audio to client
+2025-10-31 02:53:05,766 - INFO - Client disconnected from voice chat
+2025-10-31 02:53:09,889 - INFO - Received message: yo
+2025-10-31 02:53:11,526 - INFO - Sending response: Sure, just let me know what you need assistance with, and I’ll help right away.
+2025-10-31 04:02:17,905 - INFO - Received message: how to donload a file on local machine from colab
+2025-10-31 04:02:19,372 - INFO - Sending response: Use the Colab helper library:
+
+```python
+from google.colab import files
+files.download('your_file.ext')   # single file
+# or zip multiple files first, then download the zip
+```
+
+🗂️ After the cell runs, a download link pops up and the file lands in your local *Downloads* folder. 🚀
+2025-10-31 04:02:31,648 - INFO - Received message: show me 5 methids
+2025-10-31 04:02:33,486 - INFO - Sending response: Here are 5 ways to pull a file from Colab onto your local machine:
+
+| # | Method | Quick command |
+|---|--------|---------------|
+| 1 | **`files.download`** (built‑in) | `from google.colab import files; files.download('path/to/file')` |
+| 2 | **Mount Google Drive** | `from google.colab import drive; drive.mount('/content/drive')` then copy from `/content/drive/MyDrive/` |
+| 3 | **`wget`/`curl` to a public URL** | `!wget https://example.com/file -O local_name` (then download via method 1) |
+| 4 | **Zip & download** | `!zip -r archive.zip folder/ && from google.colab import files; files.download('archive.zip')` |
+| 5 | **Use PyDrive API** | Set up PyDrive, then `file.GetContentFile('filename')` to save locally.
+2025-10-31 04:03:46,638 - INFO - Client connected to voice chat
+2025-10-31 04:03:48,985 - INFO - Client disconnected from voice chat
