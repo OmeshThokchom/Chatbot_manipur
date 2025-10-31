@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import "./ChatInput.css";
-import voiceLineIcon from '../assets/—Pngtree—voice line icon vector_9063265.png';
 
 interface ChatInputProps {
   value: string;
@@ -72,7 +71,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onClick={onVoiceChatClick}
           disabled={isLoading}
         >
-          <img src={voiceLineIcon} alt="Voice chat" className="chat-input__voice-chat-icon" />
+          <img src="/voice_realtime.png" alt="Voice chat" className="chat-input__voice-chat-icon" />
         </button>
         <button
           className={`chat-input__send-button ${isVoiceActive ? 'voice-active' : ''}`}

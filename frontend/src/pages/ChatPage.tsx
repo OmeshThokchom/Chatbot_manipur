@@ -30,6 +30,17 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
   const [isVoiceOverlayVisible, setIsVoiceOverlayVisible] = useState(false);
   const [isAiSpeaking, setIsAiSpeaking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [orbHue, setOrbHue] = useState(200); // Default hue for idle state
+
+  useEffect(() => {
+    if (isVoiceActive) {
+      setOrbHue(180); // Listening state
+    } else if (isAiSpeaking) {
+      setOrbHue(280); // Speaking state
+    } else {
+      setOrbHue(200); // Idle state
+    }
+  }, [isVoiceActive, isAiSpeaking]);
 
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -235,7 +246,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ onMessagesChange, hasMessages }) =>
 
   return (
     <div className="chat-wrapper">
-      {(isVoiceOverlayVisible || isAiSpeaking) && <VoiceChatOverlay onClose={toggleVoiceOverlay} analyser={analyserRef.current} isMuted={isMuted} onToggleMute={toggleMute} />}
+      {(isVoiceOverlayVisible || isAiSpeaking) && <VoiceChatOverlay onClose={toggleVoiceOverlay} analyser={analyserRef.current} isMuted={isMuted} onToggleMute={toggleMute} hue={orbHue} />}
       <div className="chat-main">
         <AnimatePresence mode="wait">
           {!hasMessages && (

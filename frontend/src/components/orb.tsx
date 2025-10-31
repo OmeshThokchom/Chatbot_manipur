@@ -6,9 +6,10 @@ import './Orb.css';
 interface OrbProps {
   analyser: AnalyserNode | null;
   hue?: number;
+  isMuted?: boolean;
 }
 
-export default function Orb({ analyser, hue = 200 }: OrbProps) {
+export default function Orb({ analyser, hue = 200, isMuted = false }: OrbProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
 
   const vert = /* glsl */ `
@@ -216,7 +217,7 @@ export default function Orb({ analyser, hue = 200 }: OrbProps) {
       program.uniforms.iTime.value = t * 0.001;
       program.uniforms.hue.value = hue;
 
-      if (analyser) {
+      if (analyser && !isMuted) {
         const dataArray = new Uint8Array(analyser.frequencyBinCount);
         analyser.getByteFrequencyData(dataArray);
         let sum = dataArray.reduce((a, b) => a + b, 0);
@@ -224,8 +225,8 @@ export default function Orb({ analyser, hue = 200 }: OrbProps) {
         let normalized = avg / 255;
         program.uniforms.audioIntensity.value += (normalized - program.uniforms.audioIntensity.value) * 0.1;
       } else {
-        // Reset intensity if analyser is removed
-        program.uniforms.audioIntensity.value += (0 - program.uniforms.audioIntensity.value) * 0.1;
+        // Reset intensity if analyser is removed or muted
+        program.uniforms.audioIntensity.value = 0;
       }
 
       renderer.render({ scene: mesh });
@@ -238,7 +239,7 @@ export default function Orb({ analyser, hue = 200 }: OrbProps) {
       container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [analyser, hue]);
+  }, [analyser, hue, isMuted]);
 
   return <div ref={ctnDom} className="orb-container" />;
 }

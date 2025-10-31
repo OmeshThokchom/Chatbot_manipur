@@ -9,10 +9,11 @@ interface VoiceChatOverlayProps {
   analyser: AnalyserNode | null;
   isMuted: boolean;
   onToggleMute: () => void;
+  hue: number;
 }
 
 
-const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser, isMuted, onToggleMute }) => {
+const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser, isMuted, onToggleMute, hue }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -181,7 +182,7 @@ const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser, 
 
   return (
     <div className="voice-chat-overlay">
-      <Orb analyser={analyser} />
+      <Orb analyser={analyser} hue={hue} isMuted={isMuted} />
       
       {/* Processing indicator */}
       {isProcessing && (
