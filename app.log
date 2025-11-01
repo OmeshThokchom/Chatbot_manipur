@@ -32,3 +32,5 @@ files.download('your_file.ext')   # single file
 | 5 | **Use PyDrive API** | Set up PyDrive, then `file.GetContentFile('filename')` to save locally.
 2025-10-31 04:03:46,638 - INFO - Client connected to voice chat
 2025-10-31 04:03:48,985 - INFO - Client disconnected from voice chat
+2025-11-01 01:22:53,333 - INFO - Received message: hey
+2025-11-01 01:22:54,894 - INFO - Sending response: What can I help you with today? 🚀💡
