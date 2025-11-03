@@ -112,8 +112,6 @@ const VoiceChatOverlay: React.FC<VoiceChatOverlayProps> = ({ onClose, analyser, 
         }
       };
 
-
-      
       mediaRecorderRef.current.onstop = () => {
         console.log('Recording stopped, chunks:', audioChunksRef.current.length);
         const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
