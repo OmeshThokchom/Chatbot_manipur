@@ -49,6 +49,7 @@ This project develops a sophisticated Multilingual Voice Assistant, specifically
 - **requests:** HTTP client for making external API calls.
 - **misaki:** (Specific library, likely for Meitei language processing or a component of ASR/TTS).
 
+
 ### Frontend
 - **React:** JavaScript library for building user interfaces.
 - **Vite:** Fast build tool for modern web projects.
