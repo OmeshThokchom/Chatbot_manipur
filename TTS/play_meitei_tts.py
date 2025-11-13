@@ -56,7 +56,7 @@ def play_tts_from_text(prompt: str, description: str):
 
 if __name__ == "__main__":
     # Example usage with the prompt from the user's script
-    example_prompt = "ꯀꯁꯨꯕꯤ ꯒꯤ ꯃꯆꯥ"
-    example_description = "male voice, clear tone, fast tempo"
+    example_prompt = "ꯑꯩꯒꯤ ꯃꯤꯡ cosmic ꯀꯧꯏ"
+    example_description = "female voice, clear tone, fast tempo"
     
     play_tts_from_text(example_prompt, example_description)

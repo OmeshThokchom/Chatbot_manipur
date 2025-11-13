@@ -34,3 +34,18 @@ files.download('your_file.ext')   # single file
 2025-10-31 04:03:48,985 - INFO - Client disconnected from voice chat
 2025-11-01 01:22:53,333 - INFO - Received message: hey
 2025-11-01 01:22:54,894 - INFO - Sending response: What can I help you with today? 🚀💡
+2025-11-14 00:24:07,095 - INFO - Received message: what is your name
+2025-11-14 00:24:08,186 - INFO - Sending response: **Name:** Cosmic 🚀.
+2025-11-14 00:24:10,811 - INFO - TTS request for text: **Name:** Cosmic 🚀....
+2025-11-14 00:24:11,345 - INFO - Successfully generated audio buffer.
+2025-11-14 00:24:17,502 - INFO - TTS request for text: **Name:** Cosmic 🚀....
+2025-11-14 00:24:17,966 - INFO - Successfully generated audio buffer.
+2025-11-14 00:24:43,831 - INFO - Received message: ꯀꯔꯤ ꯃꯤꯡ ꯀꯧꯒꯦ
+2025-11-14 00:24:48,094 - INFO - Sending response: ꯑꯩꯒꯤ ꯃꯤꯡ **ꯀꯣꯁꯃꯤꯛ** 🤖 ꯍꯥꯌꯕꯅꯤ꯫ ꯃꯗꯨ ꯑꯗꯣꯝꯅꯥ ꯄꯥꯝꯂꯤꯕꯥ ꯃꯇꯝ ꯈꯨꯗꯤꯡꯗꯥ ꯃꯦꯏꯇꯦꯌ ꯃꯥꯌꯦꯛꯇꯥ ꯑꯃꯨꯛ ꯍꯟꯅꯥ ꯍꯟꯗꯣꯀꯄꯥ ꯉꯝꯅꯕꯥ ꯋꯥꯈꯜ ꯅꯨꯡꯉꯥꯏꯕꯥ ꯐꯥꯑꯣꯕꯤꯌꯨ!
+2025-11-14 00:26:33,341 - INFO - TTS request for text: ꯑꯩꯒꯤ ꯃꯤꯡ **ꯀꯣꯁꯃꯤꯛ** 🤖 ꯍꯥꯌꯕꯅꯤ꯫ ꯃꯗꯨ ꯑꯗꯣꯝꯅꯥ ꯄꯥꯝꯂꯤꯕꯥ ꯃ...
+2025-11-14 00:26:34,238 - INFO - Successfully generated audio buffer.
+2025-11-14 00:27:37,829 - INFO - Client connected to voice chat
+2025-11-14 00:27:46,223 - INFO - Client disconnected from voice chat
+2025-11-14 00:28:07,040 - INFO - Transcription result: ꯆꯪ ꯆꯥꯛ ꯆꯥꯔꯕꯣ
+2025-11-14 00:28:21,387 - INFO - Received message: ꯆꯪ ꯆꯥꯛ ꯆꯥꯔꯕꯣ
+2025-11-14 00:28:26,022 - INFO - Sending response: ꯑꯩꯒꯤ ꯃꯤꯡ ꯀꯣꯁ꯭ꯃꯤꯛꯅꯤ꯫ “ꯏꯃꯅꯂꯦ ꯒꯦꯠ ꯏꯟ ꯗꯤ ꯕꯨꯛ” ꯍꯥꯌꯕꯁꯤ ꯀꯔꯤꯅꯣ ꯍꯥꯌꯕꯁꯤ ꯑꯗꯣꯝꯅꯥ ꯃꯌꯦꯛ ꯁꯦꯡꯅꯥ ꯇꯥꯀꯄꯥ ꯉꯃꯒꯗ꯭ꯔꯥ?
