@@ -8,7 +8,6 @@
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/OmeshThokchom/Chatbot_manipur)](https://github.com/OmeshThokchom/Chatbot_manipur/pulls)
 
 
-
 ## Table of Contents
 - [Demo Video](#demo-video)
 - [About](#about)
