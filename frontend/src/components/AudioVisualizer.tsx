@@ -6,7 +6,6 @@ interface AudioVisualizerProps {
   stream: MediaStream | null;
 }
 
-
 const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ isVoiceActive, stream }) => {
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
